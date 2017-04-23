@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20170422201418) do
 
   create_table "trips", force: :cascade do |t|
     t.string   "name"
-    t.string   "type"
+    t.string   "kind"
     t.text     "summary"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
