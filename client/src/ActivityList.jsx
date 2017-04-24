@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import Place from './Place.jsx';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
+import axios from 'axios';
 
-const API_KEY = 'AIzaSyC3yCuJtptjR5ToKEdsPqHvPnlQXcLMTRk';
+// const API_KEY = 'AIzaSyC3yCuJtptjR5ToKEdsPqHvPnlQXcLMTRk';
+const API_KEY = 'AIzaSyA7GEO6ZSaCShhm7K1Jg5PG-KtUA3StVpQ'; // David's
 
 class ActivityList extends Component {
 
@@ -18,15 +20,32 @@ class ActivityList extends Component {
 
   loadData(address) {
     address = address.split(' ').join('');
-    const GOOGLE_PLACE_URL = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+${address}&key=AIzaSyCH4bIlrAPDcVFlr3iKeYP0q0vmxIcrpaA`;
+    const GOOGLE_PLACE_URL = `https://crossorigin.me/https://maps.googleapis.com/maps/api/place/textsearch/json?`;
+    const QUERY = `query=poi+in+${address}`;
 
-    const xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            console.log(xmlHttp.responseText);
-    }
-    xmlHttp.open("GET", GOOGLE_PLACE_URL, true); // true for asynchronous
-    xmlHttp.send(null);
+    const COMPLETE_URL = `${GOOGLE_PLACE_URL}${QUERY}&key=${API_KEY}`
+
+    let placeList = [];
+
+    $.ajax({
+        type: "GET",
+        url: COMPLETE_URL,
+        async: false,
+        success : function(response) {
+          response.results.forEach((e) => {
+            let place = {};
+            place.id = e.id;
+            place.rating = e.rating;
+            place.name = e.name;
+            place.types = e.types;
+            place.icon = e.icon;
+            place.photos = e.photos;
+            placeList.push(place);
+          })
+        }
+    });
+    console.log('placeList ', placeList);
+    this.setState({ places: placeList });
   }
 
   handleFormSubmit = (event) => {
@@ -34,13 +53,12 @@ class ActivityList extends Component {
 
     geocodeByAddress(this.state.address,  (err, latLng) => {
       if (err) { console.log('Oh no!', err) };
-
-      console.log(`Yay! Got latitude and longitude for ${this.state.address}`, latLng);
+      console.log('Address ', this.state.address);
       this.loadData(this.state.address);
     });
   }
 
-  componentDidMount() {
+  componentDidUpdate() {
     $('#external-events .fc-event').each(function () {
       $(this).data('event', {
         title: $.trim($(this).text()),
@@ -77,9 +95,10 @@ class ActivityList extends Component {
         <form onBlur={this.handleFormSubmit}>
           <PlacesAutocomplete inputProps={inputProps} classNames={cssClasses} />
         </form>
-        <div id='external-events'>
+        <ul id='external-events' className="event-list">
           <h1>Places</h1>
-        </div>
+          {this.state.places.map((e) => { return <Place key={e.id} place={e}/> })}
+        </ul>
       </div>
     );
   }
