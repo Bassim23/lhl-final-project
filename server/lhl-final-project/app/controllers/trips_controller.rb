@@ -10,8 +10,7 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
-    trip = Trip.find(params[:id])
-    @schedules = trip.schedules
+    @trip = Trip.find(params[:id])
   end
 
   # GET /trips/new
@@ -58,7 +57,7 @@ class TripsController < ApplicationController
   def destroy
     @trip.destroy
     respond_to do |format|
-      format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
+      format.html { redirect_to trips_path, notice: 'Trip was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

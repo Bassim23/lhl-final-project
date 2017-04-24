@@ -1,11 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<% @trip = @activity.schedule.trip %>
-<% @schedule = @activity.schedule %>
+<% @trip = @participation.activity.schedule.trip %>
+<% @schedule = @participation.activity.schedule %>
+<% @activity = @participation.activity %>
 
 <h1>Trip <%= @trip.id%></h1>
 <h2>Schedule <%= @schedule.id%></h2>
 <h3>Activity <%= @activity.id%></h3>
+
 <table class ="table">
  <thead class="thead-default">
     <tr >
@@ -29,9 +31,6 @@
       </th>
       <th>
         Activity Google Place
-      </th>
-      <th>
-        Activity Delete Link
       </th>
     </tr>
   </thead>
@@ -58,9 +57,6 @@
       <td>
         <%= @activity.place%>
       </td>
-      <td>
-        <%= link_to 'Destroy', [@trip, @schedule, @activity], method: :delete, data: { confirm: 'Are you sure?' } %>
-      </td>
     </tr>
   </tbody>
 </table>
@@ -73,21 +69,20 @@
       <th>Participant User ID</th>
       <th>Participant First Name</th>
       <th>Participant Last Name</th>
+      <th>Participant Destroy Link</th>
     </tr>
   </thead>
   <tbody>
-    <% @activity.participations.each do |participation| %>
     <tr>
-      <td><%= participation.id %></td>
-      <td><%= participation.status %></td>
-      <td><%= participation.user_id %></td>
-      <td><%= participation.user.first_name %></td>
-      <td><%= participation.user.last_name %></td>
-      <td><%= link_to 'Show', [@trip, @schedule, @activity, participation] %></td>
-      <td><%= link_to 'Destroy', [@trip, @schedule, @activity, participation], method: :delete, data: { confirm: 'Are you sure?' } %>
+      <td><%= @participation.id %></td>
+      <td><%= @participation.status %></td>
+      <td><%= @participation.user_id %></td>
+      <td><%= @participation.user.first_name %></td>
+      <td><%= @participation.user.last_name %></td>
+      <td><%= link_to 'Destroy', [@trip, @schedule, @activity, @participation], method: :delete, data: { confirm: 'Are you sure?' } %>
     <tr>
-    <% end %>
   </tbody>
 </table>
+
 
 <%= link_to 'Trips', trips_path %>

@@ -2,34 +2,34 @@
 
 <h1>Trips</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
+<table class="table table-striped">
+  <thead class="thead-default">
+    <tr >
+      <th>
+        Trip Name
+      </th>
+      <th>
+        Trip Summary
+      </th>
+      <th>
+        Trip Kind
+      </th>
+      <th>
+        Host First Name
+      </th>
+      <th>
+        Host Last Name
+      </th>
+      <th>
+        Trip Show Link
+      </th>
+      <th>
+        Trip Delete Link
+      </th>
     </tr>
   </thead>
 
   <tbody>
-    <tr>
-      <td>
-        Trip Name
-      </td>
-      <td>
-        Trip Summary
-      </td>
-      <td>
-        Host First Name
-      </td>
-      <td>
-        Host Last Name
-      </td>
-      <td>
-        Trip Show Link
-      </td>
-      <td>
-        Trip Destroy Link
-      </td>
-    </tr>
     <% @trips.each do |trip| %>
       <tr>
         <td>
@@ -37,6 +37,9 @@
         </td>
         <td>
           <%= trip.summary%>
+        </td>
+        <td>
+          <%= trip.kind%>
         </td>
         <td>
           <%= trip.user.first_name%>
