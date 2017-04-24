@@ -198,6 +198,10 @@ activity7 = schedule3.activities.create!({
   place: "ChIJtcaxrqlZwokRfwmmibzPsTU"
 })
 
+puts "Creating participations ..."
+
+Participation.destroy_all
+
 participation1 = activity1.participations.create!({
   user_id: user2.id,
   status: ''
