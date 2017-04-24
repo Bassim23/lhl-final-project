@@ -1,0 +1,7 @@
+<p id="notice"><%= notice %></p>
+
+<% @schedules.each do |schedule| %>
+<h4><%= schedule.id %></h4>
+<% end %>
+
+<%= link_to 'Back', trips_path %>
