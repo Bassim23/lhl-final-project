@@ -18,12 +18,20 @@ module.exports = {
         loaders: ['babel'],
         include: path.join(__dirname, 'src')
       }, {
+        test: /\.css$/,
+        loaders: ["style", "css"]
+      },
+      {
         test: /\.scss$/,
         loaders: ["style", "css", "sass"]
       },
       {
         test: /\.json$/,
         loader: "json-loader"
+      },
+      {
+        test: /\.less$/,
+        loaders: ["style", "css", "less"]
       }
     ],
   }

@@ -54,7 +54,7 @@ class ActivityList extends Component {
     geocodeByAddress(this.state.address,  (err, latLng) => {
       if (err) { console.log('Oh no!', err) };
       console.log('Address ', this.state.address);
-      this.loadData(this.state.address);
+      // this.loadData(this.state.address);
     });
   }
 
