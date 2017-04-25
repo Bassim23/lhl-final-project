@@ -1,0 +1,75 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Trip <%= @trip.id%></h1>
+
+<table class ="table">
+ <thead class="thead-default">
+    <tr >
+      <th>
+        Trip Name
+      </th>
+      <th>
+        Trip Summary
+      </th>
+      <th>
+        Trip Kind
+      </th>
+      <th>
+        Host First Name
+      </th>
+      <th>
+        Host Last Name
+      </th>
+      <th>
+        Trip Delete Link
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <%= @trip.name%>
+      </td>
+      <td>
+        <%= @trip.summary%>
+      </td>
+      <td>
+        <%= @trip.kind%>
+      </td>
+      <td>
+        <%= @trip.user.first_name%>
+      </td>
+      <td>
+        <%= @trip.user.last_name%>
+      </td>
+      <td>
+        <%= link_to 'Destroy', @trip, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Schedule ID</th>
+      <th>Schedule Date</th>
+      <th>Goggle Place Destination</th>
+      <th>Schedule Show Link</th>
+      <th>Schedule Delete Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @trip.schedules.each do |schedule| %>
+    <tr>
+      <td><%= schedule.id %></td>
+      <td><%= schedule.date %></td>
+      <td><%= schedule.destination %></td>
+      <td><%= link_to 'Show', [@trip, schedule] %></td>
+      <td><%= link_to 'Destroy', [@trip, schedule], method: :delete, data: { confirm: 'Are you sure?' } %>
+    <tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Trips', trips_path %>
