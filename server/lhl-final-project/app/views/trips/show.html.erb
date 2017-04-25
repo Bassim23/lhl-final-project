@@ -1,3 +1,5 @@
+<!---
+
 <p id="notice"><%= notice %></p>
 
 <h1>Trip <%= @trip.id%></h1>
@@ -73,3 +75,20 @@
 </table>
 
 <%= link_to 'Trips', trips_path %>
+
+-->
+<main class="container-fluid">
+  <header class="page-header">
+    <h1><%= @trip.name %></h1>
+  </header>
+  <section class="container">
+    <% api_key = 'AIzaSyA7GEO6ZSaCShhm7K1Jg5PG-KtUA3StVpQ' %>
+    <% google_place_url = 'https://crossorigin.me/https://maps.googleapis.com/maps/api/place/textsearch/json?' %>
+    <% query = 'query=poi+in' %>
+    <% @trip.schedules.each do |schedule| %>
+      <% query = query + schedule.destination %>
+      <% complete_url = google_place_url + query + '&key=' + api_key %>
+      <%= complete_url %>
+    <% end %>
+  </section>
+</main>
