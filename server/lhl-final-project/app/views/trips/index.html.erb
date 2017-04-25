@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Trips</h1>
+
+<table class="table table-striped">
+  <thead class="thead-default">
+    <tr >
+      <th>
+        Trip Name
+      </th>
+      <th>
+        Trip Summary
+      </th>
+      <th>
+        Trip Kind
+      </th>
+      <th>
+        Host First Name
+      </th>
+      <th>
+        Host Last Name
+      </th>
+      <th>
+        Trip Show Link
+      </th>
+      <th>
+        Trip Delete Link
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trips.each do |trip| %>
+      <tr>
+        <td>
+          <%= trip.name%>
+        </td>
+        <td>
+          <%= trip.summary%>
+        </td>
+        <td>
+          <%= trip.kind%>
+        </td>
+        <td>
+          <%= trip.user.first_name%>
+        </td>
+        <td>
+          <%= trip.user.last_name%>
+        </td>
+        <td>
+          <%= link_to 'Show', trip %>
+        </td>
+        <td>
+          <%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'Create Trip', new_trip_path %>
