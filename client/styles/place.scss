@@ -39,6 +39,31 @@
   border-radius: 1em;
 }
 
+#item-list {
+  background: #2f2f2f;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden h4 {
+      color: #fff;
+      margin-left: 15px;
+      margin-top: 15px;
+  }
+  p {
+      color: #fff;
+      font-size: 15px;
+      line-height: 18px;
+      margin-left: 15px;
+  }
+  .container {
+      width: 100%
+  }
+  .col-lg-8 {
+      margin: 0;
+      padding: 0;
+  }
+}
+
+
 @media (min-width: 768px) {
   .event-list > li {
     position: relative;

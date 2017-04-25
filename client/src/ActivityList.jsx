@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import Place from './Place.jsx';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
 
-// const API_KEY = 'AIzaSyC3yCuJtptjR5ToKEdsPqHvPnlQXcLMTRk';
-const API_KEY = 'AIzaSyA7GEO6ZSaCShhm7K1Jg5PG-KtUA3StVpQ'; // David's
+const API_KEY = 'AIzaSyC3yCuJtptjR5ToKEdsPqHvPnlQXcLMTRk';
+// const API_KEY = 'AIzaSyA7GEO6ZSaCShhm7K1Jg5PG-KtUA3StVpQ'; // David's
+const backgroundColor = ['#1ABC9C', '#2ECC71', '#3498DB', '#9B59B6', '#34495E'];
+let index = -1;
 
 class ActivityList extends Component {
 
@@ -43,7 +45,6 @@ class ActivityList extends Component {
           })
         }
     });
-    console.log('placeList ', placeList);
     this.setState({ places: placeList });
   }
 
@@ -61,11 +62,14 @@ class ActivityList extends Component {
     $('#external-events .fc-event').each(function () {
       $(this).data('event', {
         title: $.trim($(this).text()),
+        backgroundColor: $(this).data("color"),
+        // url: $(this).data("url"),
         stick: true
       });
 
       $(this).draggable({
-        zIndex: 999, revert: true, // will cause the event to go back to its
+        zIndex: 999,
+        revert: true, // will cause the event to go back to its
         revertDuration: 0 //  original position after the drag
       });
 
@@ -96,7 +100,14 @@ class ActivityList extends Component {
         </form>
         <ul id='external-events' className="event-list">
           <h1>Places</h1>
-          {this.state.places.map((e) => { return <Place key={e.id} place={e}/> })}
+          {this.state.places.map((e) => {
+            if (index >= backgroundColor.length - 1){
+              index = 0;
+            } else {
+              index++;
+            }
+            return <Place key={e.id} place={e} color={ backgroundColor[index] }/> })
+          }
         </ul>
       </div>
     );

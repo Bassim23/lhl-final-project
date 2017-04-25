@@ -54,7 +54,9 @@
     "react": "15.2.1",
     "react-bootstrap": "^0.30.10",
     "react-dom": "15.2.1",
+    "react-fullcalendar": "^1.0.0",
     "react-google-places": "^2.0.3",
-    "react-places-autocomplete": "^5.0.0"
+    "react-places-autocomplete": "^5.0.0",
+    "uuid": "^3.0.1"
   }
 }
