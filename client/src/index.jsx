@@ -6,6 +6,7 @@ import $ from 'jquery';
 
 // Render the top-level React component
 import React from 'react';
+import { Router, Route, Switch } from 'react-router'
 import ReactDOM from 'react-dom';
 import App from './App.jsx';
 

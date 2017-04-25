@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Place from './Place.jsx';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
-import axios from 'axios';
 
 // const API_KEY = 'AIzaSyC3yCuJtptjR5ToKEdsPqHvPnlQXcLMTRk';
 const API_KEY = 'AIzaSyA7GEO6ZSaCShhm7K1Jg5PG-KtUA3StVpQ'; // David's
