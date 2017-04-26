@@ -133,6 +133,17 @@
      
       }
 
+      function animateCircle(line) {
+          var count = 0;
+          window.setInterval(function() {
+            count = (count + 1) % 200;
+
+            var icons = line.get('icons');
+            icons[0].offset = (count / 2) + '%';
+            line.set('icons', icons);
+        }, 80);
+      }
+
       function geocodePlaceId(geocoder, map, infowindow, placeId, i) {
         //var label = (i+1).toString();
         geocoder.geocode({'placeId': placeId}, function(results, status) {
@@ -151,8 +162,7 @@
                 animation: google.maps.Animation.DROP,
                 icon: {
                   path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-                  //strokeColor: '#0000CD',
-                  fillOpacity: 0.7,
+                  fillOpacity: 1.0,
                   fillColor: '#FF0000',
                   strokeWeight: 2,
                   scale: 8
@@ -162,14 +172,33 @@
               //infowindow.setContent(results[0].formatted_address);
               //infowindow.open(map, marker);
               if (i === placesArray.length-1) {
+
+                //initializing line symbol for path animation
+                var lineSymbol = {
+                 path: google.maps.SymbolPath.CIRCLE,
+                 scale: 8,
+                 strokeColor: '#FF0000'
+                };
+
+                //initializing polyline for drawing trip path
                 var tripPath = new google.maps.Polyline({
                   path: polylineCoordinates,
                   geodesic: true,
                   strokeColor: '#1E90FF',
                   strokeOpacity: 0.5,
-                  strokeWeight: 4
+                  strokeWeight: 4,
+                  icons: [{
+                    icon: lineSymbol,
+                    offset: '100%'
+                  }]
                 });
-                tripPath.setMap(map);
+
+               //rendering trip path polyline on map object 
+               tripPath.setMap(map);
+
+               //calls the animate function for line symbol
+               animateCircle(tripPath);
+
               }
             } else {
               window.alert('No results found');
