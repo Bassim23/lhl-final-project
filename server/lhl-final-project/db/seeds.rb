@@ -161,9 +161,9 @@ activity2 = schedule1.activities.create!({
 activity3 = schedule1.activities.create!({
   start_time: Time.now() - 100000000, 
   end_time: Time.now() - 1000000000,
-  name:"Food",
-  description:"Italian for food!",
-  place: "ChIJ81o8DrM8h1QR9NeJlPZ0ZRA"
+  name:"Bar",
+  description:"Hit the Dubh Linn bar!",
+  place: "ChIJTVGqokwjh1QRAN4E3Ad4v5E"
 })
 
 activity4 = schedule2.activities.create!({

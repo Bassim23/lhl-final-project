@@ -119,25 +119,34 @@
       }
 
       function geocodePlaceId(geocoder, map, infowindow) {
-        var placeId = 'ChIJh3uVA7I8h1QR9s_1dehBt0o';
-        geocoder.geocode({'placeId': placeId}, function(results, status) {
-          if (status === 'OK') {
-            if (results[0]) {
-              map.setZoom(11);
-              map.setCenter(results[0].geometry.location);
-              var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location
-              });
-              infowindow.setContent(results[0].formatted_address);
-              infowindow.open(map, marker);
+        var placesArray = [];
+        <% @trip.schedules.each do |schedule| %>
+         <% schedule.activities.each do |activity| %>
+            placesArray.push("<%= activity.place %>");
+         <% end %>
+        <% end %>
+
+        console.log(placesArray);
+        for (var i=0; i<placesArray.length; i++) {
+          geocoder.geocode({'placeId': placesArray[i]}, function(results, status) {
+            if (status === 'OK') {
+              if (results[0]) {
+                map.setZoom(16);
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                  map: map,
+                  position: results[0].geometry.location
+                });
+                infowindow.setContent(results[0].formatted_address);
+                infowindow.open(map, marker);
+              } else {
+                window.alert('No results found');
+              }
             } else {
-              window.alert('No results found');
+              window.alert('Geocoder failed due to: ' + status);
             }
-          } else {
-            window.alert('Geocoder failed due to: ' + status);
-          }
-        });
+          });
+        }
       }
 
     </script>
