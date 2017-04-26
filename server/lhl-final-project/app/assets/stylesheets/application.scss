@@ -24,15 +24,25 @@ html {
 
 body {
   // height: 100%;
-  padding-top: 70px;
+  // padding-top: 70px;
 }
 
 main {
   // height: 100%;
 }
 
+.page-header {
+  margin-top: 20px;
+}
+
+.container-fluid {
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden
+}
+
 #map {
-  height: 800px;
+  height: 100vh;
 }
 
 
