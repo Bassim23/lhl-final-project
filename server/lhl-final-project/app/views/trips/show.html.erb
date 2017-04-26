@@ -107,15 +107,18 @@
     <div id="map"></div>
     <script>
       var map;
+      var polylineCoordinates = [];
+      var placesArray = [];
+
 
       function initMap() {
         var origin = {lat: -33.871, lng: 151.197};
         var map = new google.maps.Map(document.getElementById('map'), {
           center: origin,
-          zoom: 11
+          zoom: 11,
+          mapTypeId: 'terrain'
         });
 
-        var placesArray = [];
         <% @trip.schedules.each do |schedule| %>
          <% schedule.activities.each do |activity| %>
             placesArray.push("<%= activity.place %>");
@@ -125,24 +128,49 @@
         for (var i=0; i<placesArray.length; i++) {
           var geocoder = new google.maps.Geocoder;
           var infowindow = new google.maps.InfoWindow;
-          geocodePlaceId(geocoder, map, infowindow, placesArray[i], i);
+          var cb = geocodePlaceId(geocoder, map, infowindow, placesArray[i], i);
         }
+     
       }
 
       function geocodePlaceId(geocoder, map, infowindow, placeId, i) {
-        var label = (i+1).toString();
+        //var label = (i+1).toString();
         geocoder.geocode({'placeId': placeId}, function(results, status) {
           if (status === 'OK') {
             if (results[0]) {
-              map.setZoom(18);
+              map.setZoom(16);
               map.setCenter(results[0].geometry.location);
+              var coordinate = {
+                'lat': results[0].geometry.location.lat(), 
+                'lng': results[0].geometry.location.lng()
+              }
+              polylineCoordinates.push(coordinate);
               var marker = new google.maps.Marker({
                 map: map,
                 position: results[0].geometry.location,
-                label: label
+                animation: google.maps.Animation.DROP,
+                icon: {
+                  path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+                  //strokeColor: '#0000CD',
+                  fillOpacity: 0.7,
+                  fillColor: '#FF0000',
+                  strokeWeight: 2,
+                  scale: 8
+                },
+                //label: label
               });
-              infowindow.setContent(results[0].formatted_address);
-              infowindow.open(map, marker);
+              //infowindow.setContent(results[0].formatted_address);
+              //infowindow.open(map, marker);
+              if (i === placesArray.length-1) {
+                var tripPath = new google.maps.Polyline({
+                  path: polylineCoordinates,
+                  geodesic: true,
+                  strokeColor: '#1E90FF',
+                  strokeOpacity: 0.5,
+                  strokeWeight: 4
+                });
+                tripPath.setMap(map);
+              }
             } else {
               window.alert('No results found');
             }
