@@ -1,63 +1,349 @@
-<p id="notice"><%= notice %></p>
+<html>
 
-<h1>Trips</h1>
+  <head>
+    <meta charset="UTF-8">
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+     <!-- <link rel="stylesheet" href="index.scss" type="text/css" /> -->
+     <!-- <link rel="stylesheet" href="https://f.vimeocdn.com/p/2.55.5/css/player.css" type="text/css" /> -->
+     <link rel="stylesheet" href="https://media.gadventures.com/media-server/static/_CACHE/css/6b374ffb4bb5.css" type="text/css" />
+     <link rel="stylesheet" href="https://media.gadventures.com/media-server/static/_CACHE/css/46ae07d2688d.css" type="text/css" />
+     <%= stylesheet_link_tag "index.scss" %>
 
-<table class="table table-striped">
-  <thead class="thead-default">
-    <tr >
-      <th>
-        Trip Name
-      </th>
-      <th>
-        Trip Summary
-      </th>
-      <th>
-        Trip Kind
-      </th>
-      <th>
-        Host First Name
-      </th>
-      <th>
-        Host Last Name
-      </th>
-      <th>
-        Trip Show Link
-      </th>
-      <th>
-        Trip Delete Link
-      </th>
-    </tr>
-  </thead>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+  </head>
 
-  <tbody>
-    <% @trips.each do |trip| %>
-      <tr>
-        <td>
-          <%= trip.name%>
-        </td>
-        <td>
-          <%= trip.summary%>
-        </td>
-        <td>
-          <%= trip.kind%>
-        </td>
-        <td>
-          <%= trip.user.first_name%>
-        </td>
-        <td>
-          <%= trip.user.last_name%>
-        </td>
-        <td>
-          <%= link_to 'Show', trip %>
-        </td>
-        <td>
-          <%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+  <body>
+      <img src="http://www.mastertvl.com/royalslider/images/group.jpg" style="width:100%" />
+      <div class="w3-display-bottomleft w3-container w3-amber w3-hover-orange w3-hide-small" style="bottom:10%;opacity:0.7;width:70%">
+        <h2>
+          <div class="app_name col-md-5">
+            Looking for Group
+          </div>
+          <div class="app_slogan col-md-12 col-md-offset-2">
+            "We want to connect people who don't have anyone to travel with"
+          </div>
+        </h2>
+      </div>
 
-<%#= link_to 'Create Trip', new_trip_path %>
+    <div class="search container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <h2>Where to Next?</h2>
+          <div id="custom-search-input">
+            <div class="input-group col-md-12">
+              <input type="text" class="form-control input-lg" placeholder="Enter A Destination" value= />
+              <span class="input-group-btn">
+                <button class="btn btn-info btn-lg" type="button">
+                  <i class="glyphicon glyphicon-search"></i>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id='content'>
+      <section class="groupedcontent container" id="featured-tours-from-g-homepage-canada">
+        <header>
+          <h2>
+            <a href="/search/">Featured Trips</a>
+          </h2>
+        </header>
+        <div class="text">
+          <p class="text-center">Stoke your wanderlust with these handpicked itineraries from our various hosts. Connecting those who don't have anyone to travel with. So, where to next?
+          </p>
+        </div>
+
+
+
+      <div class="span4" id="item-eilu-2017">
+        <div class="triptextcontent  clearfix">
+          <div class="card">
+            <div class="card-block">
+              <div class="view overlay hm-white-slight">
+                <img src="https://media.gadventures.com/media-server/cache/da/7b/da7b225caef9847fa4b97b527d2e7867.jpg"img-fluid" alt="" />
+                <a href={"#"}>
+                  <div class="mask waves-effect waves-light">
+                  </div>
+                </a>
+              </div>
+              <div class="card-block">
+                <h4 class="card-title">Vancouver, BC</h4>
+                <div class="card-event">Balloon Ride</div>
+                <div class="card-host"> Host: John Doe </div>
+                <div class="card-date">12/23/2017 (3 days) </div>
+                <a href={"#"} class="btn btn-small">View this Trip</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="span4" id="item-eilu-2017">
+        <div class="triptextcontent  clearfix">
+          <div class="card">
+            <div class="card-block">
+              <div class="view overlay hm-white-slight">
+                <img src="https://media.gadventures.com/media-server/cache/da/7b/da7b225caef9847fa4b97b527d2e7867.jpg"img-fluid" alt="" />
+                <a href={"#"}>
+                  <div class="mask waves-effect waves-light">
+                  </div>
+                </a>
+              </div>
+              <div class="card-block">
+                <h4 class="card-title">Vancouver, BC</h4>
+                <div class="card-event">Balloon Ride</div>
+                <div class="card-host"> Host: John Doe </div>
+                <div class="card-date">12/23/2017 (3 days) </div>
+                <a href={"#"} class="btn btn-small">View this Trip</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="span4" id="item-eilu-2017">
+        <div class="triptextcontent  clearfix">
+          <div class="card">
+            <div class="card-block">
+              <div class="view overlay hm-white-slight">
+                <img src="https://media.gadventures.com/media-server/cache/da/7b/da7b225caef9847fa4b97b527d2e7867.jpg"img-fluid" alt="" />
+                <a href={"#"}>
+                  <div class="mask waves-effect waves-light">
+                  </div>
+                </a>
+              </div>
+              <div class="card-block">
+                <h4 class="card-title">Vancouver, BC</h4>
+                <div class="card-event">Balloon Ride</div>
+                <div class="card-host"> Host: John Doe </div>
+                <div class="card-date">12/23/2017 (3 days) </div>
+                <a href={"#"} class="btn btn-small">View this Trip</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </section>
+    </div>
+
+
+
+
+
+
+
+
+     <!--  <div class="items">
+        <div class="groupedcontent " id="featured-tours-canada">
+          <div class="">
+            <div class="row-fluid">
+              <div class="span4" id="item-dtam-2017">
+                <div class="triptextcontent  clearfix">
+                  <img src="https://media.gadventures.com/media-server/cache/da/7b/da7b225caef9847fa4b97b527d2e7867.jpg" class="responsive" alt="" data-src-small="https://media.gadventures.com/media-server/cache/da/7b/da7b225caef9847fa4b97b527d2e7867.jpg" data-src-medium="https://media.gadventures.com/media-server/cache/45/25/452508b88f786d261d244c17b920c442.jpg" data-src-xlarge="https://media.gadventures.com/media-server/cache/09/7d/097d99fe9db51488c6353e3fa768c9af.jpg" data-src-large="https://media.gadventures.com/media-server/cache/ee/f7/eef7f92cbb3c2fc4a4f41b6d04a1069b.jpg">
+                    <div class="t-info">
+                      <h4>
+                        <div>
+                          Vancouver, BC
+                        </div>
+                        <div>
+                          Balloon Ride
+                        </div>
+                      </h4>
+                      <div class="t-details"><div class="price-info featured-price">
+                        <span class="from">
+                          Host:
+                        </span>
+                        <span class="price">
+                          John Doe   ,
+                          <sup class="currency">
+                                (Profile Pic)
+                          </sup>
+                        </span>
+                      </div>
+                      <span class="t-duration">
+                        12/23/2017 (3 days)
+                      </span>&nbsp;
+                      <span class="t-start-finish">
+                        Hong Kong to Vancouver
+                      </span>
+                    </div>
+                    <a href="/trips/serengeti-migration-safari/DTAM/" class="btn btn-small">
+                      View this trip
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="span4" id="item-ccce-2017">
+                <div class="triptextcontent  clearfix">
+                  <img src="https://media.gadventures.com/media-server/cache/a5/7d/a57d03f90d0e6743fe4e4aadc3e8bf55.jpg" class="responsive" alt="" data-src-small="https://media.gadventures.com/media-server/cache/a5/7d/a57d03f90d0e6743fe4e4aadc3e8bf55.jpg" data-src-medium="https://media.gadventures.com/media-server/cache/e6/74/e6740e70176b99b287af7e9ca04fa21f.jpg" data-src-xlarge="https://media.gadventures.com/media-server/cache/3d/00/3d00817cb3aa79107729148a10bccad2.jpg" data-src-large="https://media.gadventures.com/media-server/cache/2f/3b/2f3bcc268f9f91d105700d0c5b286cb6.jpg">
+                  <div class="t-info">
+                    <h4>
+                      <div>
+                        Cuba, Mexico
+                      </div>
+                      <div>
+                        Sightseeing Drive
+                      </div>
+                      </a>
+                    </h4>
+                    <div class="t-details"><div class="price-info featured-price">
+                        <span class="from">
+                          Host:
+                        </span>
+                        <span class="price">
+                          James Smith    ,
+                          <sup class="currency">
+                                (Profile Pic)
+                          </sup>
+                        </span>
+                      </div>
+                      <span class="t-duration">
+                        07/12/2017 (5 Days)
+                      </span>&nbsp;
+                      <span class="t-start-finish">
+                        Seattle to Cuba
+                      </span>
+                    </div>
+                    <a href="/trips/cuba-explorer/CCCE/" class="btn btn-small">
+                      View this trip
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="span4" id="item-efaa-2017">
+                <div class="triptextcontent  clearfix">
+                <img src="https://media.gadventures.com/media-server/cache/59/df/59df833c0368a21e419bfb4cef0d3880.jpg" class="responsive" alt="" data-src-small="https://media.gadventures.com/media-server/cache/59/df/59df833c0368a21e419bfb4cef0d3880.jpg" data-src-medium="https://media.gadventures.com/media-server/cache/bb/a2/bba24e1eaf90feec78fef66add5026d1.jpg" data-src-xlarge="https://media.gadventures.com/media-server/cache/ab/d3/abd30f66e14a3ae58f860243f2c045df.jpg" data-src-large="https://media.gadventures.com/media-server/cache/44/a7/44a73bddf78288b1e89530ed853b49f0.jpg">
+                  <div class="t-info">
+                    <h4>
+                     <div>
+                        Loire Valley, France
+                      </div>
+                      <div>
+                        Cycling
+                      </div>
+                    </h4>
+                    <div class="t-details">
+                      <div class="price-info discounted-price">
+
+                        <span class="price">
+
+                        </span>
+                      </div>
+                      <span class="t-start-finish">
+                        Moscow to France
+                      </span>
+                    </div>
+                    <a href="/trips/loire-valley-cycling/EFAA/" class="btn btn-small">
+                      View this trip
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row-fluid">
+              <div class="span4" id="item-ecvm-2017">
+                <div class="triptextcontent  clearfix">
+                  <img src="https://media.gadventures.com/media-server/cache/4c/14/4c14da95236171bdb4eb65a456713ef7.jpg" class="responsive" alt="" data-src-small="https://media.gadventures.com/media-server/cache/4c/14/4c14da95236171bdb4eb65a456713ef7.jpg" data-src-medium="https://media.gadventures.com/media-server/cache/7b/83/7b83e360ceeb29c8539c6ef2da9926e0.jpg" data-src-xlarge="https://media.gadventures.com/media-server/cache/c4/c7/c4c7f64bf7ae42a129b23a1ff91ec3e8.jpg" data-src-large="https://media.gadventures.com/media-server/cache/46/e4/46e4fbcb658a9abfa21b18a92c5389b1.jpg">
+                    <div class="t-info">
+                      <h4>
+                        <a href="/trips/montenegro-sailing-dubrovnik-to-dubrovnik/ECVM/">
+                          Montenegro Sailing - Dubrovnik to Dubrovnik
+                        </a>
+                      </h4>
+                      <div class="t-details">
+                        <div class="price-info featured-price">
+                          <span class="from">
+                            From
+                          </span>
+                          <span class="price">
+                            $1399
+                            <sup class="currency">
+                              CAD
+                            </sup>
+                          </span>
+                        </div>
+                        <span class="t-duration">
+                          8 Days,
+                        </span>&nbsp;
+                        <span class="t-start-finish">
+                          Dubrovnik to Dubrovnik
+                        </span>
+                      </div>
+                      <a href="/trips/montenegro-sailing-dubrovnik-to-dubrovnik/ECVM/" class="btn btn-small">
+                        View this trip
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="span4" id="item-eilu-2017">
+                  <div class="triptextcontent  clearfix">
+                    <div class="card">
+                      <div class="view overlay hm-white-slight">
+                        <img src="https://media.gadventures.com/media-server/cache/da/7b/da7b225caef9847fa4b97b527d2e7867.jpg"img-fluid" alt="" />
+                        <a href={"#"}>
+                          <div class="mask waves-effect waves-light">
+                          </div>
+                        </a>
+                      </div>
+                      <div class="card-block">
+                        <h4 class="card-title">Vancouver, BC</h4>
+                        <div class="card-event">Balloon Ride</div>
+                        <div class="card-host"> Host: John Doe </div>
+                        <div class="card-date">12/23/2017 (3 days) </div>
+                        <a href={"#"} class="btn btn-small">View this Trip</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="span4" id="item-eilu-2017">
+                  <div class="triptextcontent  clearfix">
+
+                    <div class="card">
+
+                                       <div class="view overlay hm-white-slight">
+                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" alt="">
+                          <a href="#">
+                            <div class="mask waves-effect waves-light"></div>
+                          </a>
+                        </div>
+
+
+                        <div class="card-block">
+
+                          <h4 class="card-title">Card title</h4>
+
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-small">Button</a>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        <div class="cta">
+          <a href="/search/" class="btn btn-large">View all tours</a>
+        </div>
+      </section>
+    </div>-->
+
+  </body>
+
+</html>
