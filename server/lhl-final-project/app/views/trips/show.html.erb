@@ -126,16 +126,17 @@
          <% end %>
         <% end %>
 
-        console.log(placesArray);
         for (var i=0; i<placesArray.length; i++) {
           geocoder.geocode({'placeId': placesArray[i]}, function(results, status) {
             if (status === 'OK') {
               if (results[0]) {
                 map.setZoom(16);
                 map.setCenter(results[0].geometry.location);
+                console.log(results[0]);
                 var marker = new google.maps.Marker({
                   map: map,
-                  position: results[0].geometry.location
+                  position: results[0].geometry.location,
+                  //title: 'Hello!!!!!'
                 });
                 infowindow.setContent(results[0].formatted_address);
                 infowindow.open(map, marker);
