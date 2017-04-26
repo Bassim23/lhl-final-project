@@ -114,12 +114,7 @@
           center: origin,
           zoom: 11
         });
-        var geocoder = new google.maps.Geocoder;
-        var infowindow = new google.maps.InfoWindow;
-        geocodePlaceId(geocoder, map, infowindow);
-      }
 
-      function geocodePlaceId(geocoder, map, infowindow) {
         var placesArray = [];
         <% @trip.schedules.each do |schedule| %>
          <% schedule.activities.each do |activity| %>
@@ -128,26 +123,33 @@
         <% end %>
 
         for (var i=0; i<placesArray.length; i++) {
-          geocoder.geocode({'placeId': placesArray[i]}, function(results, status) {
-            if (status === 'OK') {
-              if (results[0]) {
-                map.setZoom(15);
-                map.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                  map: map,
-                  position: results[0].geometry.location,
-                  //title: 'Hello!!!!!'
-                });
-                infowindow.setContent(results[0].formatted_address);
-                infowindow.open(map, marker);
-              } else {
-                window.alert('No results found');
-              }
-            } else {
-              window.alert('Geocoder failed due to: ' + status);
-            }
-          });
+          var geocoder = new google.maps.Geocoder;
+          var infowindow = new google.maps.InfoWindow;
+          geocodePlaceId(geocoder, map, infowindow, placesArray[i], i);
         }
+      }
+
+      function geocodePlaceId(geocoder, map, infowindow, placeId, i) {
+        var label = (i+1).toString();
+        geocoder.geocode({'placeId': placeId}, function(results, status) {
+          if (status === 'OK') {
+            if (results[0]) {
+              map.setZoom(18);
+              map.setCenter(results[0].geometry.location);
+              var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location,
+                label: label
+              });
+              infowindow.setContent(results[0].formatted_address);
+              infowindow.open(map, marker);
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
       }
 
     </script>
