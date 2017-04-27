@@ -94,6 +94,7 @@
         <%schedule.activities.each do |activity|%>
           var eventObject = {
             title: "<%=activity.name%>",
+            description: "<%=activity.description%>",
             start: "<%=activity.start_time%>",
             end: "<%=activity.end_time%>"
           }
@@ -101,18 +102,23 @@
         <%end%>
       <%end%>    
       $(() => {
-        console.log(eventsArray);
         $('#calendar').fullCalendar({
           height: 'auto',
           defaultView: 'agendaDay',
           allDaySlot: false,
           allDayText: false,
+          minTime: '08:00:00',
           slotEventOverlap: false,
           defaultDate: schedulesDateArray[0],
           editable: false,
           droppable: true,
           scrollTime: '06:00:00',
-          events: eventsArray
+          eventSources: [
+            {
+              events: eventsArray,
+              color: '#1E90FF'
+            }
+          ]
         });
       });
     </script>
