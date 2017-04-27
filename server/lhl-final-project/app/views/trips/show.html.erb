@@ -87,17 +87,32 @@
       <div id="calendar"></div>
     </div>
     <script>
+      var schedulesDateArray = [];
+      var eventsArray = [];
+      <%@trip.schedules.each do |schedule|%>
+        schedulesDateArray.push("<%=schedule.date%>");
+        <%schedule.activities.each do |activity|%>
+          var eventObject = {
+            title: "<%=activity.name%>",
+            start: "<%=activity.start_time%>",
+            end: "<%=activity.end_time%>"
+          }
+          eventsArray.push(eventObject);
+        <%end%>
+      <%end%>    
       $(() => {
+        console.log(eventsArray);
         $('#calendar').fullCalendar({
           height: 'auto',
           defaultView: 'agendaDay',
           allDaySlot: false,
           allDayText: false,
           slotEventOverlap: false,
-          defaultDate: '2017-4-21',
-          editable: true,
+          defaultDate: schedulesDateArray[0],
+          editable: false,
           droppable: true,
-          scrollTime: '06:00:00'
+          scrollTime: '06:00:00',
+          events: eventsArray
         });
       });
     </script>
