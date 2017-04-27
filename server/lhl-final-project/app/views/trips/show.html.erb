@@ -145,7 +145,7 @@
       }
 
       function geocodePlaceId(geocoder, map, infowindow, placeId, i) {
-        //var label = (i+1).toString();
+        var label = (i+1).toString();
         geocoder.geocode({'placeId': placeId}, function(results, status) {
           if (status === 'OK') {
             if (results[0]) {
@@ -170,7 +170,13 @@
                       fillOpacity: 1.0,
                       fillColor: '#FF0000',
                       strokeWeight: 2,
-                      scale: 8
+                      scale: 12,
+                      labelOrigin: new google.maps.Point(0,-2.3)
+                    },
+                    label: {
+                      text: label,
+                      fontWeight: 'bold',
+                      color: 'white'
                     }
                   });
                   google.maps.event.addListener(marker, 'click', function() {
@@ -181,22 +187,6 @@
                   });
                 }
               });
-              //var marker = new google.maps.Marker({
-                //map: map,
-                //position: results[0].geometry.location,
-                //animation: google.maps.Animation.DROP,
-                //icon: {
-                  //path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-                  //fillOpacity: 1.0,
-                  //fillColor: '#FF0000',
-                  //strokeWeight: 2,
-                  //scale: 8
-                //},
-                //label: label
-              //});
-
-              //infowindow.setContent(results[0].formatted_address);
-              //infowindow.open(map, marker);
               if (i === placesArray.length-1) {
                 //initializing line symbol for path animation
                 var lineSymbol = {
