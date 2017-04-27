@@ -22,7 +22,7 @@ class Launch extends Component {
         <div className="col-sm-6 col-sm-offset-3">
           <div id="location_search">
             <div className="input-group stylish-input-group">
-              <input type="text" className="form-control"  placeholder="Enter Travel Destination" ></input>
+              <input type="text" className="form-control"  placeholder="Enter Travel Destination" value="value" ></input>
                 <span className="input-group-addon">
                   <button type="submit">
                     <span className="glyphicon glyphicon-search"></span>
