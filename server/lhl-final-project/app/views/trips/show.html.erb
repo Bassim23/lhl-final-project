@@ -231,13 +231,6 @@
       }
 
     </script>
-    <!--
-    <% src1 = "https://maps.googleapis.com/maps/api/js?key=" + ENV['GOOGLE_API_KEY'].to_s + "&callback=initMap"%>
-    <% src2 = "https://maps.googleapis.com/maps/api/js?key=" + ENV['GOOGLE_API_KEY'].to_s + "&libraries=places"%>
-    <script src=<%=src2%> async defer></script>
-    <script src=<%=src1%> async defer></script>
-    -->
-
     <% src = "https://maps.googleapis.com/maps/api/js?key=" + ENV['GOOGLE_API_KEY'].to_s + "&libraries=places&callback=initMap" %>
     <script src=<%=src%> async defer></script>
   </section>
