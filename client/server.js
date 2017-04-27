@@ -3,8 +3,10 @@ var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
 
 new WebpackDevServer(webpack(config), {
+
     publicPath: config.output.publicPath,
     watchOptions: {
+      ignored: /node_modules/,
       aggregateTimeout: 300,
       poll: 1000
     }

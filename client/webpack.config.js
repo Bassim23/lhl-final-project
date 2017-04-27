@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'source-map',
   entry: [
-    'webpack-dev-server/client?http://localhost:3000', './src/index.jsx'
+    'webpack-dev-server/client?http://localhost:3001', './src/index.jsx'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -12,26 +12,26 @@ module.exports = {
     publicPath: '/build/'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
-        loaders: ['babel'],
+        loader: 'babel-loader',
         include: path.join(__dirname, 'src')
       }, {
         test: /\.css$/,
-        loaders: ["style", "css"]
+        use: ["style-loader", "css-loader"]
       },
       {
         test: /\.scss$/,
-        loaders: ["style", "css", "sass"]
+        use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
         test: /\.json$/,
-        loader: "json-loader"
+        use: "json-loader"
       },
       {
         test: /\.less$/,
-        loaders: ["style", "css", "less"]
+        use: ["style-loader", "css-loader", "less-loader"]
       }
     ],
   }
