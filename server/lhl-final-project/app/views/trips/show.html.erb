@@ -128,7 +128,7 @@
         for (var i=0; i<placesArray.length; i++) {
           var geocoder = new google.maps.Geocoder;
           var infowindow = new google.maps.InfoWindow;
-          var cb = geocodePlaceId(geocoder, map, infowindow, placesArray[i], i);
+          geocodePlaceId(geocoder, map, infowindow, placesArray[i], i);
         }
      
       }
@@ -156,30 +156,54 @@
                 'lng': results[0].geometry.location.lng()
               }
               polylineCoordinates.push(coordinate);
-              var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location,
-                animation: google.maps.Animation.DROP,
-                icon: {
-                  path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-                  fillOpacity: 1.0,
-                  fillColor: '#FF0000',
-                  strokeWeight: 2,
-                  scale: 8
-                },
-                //label: label
+              var service = new google.maps.places.PlacesService(map);
+              service.getDetails({
+                placeId: placeId
+              }, function(place, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                  var marker = new google.maps.Marker({
+                    map: map,
+                    position: place.geometry.location,
+                    animation: google.maps.Animation.DROP,
+                    icon: {
+                      path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+                      fillOpacity: 1.0,
+                      fillColor: '#FF0000',
+                      strokeWeight: 2,
+                      scale: 8
+                    }
+                  });
+                  google.maps.event.addListener(marker, 'click', function() {
+                    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                      'Place ID: ' + place.place_id + '<br>' +
+                      place.formatted_address + '</div>');
+                    infowindow.open(map, this);
+                  });
+                }
               });
+              //var marker = new google.maps.Marker({
+                //map: map,
+                //position: results[0].geometry.location,
+                //animation: google.maps.Animation.DROP,
+                //icon: {
+                  //path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+                  //fillOpacity: 1.0,
+                  //fillColor: '#FF0000',
+                  //strokeWeight: 2,
+                  //scale: 8
+                //},
+                //label: label
+              //});
+
               //infowindow.setContent(results[0].formatted_address);
               //infowindow.open(map, marker);
               if (i === placesArray.length-1) {
-
                 //initializing line symbol for path animation
                 var lineSymbol = {
                  path: google.maps.SymbolPath.CIRCLE,
                  scale: 8,
                  strokeColor: '#FF0000'
                 };
-
                 //initializing polyline for drawing trip path
                 var tripPath = new google.maps.Polyline({
                   path: polylineCoordinates,
@@ -192,13 +216,10 @@
                     offset: '100%'
                   }]
                 });
-
                //rendering trip path polyline on map object 
                tripPath.setMap(map);
-
                //calls the animate function for line symbol
                animateCircle(tripPath);
-
               }
             } else {
               window.alert('No results found');
@@ -210,7 +231,14 @@
       }
 
     </script>
-    <% src = "https://maps.googleapis.com/maps/api/js?key=" + ENV['GOOGLE_API_KEY'].to_s + "&callback=initMap"%>
+    <!--
+    <% src1 = "https://maps.googleapis.com/maps/api/js?key=" + ENV['GOOGLE_API_KEY'].to_s + "&callback=initMap"%>
+    <% src2 = "https://maps.googleapis.com/maps/api/js?key=" + ENV['GOOGLE_API_KEY'].to_s + "&libraries=places"%>
+    <script src=<%=src2%> async defer></script>
+    <script src=<%=src1%> async defer></script>
+    -->
+
+    <% src = "https://maps.googleapis.com/maps/api/js?key=" + ENV['GOOGLE_API_KEY'].to_s + "&libraries=places&callback=initMap" %>
     <script src=<%=src%> async defer></script>
   </section>
 </main>
