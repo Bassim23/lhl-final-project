@@ -9,13 +9,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App.jsx';
 import Launch from './LaunchPage.jsx';
-import {HashRouter as Router, Route, Link} from 'react-router-dom'
+// import {HashRouter as Router, Route, Link} from 'react-router-dom'
 
-ReactDOM.render((
-   <Router>
-    <div>
-      <Route path="/trips" component={App} />
-      <Route exact path="/" component={Launch} />
-    </div>
-  </Router>
-  ), document.getElementById('react-root'));
+ReactDOM.render(
+  <App/>, document.getElementById('react-root'));
+  //  <Router>
+  //   <div>
+  //     <Route path="/trips" component={App} />
+  //     <Route exact path="/" component={Launch} />
+  //   </div>
+  // </Router>

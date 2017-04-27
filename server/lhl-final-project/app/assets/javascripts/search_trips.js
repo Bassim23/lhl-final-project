@@ -33,10 +33,10 @@ function createTripsElement(trips) {
                 </a>
               </div>
               <div class="card-block">
-                <h4 class="card-title">Vancouver, BC</h4>
-                <div class="card-event">Balloon Ride</div>
-                <div class="card-host"> Host: John Doe </div>
-                <div class="card-date">12/23/2017 (3 days) </div>
+                <h4 class="card-title">${trips.destination}</h4>
+                <div class="card-event">${trips.trip.name}</div>
+                <div class="card-host"> Host: ${trips.trip.user.first_name} ${trips.trip.user.last_name} </div>
+                <div class="card-date">${trips.date}</div>
                 <a href={"#"} class="btn btn-small">View this Trip</a>
               </div>
             </div>
@@ -44,7 +44,21 @@ function createTripsElement(trips) {
         </div>
       </div>
     `
-  return $trip;
+
+  let $empty =
+    `
+      <div>
+        <h4>
+          Sorry there are no trips to this destination available
+        <h4>
+      </div>
+    `
+
+  if (trips) {
+    return $trip;
+  } else {
+    return $empty;
+  }
 }
 
 function renderTrips(trips) {
@@ -52,7 +66,7 @@ function renderTrips(trips) {
   $('.featured-trips').empty();
   for (eachTrip of trips) {
     console.log("appending to list")
-    $('.featured-trips').prepend(createTripsElement());
+    $('.featured-trips').prepend(createTripsElement(eachTrip));
   }
 }
 
