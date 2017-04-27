@@ -12,18 +12,18 @@ module.exports = {
     publicPath: '/build/'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
-        loaders: ['babel'],
+        loader: 'babel-loader',
         include: path.join(__dirname, 'src')
       }, {
         test: /\.css$/,
-        loaders: ["style", "css"]
+        use: ["style-loader", "css-loader"]
       },
       {
         test: /\.scss$/,
-        loaders: ["style", "css", "sass"]
+        use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
         test: /\.json$/,
@@ -31,7 +31,7 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        loaders: ["style", "css", "less"]
+        use: ["style-loader", "css-loader", "less-loader"]
       }
     ],
   }

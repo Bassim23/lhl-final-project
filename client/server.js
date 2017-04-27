@@ -7,6 +7,14 @@ new WebpackDevServer(webpack(config), {
     watchOptions: {
       aggregateTimeout: 300,
       poll: 1000
+    },
+    headers: { 'Access-Control-Allow-Origin': '*' },
+    proxy: {
+      '/trips': {
+        target: 'http://localhost:3000',
+        secure: false,
+        changeOrigin: true
+      }
     }
   })
   .listen(1234, '0.0.0.0', function (err, result) {

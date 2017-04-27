@@ -143,56 +143,63 @@ puts "Creating activities ..."
 Activity.destroy_all
 
 activity1 = schedule1.activities.create!({
-  start_time: Time.now() - 120000000, 
+  start_time: Time.now() - 120000000,
   end_time: Time.now() - 1200000000,
+  uuid: 1,
   name:"Hiking",
   description:"Hiking a lot!!",
   place: "ChIJW5JDBk0jh1QRttPEPI0TSm8"
 })
 
 activity2 = schedule1.activities.create!({
-  start_time: Time.now() - 110000000, 
+  start_time: Time.now() - 110000000,
   end_time: Time.now() - 1100000000,
+  uuid: 2,
   name:"Lunch",
   description:"Italian for lunch!",
   place: "ChIJ81o8DrM8h1QR9NeJlPZ0ZRA"
 })
 
 activity3 = schedule1.activities.create!({
-  start_time: Time.now() - 100000000, 
+  start_time: Time.now() - 100000000,
   end_time: Time.now() - 1000000000,
+  uuid: 3,
   name:"Food",
   description:"Italian for food!",
   place: "ChIJ81o8DrM8h1QR9NeJlPZ0ZRA"
 })
 
 activity4 = schedule2.activities.create!({
-  start_time: Time.now() - 100000000, 
+  start_time: Time.now() - 100000000,
   end_time: Time.now() - 1000000000,
+  uuid: 4,
   name:"Bellagio",
   description:"Visit Bellagio for fun!",
   place: "ChIJvUdRyzDEyIARhA3R2cXH8oI"
 })
 
 activity5 = schedule2.activities.create!({
-  start_time: Time.now() - 90000000, 
+  start_time: Time.now() - 90000000,
   end_time: Time.now() - 900000000,
+  uuid: 5,
   name:"Strip",
   description:"Time to hit the strip!",
   place: "ChIJ69QoNDjEyIARTIMmDF0Z4kM"
 })
 
 activity6 = schedule2.activities.create!({
-  start_time: Time.now() - 80000000, 
+  start_time: Time.now() - 80000000,
   end_time: Time.now() - 800000000,
+  uuid: 6,
   name:"Dinner",
   description:"Dinner time at a fancy place!",
   place: "ChIJvUdRyzDEyIARh86Fi1C2hqI"
 })
 
 activity7 = schedule3.activities.create!({
-  start_time: Time.now() - 110000000, 
+  start_time: Time.now() - 110000000,
   end_time: Time.now() - 1100000000,
+  uuid: 7,
   name:"Empire State Building",
   description:"What better than Empire State Building!",
   place: "ChIJtcaxrqlZwokRfwmmibzPsTU"

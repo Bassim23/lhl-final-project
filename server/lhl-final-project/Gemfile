@@ -38,6 +38,7 @@ gem 'react-rails'
 # Bootstrap for Rails
 gem 'bootstrap-sass', '~> 3.3.6'
 
+gem 'rack-cors', :require => 'rack/cors'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20170422201418) do
   create_table "activities", force: :cascade do |t|
     t.time     "start_time"
     t.time     "end_time"
+    t.string   "uuid"
     t.string   "name"
     t.text     "description"
     t.string   "place"

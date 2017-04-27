@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'trips#index'
   resources :trips, only: [:index, :show, :create, :update, :destroy] do
-    resources :schedules, only: [:show, :create, :update, :destroy] do 
-      resources :activities, only: [:show, :create, :update, :destroy] do
+    resources :schedules, only: [:show, :create, :update, :destroy] do
+      resources :activities, only: [:show, :create, :destroy, :update] do
         resources :participations, only: [:show, :create, :update, :destroy]
       end
     end
