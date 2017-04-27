@@ -13,11 +13,38 @@
  *= require_tree .
  *= require_self
  */
-  
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "index";
+
 
 // Global
-body {
-  padding-top: 70px;
+html {
+  // height: 100%;
 }
+
+body {
+  // height: 100%;
+  // padding-top: 70px;
+}
+
+main {
+  // height: 100%;
+}
+
+.page-header {
+  margin-top: 20px;
+}
+
+.container-fluid {
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden
+}
+
+#map {
+  height: 100vh;
+}
+
+

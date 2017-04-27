@@ -143,8 +143,8 @@ puts "Creating activities ..."
 Activity.destroy_all
 
 activity1 = schedule1.activities.create!({
-  start_time: Time.now() - 120000000,
-  end_time: Time.now() - 1200000000,
+  start_time: DateTime.new(2017,10,16, 1, 00),
+  end_time: DateTime.new(2017,10,16, 3, 00),
   uuid: 1,
   name:"Hiking",
   description:"Hiking a lot!!",
@@ -152,8 +152,8 @@ activity1 = schedule1.activities.create!({
 })
 
 activity2 = schedule1.activities.create!({
-  start_time: Time.now() - 110000000,
-  end_time: Time.now() - 1100000000,
+  start_time: DateTime.new(2017,10,16, 4, 00),
+  end_time: DateTime.new(2017,10,16, 6, 00),
   uuid: 2,
   name:"Lunch",
   description:"Italian for lunch!",
@@ -161,12 +161,12 @@ activity2 = schedule1.activities.create!({
 })
 
 activity3 = schedule1.activities.create!({
-  start_time: Time.now() - 100000000,
-  end_time: Time.now() - 1000000000,
+  start_time: DateTime.new(2017,10,16, 7, 00),
+  end_time: DateTime.new(2017,10,16, 10, 00),
   uuid: 3,
-  name:"Food",
-  description:"Italian for food!",
-  place: "ChIJ81o8DrM8h1QR9NeJlPZ0ZRA"
+  name:"Bar",
+  description:"Hit the Dubh Linn bar!",
+  place: "ChIJTVGqokwjh1QRAN4E3Ad4v5E"
 })
 
 activity4 = schedule2.activities.create!({
