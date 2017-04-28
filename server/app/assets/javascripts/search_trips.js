@@ -19,6 +19,7 @@ jQuery(document).ready(function() {
 })
 
 function createTripsElement(trips) {
+  let tripId = "/trips/" + trips.trip.id
   let $trip =
     `
       <div class="col-md-4">
@@ -36,7 +37,7 @@ function createTripsElement(trips) {
               <div class="card-event">${trips.trip.name}</div>
               <div class="card-host"> Host: ${trips.trip.user.first_name} ${trips.trip.user.last_name} </div>
               <div class="card-date">${trips.date}</div>
-              <a href={"#"} class="btn btn-small">View this Trip</a>
+              <a href=${tripId} class="btn btn-small">View this Trip</a>
             </div>
           </div>
         </div>
@@ -44,15 +45,16 @@ function createTripsElement(trips) {
     `
 
   let $empty =
+
     `
       <div>
         <h4>
-          Sorry there are no trips to this destination available
+          There are no trips to this destination available
         <h4>
       </div>
     `
 
-  if (trips) {
+  if (trips.trip) {
     return $trip;
   } else {
     return $empty;
@@ -62,9 +64,19 @@ function createTripsElement(trips) {
 function renderTrips(trips) {
   console.log("rendering")
   $('.featured-trips').empty();
+  // let n = 0
+  // const id = setInterval(() => {
+  //   n++;
+  //   if (n < trips.length) {
+  //     show(trips[n])
+  //   } else {
+  //     clearInterval(id);
+  //   }
+  // }, 500)
   for (eachTrip of trips) {
     console.log("appending to list")
-    $('.featured-trips').prepend(createTripsElement(eachTrip));
-  }
+      $('.featured-trips').prepend(createTripsElement(eachTrip)).addClass('animated fadeInUp');
+    }
+  // }
 }
 
