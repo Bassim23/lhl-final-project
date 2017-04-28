@@ -36,7 +36,7 @@ function createTripsElement(trips) {
               <div class="card-event">${trips.trip.name}</div>
               <div class="card-host"> Host: ${trips.trip.user.first_name} ${trips.trip.user.last_name} </div>
               <div class="card-date">${trips.date}</div>
-              <a href={"#"} class="btn btn-small">View this Trip</a>
+              <a href={"/trips/${trips.trip.id}"} class="btn btn-small">View this Trip</a>
             </div>
           </div>
         </div>
