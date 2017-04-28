@@ -5,6 +5,7 @@ class TripsController < ApplicationController
   # GET /trips.json
   def index
     @trips = Trip.all
+    @schedules = Schedule.all
   end
 
   # GET /trips/1

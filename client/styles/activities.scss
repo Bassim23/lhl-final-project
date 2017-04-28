@@ -241,12 +241,7 @@ hr {
     transition: all .1s ease-in-out;
 }
 
-.container-fluid {
-    height: 100vh;
-    overflow: hidden
-}
-
-#agendaDay-view {
+.left {
     background-color: white;
     height: 100vh;
     overflow-y: scroll;

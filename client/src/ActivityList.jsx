@@ -102,7 +102,7 @@ class ActivityList extends Component {
     }
 
     return (
-      <div id="item-list" className="col-md-8 ">
+      <div id="item-list" className="col-md-8 right">
         <form onBlur={this.handleFormSubmit}>
           <PlacesAutocomplete inputProps={inputProps} classNames={cssClasses} />
         </form>

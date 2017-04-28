@@ -62,7 +62,6 @@ class AgendaView extends Component {
             url: '/trips/1/schedules/1/activities/' + event.id,
             type: 'DELETE',
             success: function(data) {
-              alert('Deleted');
             }
           });
         });
@@ -75,21 +74,20 @@ class AgendaView extends Component {
     for (let i in this.state.events){
       arrayOfEvents.push(this.state.events[i]);
     }
-
+    console.log(arrayOfEvents);
     $.ajax({
       url: '/trips/1/schedules/1/activities',
       dataType: 'json',
       type: 'POST',
       data: { events: arrayOfEvents },
       success: function(data) {
-        alert('Schedule Saved');
       }.bind(this)
     });
   }
 
   render() {
     return (
-      <div id="agendaDay-view" className="col-md-4">
+      <div id="agendaDay-view" className="col-md-4 left">
         <div id="calendar" ref={(calendar) => { this.fullCalendar = calendar; }} />
         <button className="btn btn-primary schedule-save" onClick={this.handleSave}><i className="fa fa-floppy-o"></i></button>
       </div>

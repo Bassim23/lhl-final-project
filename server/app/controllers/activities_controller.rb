@@ -31,19 +31,21 @@ class ActivitiesController < ApplicationController
         if Activity.exists?(uuid: params[:events][e][:id])
           @activity = Activity.find_by uuid: params[:events][e][:id]
           @activity.update({
-            start_time: params[:events][e][:start],
-            end_time: params[:events][e][:end],
+            start_time: params[:events][e][:start].in_time_zone,
+            end_time: params[:events][e][:end].in_time_zone,
           })
           next
         else
           @activity = Activity.new({
-            start_time: params[:events][e][:start],
-            end_time: params[:events][e][:end],
+            start_time: params[:events][e][:start].in_time_zone,
+            end_time: params[:events][e][:end].in_time_zone,
             uuid: params[:events][e][:id],
             name: params[:events][e][:name],
             place: params[:events][e][:google_id],
             schedule_id: params[:schedule_id]
           })
+
+          @activity.save
         end
       end
     end

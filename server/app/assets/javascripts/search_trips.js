@@ -1,6 +1,5 @@
 jQuery(document).ready(function() {
   // commands go here
-  console.log("im in");
   $('#custom-search-input input').on("keyup", function(e) {
     if (e.which == 13) {
       console.log("it works?")
