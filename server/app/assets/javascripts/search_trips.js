@@ -44,10 +44,11 @@ function createTripsElement(trips) {
     `
 
   let $empty =
+
     `
       <div>
         <h4>
-          Sorry there are no trips to this destination available
+          There are no trips to this destination available
         <h4>
       </div>
     `
@@ -62,9 +63,19 @@ function createTripsElement(trips) {
 function renderTrips(trips) {
   console.log("rendering")
   $('.featured-trips').empty();
+  // let n = 0
+  // const id = setInterval(() => {
+  //   n++;
+  //   if (n < trips.length) {
+  //     show(trips[n])
+  //   } else {
+  //     clearInterval(id);
+  //   }
+  // }, 500)
   for (eachTrip of trips) {
     console.log("appending to list")
-    $('.featured-trips').prepend(createTripsElement(eachTrip));
-  }
+      $('.featured-trips').prepend(createTripsElement(eachTrip)).addClass('animated fadeInUp');
+    }
+  // }
 }
 
