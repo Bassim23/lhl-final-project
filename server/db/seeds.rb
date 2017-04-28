@@ -138,6 +138,11 @@ schedule6 = trip6.schedules.create!({
   destination: "ChIJOwg_06VPwokRYv534QaPC8g"
 })
 
+schedule7 = trip2.schedules.create!({
+  date: Date.new(2017,8,25),
+  destination: "ChIJ0X31pIK3voARo3mz1ebVzDo"
+})
+
 puts "Creating activities ..."
 
 Activity.destroy_all
@@ -179,8 +184,8 @@ activity4 = schedule2.activities.create!({
 })
 
 activity5 = schedule2.activities.create!({
-  start_time: '16:00',
-  end_time: '18:00',
+  start_time: '18:00',
+  end_time: '20:00',
   uuid: 5,
   name:"Strip",
   description:"Time to hit the strip!",
@@ -188,8 +193,8 @@ activity5 = schedule2.activities.create!({
 })
 
 activity6 = schedule2.activities.create!({
-  start_time: '16:00',
-  end_time: '18:00',
+  start_time: '20:00',
+  end_time: '22:00',
   uuid: 6,
   name:"Dinner",
   description:"Dinner time at a fancy place!",
@@ -204,6 +209,25 @@ activity7 = schedule3.activities.create!({
   description:"What better than Empire State Building!",
   place: "ChIJtcaxrqlZwokRfwmmibzPsTU"
 })
+
+activity8 = schedule7.activities.create!({
+  start_time: '16:00',
+  end_time: '18:00',
+  uuid: 8,
+  name:"Morning at the Venetian",
+  description:"Explore the property and shops at Venetian",
+  place: "ChIJiwV3rBXEyIARRdN3c345tKE"
+})
+
+activity9 = schedule7.activities.create!({
+  start_time: '19:00',
+  end_time: '21:00',
+  uuid: 10,
+  name:"Buffet Lunch at MGM",
+  description:"MGM Grant Buffet!",
+  place: "ChIJJQ6Ck8zFyIARhIWFRFW3RQ8"
+})
+
 
 puts "Creating participations ..."
 

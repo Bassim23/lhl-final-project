@@ -3,47 +3,67 @@
     <h1><%= @schedule.trip.name %></h1>
   </header>
   <section class="container-fluid col-md-4">
-    <div id="agendaDay-view">
-      <div id="calendar"></div>
+    <div class="row mini-nav">
+      <div><button id="participate" type="button" class="btn btn-success">Participate</button></div>
+      <% if @schedule.trip.schedules.length > 1%>       
+        <div class="dropdown">
+          <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown">Trip Schedules
+          <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <% i=1 %>
+              <% @schedule.trip.schedules.each do |schedule| %>
+                <% schedule_title = 'Schedule' + " " + i.to_s %>
+                <li><%= link_to schedule_title, [@schedule.trip, schedule] %></li>
+              <% i=i+1 %>
+              <% end %>
+            </ul>
+        </div>
+      <% end %>
     </div>
-    <script>
-      var eventsArray = [];
-      <%@schedule.activities.each do |activity|%>
-        var eventObject = {
-          title: "<%=activity.name%>",
-          description: "<%=activity.description%>",
-          start: "<%=@schedule.date%>" + " " + "<%=(activity.start_time - 25200).to_s(:time)%>",
-          end: "<%=@schedule.date%>" + " " + "<%=(activity.end_time - 25200).to_s(:time)%>"
-        }
-        eventsArray.push(eventObject);
-      <%end%>
-      $(() => {
-        $('#calendar').fullCalendar({
-          height: 'auto',
-          defaultView: 'agendaDay',
-          allDaySlot: false,
-          allDayText: false,
-          minTime: '08:00:00',
-          slotEventOverlap: false,
-          defaultDate: "<%=@schedule.date%>",
-          editable: false,
-          droppable: true,
-          buttonIcons: false,
-          scrollTime: '12:00:00',
-          header: {
-            left:   'title',
-            center: '',
-            right:  ''
-          },
-          eventSources: [
-            {
-              events: eventsArray,
-              color: '#1E90FF'
-            }
-          ]
+    <div class="row">
+      <div id="agendaDay-view">
+        <div id="calendar"></div>
+      </div>
+      <script>
+        console.log("<%=@schedule.trip.schedules.length%>");
+        var eventsArray = [];
+        <%@schedule.activities.each do |activity|%>
+          var eventObject = {
+            title: "<%=activity.name%>",
+            description: "<%=activity.description%>",
+            start: "<%=@schedule.date%>" + " " + "<%=(activity.start_time - 25200).to_s(:time)%>",
+            end: "<%=@schedule.date%>" + " " + "<%=(activity.end_time - 25200).to_s(:time)%>"
+          }
+          eventsArray.push(eventObject);
+        <%end%>
+        $(() => {
+          $('#calendar').fullCalendar({
+            height: 'auto',
+            defaultView: 'agendaDay',
+            allDaySlot: false,
+            allDayText: false,
+            minTime: '08:00:00',
+            slotEventOverlap: false,
+            defaultDate: "<%=@schedule.date%>",
+            editable: false,
+            droppable: true,
+            buttonIcons: false,
+            scrollTime: '12:00:00',
+            header: {
+              left:   'title',
+              center: '',
+              right:  ''
+            },
+            eventSources: [
+              {
+                events: eventsArray,
+                color: '#1E90FF'
+              }
+            ]
+          });
         });
-      });
-    </script>
+      </script>
+    </div>
   </section>
 
   <section class="container-fluid col-md-8">
@@ -90,7 +110,7 @@
         geocoder.geocode({'placeId': placeId}, function(results, status) {
           if (status === 'OK') {
             if (results[0]) {
-              map.setZoom(16);
+              map.setZoom(14);
               map.setCenter(results[0].geometry.location);
               var coordinate = {
                 'lat': results[0].geometry.location.lat(), 
