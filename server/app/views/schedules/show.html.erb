@@ -1,78 +1,171 @@
-<p id="notice"><%= notice %></p>
+<main class="container-fluid">
+  <header class="page-header">
+    <h1><%= @schedule.trip.name %></h1>
+  </header>
+  <section class="container-fluid col-md-4">
+    <div id="agendaDay-view">
+      <div id="calendar"></div>
+    </div>
+    <script>
+      var eventsArray = [];
+      <%@schedule.activities.each do |activity|%>
+        var eventObject = {
+          title: "<%=activity.name%>",
+          description: "<%=activity.description%>",
+          start: "<%=@schedule.date%>" + " " + "<%=(activity.start_time - 25200).to_s(:time)%>",
+          end: "<%=@schedule.date%>" + " " + "<%=(activity.end_time - 25200).to_s(:time)%>"
+        }
+        eventsArray.push(eventObject);
+      <%end%>
+      $(() => {
+        $('#calendar').fullCalendar({
+          height: 'auto',
+          defaultView: 'agendaDay',
+          allDaySlot: false,
+          allDayText: false,
+          minTime: '08:00:00',
+          slotEventOverlap: false,
+          defaultDate: "<%=@schedule.date%>",
+          editable: false,
+          droppable: true,
+          buttonIcons: false,
+          scrollTime: '12:00:00',
+          header: {
+            left:   'title',
+            center: '',
+            right:  ''
+          },
+          eventSources: [
+            {
+              events: eventsArray,
+              color: '#1E90FF'
+            }
+          ]
+        });
+      });
+    </script>
+  </section>
 
-<% @trip = @schedule.trip%>
+  <section class="container-fluid col-md-8">
+    <div id="map"></div>
+    <script>
+      var map;
+      var polylineCoordinates = [];
+      var placesArray = [];
 
-<h1>Trip <%= @trip.id%></h1>
-<h2>Schedule <%= @schedule.id%></h2>
 
-<table class ="table">
- <thead class="thead-default">
-    <tr >
-      <th>
-        Trip Name
-      </th>
-      <th>
-        Schedule ID
-      </th>
-      <th>
-        Schedule Date
-      </th>
-      <th>
-        Schedule Destination
-      </th>
-      <th>
-        Schedule Delete Link
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <%= @trip.name%>
-      </td>
-      <td>
-        <%= @schedule.id%>
-      </td>
-      <td>
-        <%= @schedule.date%>
-      </td>
-      <td>
-        <%= @schedule.destination%>
-      </td>
-      <td>
-        <%= link_to 'Destroy', [@trip, @schedule], method: :delete, data: { confirm: 'Are you sure?' } %>
-      </td>
-    </tr>
-  </tbody>
-</table>
+      function initMap() {
+        var origin = {lat: -33.871, lng: 151.197};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: origin,
+          zoom: 11,
+          mapTypeId: 'terrain'
+        });
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Activity ID</th>
-      <th>Activity Start Time</th>
-      <th>Activity End Time</th>
-      <th>Activity Name</th>
-      <th>Activity Description</th>
-      <th>Activity Google Place</th>
-      <th>Activity Show Link</th>
-      <th>Activity Destroy Link</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @schedule.activities.each do |activity| %>
-    <tr>
-      <td><%= activity.id %></td>
-      <td><%= activity.start_time %></td>
-      <td><%= activity.end_time %></td>
-      <td><%= activity.name %></td>
-      <td><%= activity.description %></td>
-      <td><%= activity.place %></td>
-      <td><%= link_to 'Show', [@trip, @schedule, activity] %></td>
-      <td><%= link_to 'Destroy', [@trip, @schedule, activity], method: :delete, data: { confirm: 'Are you sure?' } %>
-    <tr>
-    <% end %>
-  </tbody>
-</table>
+        <% @schedule.activities.each do |activity| %>
+          placesArray.push("<%= activity.place %>");
+        <% end %>
+        
+        for (var i=0; i<placesArray.length; i++) {
+          var geocoder = new google.maps.Geocoder;
+          var infowindow = new google.maps.InfoWindow;
+          geocodePlaceId(geocoder, map, infowindow, placesArray[i], i);
+        }
+     
+      }
 
-<%= link_to 'Trips', trips_path %>
+      function animateCircle(line) {
+          var count = 0;
+          window.setInterval(function() {
+            count = (count + 1) % 200;
+
+            var icons = line.get('icons');
+            icons[0].offset = (count / 2) + '%';
+            line.set('icons', icons);
+        }, 80);
+      }
+
+      function geocodePlaceId(geocoder, map, infowindow, placeId, i) {
+        var label = (i+1).toString();
+        geocoder.geocode({'placeId': placeId}, function(results, status) {
+          if (status === 'OK') {
+            if (results[0]) {
+              map.setZoom(16);
+              map.setCenter(results[0].geometry.location);
+              var coordinate = {
+                'lat': results[0].geometry.location.lat(), 
+                'lng': results[0].geometry.location.lng()
+              }
+              polylineCoordinates.push(coordinate);
+              var service = new google.maps.places.PlacesService(map);
+              service.getDetails({
+                placeId: placeId
+              }, function(place, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                  var marker = new google.maps.Marker({
+                    map: map,
+                    position: place.geometry.location,
+                    animation: google.maps.Animation.DROP,
+                    icon: {
+                      path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+                      fillOpacity: 1.0,
+                      fillColor: '#FF0000',
+                      strokeWeight: 2,
+                      scale: 12,
+                      labelOrigin: new google.maps.Point(0,-2.3)
+                    },
+                    label: {
+                      text: label,
+                      fontWeight: 'bold',
+                      color: 'white'
+                    }
+                  });
+                  google.maps.event.addListener(marker, 'click', function() {
+                    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                      'Place ID: ' + place.place_id + '<br>' +
+                      place.formatted_address + '</div>');
+                    infowindow.open(map, this);
+                  });
+                }
+              });
+              if (i === placesArray.length-1) {
+                //initializing line symbol for path animation
+                var lineSymbol = {
+                 path: google.maps.SymbolPath.CIRCLE,
+                 scale: 8,
+                 strokeColor: '#FF0000'
+                };
+                //initializing polyline for drawing trip path
+                var tripPath = new google.maps.Polyline({
+                  path: polylineCoordinates,
+                  geodesic: true,
+                  strokeColor: '#1E90FF',
+                  strokeOpacity: 0.5,
+                  strokeWeight: 4,
+                  icons: [{
+                    icon: lineSymbol,
+                    offset: '100%'
+                  }]
+                });
+               //rendering trip path polyline on map object 
+               tripPath.setMap(map);
+               //calls the animate function for line symbol
+               animateCircle(tripPath);
+              }
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
+      }
+
+    </script>
+    <% src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAASqwWQRArL2ee1jkkD-Zdm4zb7SiRFnk&libraries=places&callback=initMap" %>
+    <script src=<%=src%> async defer></script>
+  </section>
+</main>
+
+
+

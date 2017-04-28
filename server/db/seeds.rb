@@ -143,8 +143,8 @@ puts "Creating activities ..."
 Activity.destroy_all
 
 activity1 = schedule1.activities.create!({
-  start_time: DateTime.new(2017,10,16, 1, 00),
-  end_time: DateTime.new(2017,10,16, 3, 00),
+  start_time: '16:00',
+  end_time: '17:00',
   uuid: 1,
   name:"Hiking",
   description:"Hiking a lot!!",
@@ -152,8 +152,8 @@ activity1 = schedule1.activities.create!({
 })
 
 activity2 = schedule1.activities.create!({
-  start_time: DateTime.new(2017,10,16, 4, 00),
-  end_time: DateTime.new(2017,10,16, 6, 00),
+  start_time: '19:00',
+  end_time: '21:00',
   uuid: 2,
   name:"Lunch",
   description:"Italian for lunch!",
@@ -161,8 +161,8 @@ activity2 = schedule1.activities.create!({
 })
 
 activity3 = schedule1.activities.create!({
-  start_time: DateTime.new(2017,10,16, 7, 00),
-  end_time: DateTime.new(2017,10,16, 10, 00),
+  start_time: '23:00',
+  end_time: '03:00',
   uuid: 3,
   name:"Bar",
   description:"Hit the Dubh Linn bar!",
@@ -170,8 +170,8 @@ activity3 = schedule1.activities.create!({
 })
 
 activity4 = schedule2.activities.create!({
-  start_time: Time.now() - 100000000,
-  end_time: Time.now() - 1000000000,
+  start_time: '16:00',
+  end_time: '18:00',
   uuid: 4,
   name:"Bellagio",
   description:"Visit Bellagio for fun!",
@@ -179,8 +179,8 @@ activity4 = schedule2.activities.create!({
 })
 
 activity5 = schedule2.activities.create!({
-  start_time: Time.now() - 90000000,
-  end_time: Time.now() - 900000000,
+  start_time: '16:00',
+  end_time: '18:00',
   uuid: 5,
   name:"Strip",
   description:"Time to hit the strip!",
@@ -188,8 +188,8 @@ activity5 = schedule2.activities.create!({
 })
 
 activity6 = schedule2.activities.create!({
-  start_time: Time.now() - 80000000,
-  end_time: Time.now() - 800000000,
+  start_time: '16:00',
+  end_time: '18:00',
   uuid: 6,
   name:"Dinner",
   description:"Dinner time at a fancy place!",
@@ -197,8 +197,8 @@ activity6 = schedule2.activities.create!({
 })
 
 activity7 = schedule3.activities.create!({
-  start_time: Time.now() - 110000000,
-  end_time: Time.now() - 1100000000,
+  start_time: '16:00',
+  end_time: '18:00',
   uuid: 7,
   name:"Empire State Building",
   description:"What better than Empire State Building!",
