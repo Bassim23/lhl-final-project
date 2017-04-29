@@ -1,0 +1,26 @@
+<h1>Signup!</h1>
+  <% if flash[:notice] %>
+    <div>
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+<%= form_for :user, url: register_path do |f| %>
+  <p>
+  First Name: <%= f.text_field :first_name, class: 'form-control' %>
+  Last Name: <%= f.text_field :last_name, class: 'form-control' %>
+  <p>
+  Age: <%= f.text_field :age, class: 'form-control' %>
+  <p>
+  Gender: <%= f.text_field :gender, class: 'form-control' %>
+  <p>
+  Nationality: <%= f.text_field :nationality, class: 'form-control' %>
+  <p>
+  Summary: <%= f.text_field :summary, class: 'form-control' %>
+  <p>
+  Email: <%= f.email_field :email, class: 'form-control' %>
+  <p>
+  Password: <%= f.password_field :password, class: 'form-control' %>
+  Password Confirmation: <%= f.password_field :password_confirmation, class: 'form-control' %>
+  <p>
+  <%= f.submit "Submit", class: 'btn btn-primary' %>
+<% end %>
