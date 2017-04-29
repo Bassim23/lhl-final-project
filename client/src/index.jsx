@@ -8,7 +8,6 @@ import $ from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App.jsx';
-import Launch from './LaunchPage.jsx';
 // import {HashRouter as Router, Route, Link} from 'react-router-dom'
 
 ReactDOM.render(

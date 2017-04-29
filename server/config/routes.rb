@@ -13,6 +13,11 @@ Rails.application.routes.draw do
     end
   end
 
+  # Rails.application.routes.draw do
+  #   mount ActionCable.eserver => '/cable'
+  # end
+
+
   resources :search, only: [:show]
 
   get 'login', to: 'sessions#new'
