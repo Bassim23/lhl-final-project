@@ -17,7 +17,7 @@ $(document).ready(function() {
 
 })
 
-function createTripsElement(schedule) {
+function createSchedules(schedule) {
   let $schedule = `
     <article class="panel panel-default schedule-panel" data-id="${schedule.id}" >
         <div class="panel-body">
@@ -52,7 +52,7 @@ function renderSchedules(schedules) {
     </div>
     `);
   for (s of schedules) {
-    $('#schedule-display').append(createTripsElement(s));
+    $('#schedule-display').append(createSchedules(s));
     $('.schedule-panel').addClass('animated fadeIn');
   }
 }

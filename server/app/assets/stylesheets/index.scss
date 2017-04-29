@@ -61,12 +61,27 @@ img{
   width: 100%
 }
 
-.view-button {
-  color: #62e059;
+.view-trip {
+  color: #FFFFFF;
   background-color: #62e059;
+  width: 6em;
+  height: 4em;
+  font-size: 50%;
+  word-wrap: break-word;
 }
 
 .card-block {
   padding-bottom:1em;
 }
 
+.index-header {
+  text-align: center;
+}
+
+hr {
+  border-color: #bdbdbd;
+}
+
+.featured-container {
+  display: none;
+}

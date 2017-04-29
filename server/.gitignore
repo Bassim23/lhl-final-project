@@ -1,2 +1,6 @@
-log/
-tmp/
+.vscode
+.DS_Store
+.env
+server/log/
+server/tmp/
+server/vendor/bundler
