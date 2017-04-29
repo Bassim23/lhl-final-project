@@ -37,6 +37,9 @@ gem 'responders'
 gem 'react-rails'
 # Bootstrap for Rails
 gem 'bootstrap-sass', '~> 3.3.6'
+#Server side authentication for Google OAuth
+gem 'google-auth'
+gem 'google-id-token'
 
 gem 'rack-cors', :require => 'rack/cors'
 
