@@ -9,11 +9,11 @@
   First Name: <%= f.text_field :first_name, class: 'form-control' %>
   Last Name: <%= f.text_field :last_name, class: 'form-control' %>
   <p>
-  Age: <%= f.text_field :age, class: 'form-control' %>
+  Age: <%= f.select :age, @age, class: 'form-control' %>
   <p>
-  Gender: <%= f.text_field :gender, class: 'form-control' %>
+  Gender: <%= f.select :gender, ['Female', 'Male', 'Rather not say'], class: 'form-control' %>
   <p>
-  Nationality: <%= f.text_field :nationality, class: 'form-control' %>
+  Nationality: <%= f.select :nationality, @nationality, class: 'form-control' %>
   <p>
   Summary: <%= f.text_field :summary, class: 'form-control' %>
   <p>

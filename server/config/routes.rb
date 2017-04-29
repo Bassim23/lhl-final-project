@@ -19,6 +19,6 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
   get 'register', to: 'users#new'
-  post 'regsiter', to: 'users#create'
+  post 'register', to: 'users#create'
 
 end
