@@ -6,6 +6,7 @@ class TripsController < ApplicationController
   def index
     @trips = Trip.all
     @schedules = Schedule.all
+    @trip = Trip.new
   end
 
   # GET /trips/1
@@ -16,7 +17,6 @@ class TripsController < ApplicationController
 
   # GET /trips/new
   def new
-    @trip = Trip.new
   end
 
   # GET /trips/1/edit
@@ -27,16 +27,13 @@ class TripsController < ApplicationController
   # POST /trips.json
   def create
     @trip = Trip.new(trip_params)
-
-    respond_to do |format|
-      if @trip.save
-        format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
-        format.json { render :show, status: :created, location: @trip }
-      else
-        format.html { render :new }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
-      end
+    params.each do |e|
+      puts params[e]
+      puts e
+      puts '...............'
     end
+
+    # @trip.save!
   end
 
   # PATCH/PUT /trips/1

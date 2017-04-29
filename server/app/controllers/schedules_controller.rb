@@ -4,7 +4,8 @@ class SchedulesController < ApplicationController
   # GET /schedules
   # GET /schedules.json
   def index
-    @schedules = Schedule.all
+    @schedules = Schedule.where 'trip_id': params[:trip_id]
+    render json: @schedules.as_json
   end
 
   # GET /schedules/1
