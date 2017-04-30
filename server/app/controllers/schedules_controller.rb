@@ -27,16 +27,11 @@ class SchedulesController < ApplicationController
   # POST /schedules.json
   def create
     @schedule = Schedule.new(schedule_params)
+    @schedule.save
 
-    respond_to do |format|
-      if @schedule.save
-        format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }
-        format.json { render :show, status: :created, location: @schedule }
-      else
-        format.html { render :new }
-        format.json { render json: @schedule.errors, status: :unprocessable_entity }
-      end
-    end
+    @return = Schedule.find @schedule.id
+
+    render json: @return.as_json
   end
 
   # PATCH/PUT /schedules/1
@@ -71,6 +66,6 @@ class SchedulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_params
-      params.fetch(:schedule, {})
+      params.permit(:date, :destination_name, :trip_id)
     end
 end

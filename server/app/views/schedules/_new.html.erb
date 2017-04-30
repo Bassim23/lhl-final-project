@@ -1,0 +1,23 @@
+<% if flash[:notice] %>
+  <div>
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<%= form_tag do |f| %>
+  <div class="form-group">
+    <%= label_tag 'date', 'Schedule Date:' %>
+    <%= date_field :date, "", class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag 'destination', 'Schedule Destination:' %>
+    <%= text_field_tag :destination, "", class: 'form-control' %>
+  </div>
+
+
+  <div class="form-group">
+    <%= submit_tag 'Create', class: 'btn btn-primary submit-schedule' %>
+    <button class="btn btn-danger cancel-new-schedule" type="button">Cancel</button>
+  </div>
+
+<% end %>

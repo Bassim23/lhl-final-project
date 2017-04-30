@@ -9,14 +9,38 @@ $(document).on('turbolinks:load', function() {
       $('#new-schedule').on('click', (e) => {
         $('#trip-display').css('display', 'none');
         $('.form-schedule').addClass('animated fadeIn').css('display', 'block');
+        $('.cancel-new-schedule').on('click', (e) => {
+          e.preventDefault();
+          $('.form-schedule').css('display', 'none');
+          $('#trip-display').addClass('animated fadeIn').css('display', 'block');
+        });
+
+        $('.submit-schedule').on('click', (e) => {
+          e.preventDefault();
+          $.ajax({
+            method: "POST",
+            url: "/trips/" + $tripID + "/schedules",
+            dataType: 'json',
+            data: {
+              date: $('#date_').val(),
+              destination_name: $('#destination').val()
+          }
+          }).done(function(data) {
+            $('#schedule-display').append(createSchedules(data));
+
+            $('#schedule-display').stop().animate({
+              scrollTop: $('#schedule-display')[0].scrollHeight
+            }, 800);
+          });
+        })
       });
     })
-  });
+  })
 })
 
 function createSchedules(schedule) {
   let $schedule = `
-    <article class="panel panel-default schedule-panel" data-id="${schedule.id}" >
+    <article class="panel panel-default schedule-panel animated fadeIn" data-id="${schedule.id}" >
         <div class="panel-body">
             <strong>${schedule.destination_name}</strong> @ <strong><time>${schedule.date}</time></strong>
         </div>
@@ -53,4 +77,3 @@ function renderSchedules(schedules) {
     $('.schedule-panel').addClass('animated fadeIn');
   }
 }
-
