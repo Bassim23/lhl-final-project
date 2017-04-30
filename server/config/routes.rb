@@ -14,11 +14,12 @@ Rails.application.routes.draw do
   end
 
   resources :search, only: [:show]
+  resources :users, only: [:show]
 
-  get 'login', to: 'sessions#new'
+  # get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
-  get 'register', to: 'users#new'
+  # get 'register', to: 'users#new'
   post 'register', to: 'users#create'
 
 end

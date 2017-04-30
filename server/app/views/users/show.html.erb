@@ -1,0 +1,48 @@
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<div class="container">
+  <div class="fb-profile">
+    <img align="left" class="fb-image-lg" src="http://www.theadventuretravelsite.com/blog-data/themes/theadventuretravelsite/images/main/banner.png" alt="Profile image example"/>
+    <img align="left" class="fb-image-profile thumbnail" src=<%= @user.photo %> alt="Profile image example"/>
+
+    <div class="fb-profile-text">
+      <div class="panel-body">
+        <div class="row">
+          <h1> <%= @user.first_name %> <%= @user.last_name %></h1>
+          <p><%= @user.summary %></p>
+
+          <div class=" col-md-9 col-lg-9 ">
+            <table class="table table-user-information">
+              <tbody>
+                <tr>
+                  <td>Age:</td>
+                  <td><%= @user.age %></td>
+                </tr>
+                <tr>
+                  <td>Gender</td>
+                  <td><%= @user.gender %></td>
+                </tr>
+                <tr>
+                  <td>Nationality</td>
+                  <td><%= @user.nationality %></td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td><a href="mailto:<%= @user.email %>"><%= @user.email %></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="row nav">
+            <div class="col-md-8" style="margin: 0px;padding-top: 10px;">
+              <div class="col-md-4 friendly"><i class="fa fa-smile-o fa-lg"></i> <%= @user.upvotes - @user.downvotes %></div>
+              <div class="col-md-4 like"><i class="fa fa-thumbs-o-up fa-lg"></i> <%= @user.upvotes %></div>
+              <div class="col-md-4 heart"><i class="fa fa-thumbs-o-down fa-lg"></i> <%= @user.downvotes %></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
