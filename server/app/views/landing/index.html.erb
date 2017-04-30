@@ -1,69 +1,55 @@
-<html>
+<div class="container-fluid">
+  <img src="http://www.mastertvl.com/royalslider/images/group.jpg" />
+  <div class="w3-display-bottomleft w3-container w3-amber w3-hover-orange w3-hide-small" style="bottom:10%;opacity:0.7;width:70%">
+    <h2>
+      <div class="app_name col-md-5">
+        Looking for Group
+      </div>
+      <div class="app_slogan col-md-12 col-md-offset-2">
+        "We want to connect people who don't have anyone to travel with"
+      </div>
+    </h2>
+  </div>
 
-  <head>
-    <meta charset="UTF-8">
+  <div class="search container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h2>Where to Next?</h2>
+      <div id="custom-search-input">
+        <div class="input-group col-md-12">
+          <input class="form-control input-lg" type="text" placeholder="Enter A Destination" />
+          <span class="input-group-btn">
+            <button class="btn btn-info btn-lg" type="Submit">
+              <i class="glyphicon glyphicon-search"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
 
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
-    <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
 
-  </head>
-
-
-  <body>
-      <%= render :partial => './layouts/nav' %>
-      <img src="http://www.mastertvl.com/royalslider/images/group.jpg" style="width:100%" />
-      <div class="w3-display-bottomleft w3-container w3-amber w3-hover-orange w3-hide-small" style="bottom:10%;opacity:0.7;width:70%">
-        <h2>
-          <div class="app_name col-md-5">
-            Looking for Group
-          </div>
-          <div class="app_slogan col-md-12 col-md-offset-2">
-            "We want to connect people who don't have anyone to travel with"
-          </div>
+  <div id='content'>
+  <section class="groupedcontent container" id="featured-tours-from-g-homepage-canada">
+    <div class="Featured-container">
+      <header>
+        <h2 class="index-header">
+          Featured Trips
         </h2>
-      </div>
-
-    <div class="search container">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <h2>Where to Next?</h2>
-          <div id="custom-search-input">
-            <div class="input-group col-md-12">
-              <input class="form-control input-lg" type="text" placeholder="Enter A Destination" />
-              <span class="input-group-btn">
-                <button class="btn btn-info btn-lg" type="Submit">
-                  <i class="glyphicon glyphicon-search"></i>
-                </button>
-              </span>
-            </div>
-          </div>
-        </div>
+      </header>
+      <div class="text">
+        <p class="text-center">Stoke your wanderlust with these handpicked itineraries from our various hosts. Connecting those who don't have anyone to travel with. So, where to next?
+        </p>
       </div>
     </div>
 
+      <hr />
 
-    <div id='content'>
-      <section class="groupedcontent container" id="featured-tours-from-g-homepage-canada">
-        <div class="Featured-container">
-          <header>
-            <h2 class="index-header">
-              Featured Trips
-            </h2>
-          </header>
-          <div class="text">
-            <p class="text-center">Stoke your wanderlust with these handpicked itineraries from our various hosts. Connecting those who don't have anyone to travel with. So, where to next?
-            </p>
-          </div>
-        </div>
+      <div class="container featured-trips">
+      </div>
+    <div>
 
-          <hr />
-
-          <div class="container featured-trips">
-          </div>
-        <div>
-
-      </section>
-    </div>
-
-  </body>
-</html>
+  </section>
+  </div>
+</div>

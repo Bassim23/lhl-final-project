@@ -2,14 +2,15 @@
   <div class="menu-wrap">
       <h1 class="logo"><%= link_to 'Home', [:root] %></h1>
       <i class="fa fa-arrow-right menu-close"></i>
-      <%= link_to 'My Trips', [:trips] %>
-      <a class="#">Services</a>
-      <a class="#">Portfolio</a>
-      <a class="#">About</a>
-      <a class="#">Contact</a>
-      <a class="#"><i class="fa fa-facebook"></i></a>
-      <a class="#"><i class="fa fa-twitter"></i></a>
-      <a class="#"><i class="fa fa-dribbble"></i></a>
+      <hr />
+      <% if current_user %>
+        <a href="#"><%= current_user.first_name %></a>
+        <%= link_to 'My Trips', [:trips] %>
+        <%= link_to "Logout", '/logout' %>
+      <% else %>
+        <%= link_to 'Login', '/login' %>
+        <%= link_to 'Signup', '/register' %>
+      <% end %>
       <a class="#"><i class="fa fa-envelope"></i></a>
   </div>
   <div id="menuToggle"><i class="fa fa-bars"></i></div>

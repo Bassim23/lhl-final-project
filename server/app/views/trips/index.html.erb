@@ -1,55 +1,38 @@
-<html>
 
-  <head>
-    <meta charset="UTF-8">
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
-    <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
-  </head>
+  <div id="trip-display" class="col-md-8 left">
+    <!-- Page header -->
+    <div class="page-header">
+        <h2>My Trips
+          <button id="new-trip" class="btn btn-success pull-right">Create New Trip</button>
+        </h2>
+    </div>
+    <!-- /Page header -->
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="line text-muted"></div>
 
+      <%= render @trips %>
+    </div>
+  </div>
 
-  <body>
-    <%= render :partial => './layouts/nav' %>
-    <div class="container-fluid">
-      <div id="trip-display" class="col-md-8 left">
-        <!-- Page header -->
-        <div class="page-header">
-            <h2>My Trips
-              <button id="new-trip" class="btn btn-success pull-right">Create New Trip</button>
-            </h2>
-        </div>
-        <!-- /Page header -->
-        <!-- Timeline -->
-        <div class="timeline">
-          <div class="line text-muted"></div>
+  <div class="col-md-8 left form-schedule">
+    <div class="page-header">
+        <h2>New Schedule</h2>
+    </div>
+  </div>
 
-          <%= render @trips %>
-        </div>
-      </div>
+  <div id="schedule-display" class="col-md-4 right">
+    <div class="page-header">
+        <h2>My Schedules</h2>
+    </div>
+    Select a trip to begin.
+  </div>
 
-      <div class="col-md-8 left form-schedule">
-        <div class="page-header">
-            <h2>New Schedule</h2>
-        </div>
-      </div>
-
-      <div id="schedule-display" class="col-md-4 right">
-        <div class="page-header">
-            <h2>My Schedules</h2>
-        </div>
-        Select a trip to begin.
-      </div>
-
-      <div class="col-md-4 right form-trip">
-        <div class="page-header">
-            <h2>New Trip</h2>
-        </div>
-        <%= render partial: "form" %>
-      </div>
-
+  <div class="col-md-4 right form-trip">
+    <div class="page-header">
+        <h2>New Trip</h2>
+    </div>
+    <%= render partial: "form" %>
   </div>
 
 
-
-  </body>
-
-</html>
