@@ -1,5 +1,7 @@
 $(document).on('turbolinks:load', function() {
   $('.trip-panel').on("click", function(e) {
+    $('.form-trip').css('display', 'none');
+    $('#schedule-display').addClass('animated fadeInRight').css('display', 'block');
     $tripID = $(this).data("id");
     $.ajax({
       method: "GET",
@@ -9,6 +11,10 @@ $(document).on('turbolinks:load', function() {
       $('#new-schedule').on('click', (e) => {
         $('#trip-display').css('display', 'none');
         $('.form-schedule').addClass('animated fadeIn').css('display', 'block');
+        $('.form-schedule-close').on('click', (e) => {
+          $('.form-schedule').css('display', 'none');
+          $('#trip-display').addClass('animated fadeIn').css('display', 'block');
+        });
         $('.cancel-new-schedule').on('click', (e) => {
           e.preventDefault();
           $('.form-schedule').css('display', 'none');
