@@ -5,7 +5,9 @@ class Schedule < ApplicationRecord
 
 # if deployed on heroku, use ILIKE instead of LIKE
   def self.search(search)
-    where("destination LIKE ?", "%#{search}%")
+    where(" (destination) LIKE ? ", search.downcase)
+    puts '........................'
+    puts search.downcase
   end
 
 end

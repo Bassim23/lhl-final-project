@@ -1,15 +1,19 @@
 .app_name {
-  position:fixed;
+  position: absolute;
   top: 1em;
   font-size: 80%;
 }
 
 .app_slogan {
-  position:fixed;
+  position: absolute;
   top: 40%;
   font-size: 100%;
   color:#FFFFFF;
   font-style:italic;
+}
+
+.hero {
+  width: 100vw;
 }
 
 .trips {
@@ -53,14 +57,6 @@
     font-size: 23px;
 }
 
-// .container {
-//   width:780px;
-// }
-
-img{
-  width: 100%
-}
-
 .view-trip {
   color: #FFFFFF;
   background-color: #62e059;
@@ -78,10 +74,6 @@ img{
   text-align: center;
 }
 
-hr {
-
-}
-
-.featured-container {
+#content {
   display: none;
 }

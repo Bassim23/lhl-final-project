@@ -1,17 +1,15 @@
 $(document).on('turbolinks:load', function() {
-  // commands go here
   $('#custom-search-input input').on("keyup", function(e) {
     if (e.which == 13) {
       let searchInput = $('#custom-search-input input').val()
       $.ajax({
         method: "GET",
-        url: "/search/"+searchInput,
+        url: "/search/" + searchInput,
       }).done(function(tripResult) {
-        console.log(tripResult)
         renderTrips(tripResult)
-        $('.featured-container').css({display: "block"});
+        $('#content').css({ display: "block" });
         $('html,body').animate({
-          scrollTop: $(".groupedcontent").offset().top},
+          scrollTop: $("#content").offset().top},
         'slow');
       })
     }
@@ -45,7 +43,6 @@ function createTripsElement(trips, image) {
     `
 
   let $empty =
-
     `
       <div>
         <h4>
@@ -53,7 +50,6 @@ function createTripsElement(trips, image) {
         <h4>
       </div>
     `
-
   if (trips.trip) {
     return $trip;
   } else {
@@ -74,19 +70,8 @@ let index = -1;
 
 
 function renderTrips(trips) {
-  console.log("rendering")
   $('.featured-trips').empty();
-  // let n = 0
-  // const id = setInterval(() => {
-  //   n++;
-  //   if (n < trips.length) {
-  //     show(trips[n])
-  //   } else {
-  //     clearInterval(id);
-  //   }
-  // }, 500)
   for (eachTrip of trips) {
-    console.log("appending to list")
     if (index >= backgroundImage.length - 1){
         index = 0;
     } else {
