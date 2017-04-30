@@ -1,17 +1,12 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
-  before_action :current_user
 
   # GET /trips
   # GET /trips.json
   def index
-    if current_user
-      @trips = Trip.where(user_id: current_user)
-      @schedules = Schedule.all
-      @trip = Trip.new
-    else
-      redirect_to root_path
-    end
+    @trips = Trip.all
+    @schedules = Schedule.all
+    @trip = Trip.new
   end
 
   # GET /trips/1
