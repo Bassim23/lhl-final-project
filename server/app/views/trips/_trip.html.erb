@@ -9,11 +9,11 @@
     <!-- Heading -->
     <div class="panel-heading">
         <h2 class="panel-title">
-            <strong><%= trip.name %></strong>
+            <strong class="panel-title-text"><%= trip.name %></strong>
             <%= link_to trip, method: :delete, data: { confirm: "Are you sure?" } do %>
-                <i class="fa fa-trash-o trip-edit-delete-icons" aria-hidden="true"></i>
+                <i class="fa fa-trash-o trip-delete-icon" aria-hidden="true"></i>
             <% end %>
-            <i class="fa fa-pencil trip-edit-delete-icons" aria-hidden="true"></i>
+            <i class="fa fa-pencil trip-edit-icon" aria-hidden="true"></i>
         </h2>
     </div>
     <!-- /Heading -->
@@ -24,7 +24,13 @@
     <!-- /Body -->
     <!-- Footer -->
     <div class="panel-footer">
-        <small><%= trip.kind %></small>
+        <small>
+            <select class="panel-footer-kind-selector" disabled>
+                <option>Private</option>
+                    <%= trip.kind %>
+                <option>Public</option>
+            </select>
+        </small>
     </div>
     <!-- /Footer -->
 </article>

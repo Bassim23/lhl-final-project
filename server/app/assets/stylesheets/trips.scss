@@ -77,7 +77,12 @@
     float: left;
 }
 
-.timeline .panel .trip-edit-delete-icons {
+.timeline .panel .trip-edit-icon {
+    float: right;
+    padding-left: 15px;
+}
+
+.timeline .panel .trip-delete-icon {
     float: right;
     padding-left: 15px;
 }

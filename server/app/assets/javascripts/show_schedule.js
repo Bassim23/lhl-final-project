@@ -1,4 +1,5 @@
 $(document).on('turbolinks:load', function() {
+
   $('.trip-panel').on("click", function(e) {
     $tripID = $(this).data("id");
     $.ajax({
@@ -12,6 +13,25 @@ $(document).on('turbolinks:load', function() {
       });
     })
   });
+
+  $('.trip-panel').on('mouseleave', function(e) {
+    e.stopPropagation();
+    $(this).closest('.trip-panel').find('.panel-title-text').attr('contenteditable', 'false');
+    $(this).closest('.trip-panel').find('.panel-body').attr('contenteditable', 'false');
+    $(this).closest('.trip-panel').find('.panel-footer-kind-selector').attr('disabled');
+  })
+
+  $('.trip-edit-icon').on('click', function(e) {
+    e.stopPropagation();
+    $(this).closest('.trip-panel').find('.panel-title-text').attr('contenteditable', 'true');
+    $(this).closest('.trip-panel').find('.panel-body').attr('contenteditable', 'true');
+    $(this).closest('.trip-panel').find('.panel-footer-kind-selector').removeAttr('disabled');
+    $(this).closest('.trip-panel').find('.panel-title-text').focus();
+    //$(this).find('.panel-body').attr('contenteditable', 'true');
+    //$('#schedule-display').css('display', 'none');
+    //$('.form-trip').addClass('animated fadeInRight').css('display', 'block');
+  });
+
 })
 
 function createSchedules(schedule) {
