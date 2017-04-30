@@ -1,4 +1,4 @@
-$(() => {
+$(document).on('turbolinks:load', function() {
   $('#new-trip').on('click', (e) => {
     $('#schedule-display').css('display', 'none');
     $('.form-trip').addClass('animated fadeInRight').css('display', 'block');

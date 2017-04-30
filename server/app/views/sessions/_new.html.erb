@@ -1,0 +1,24 @@
+<div id="login-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Login</h4>
+            </div>
+            <div class="modal-body">
+              <% if flash[:notice] %>
+                <div>
+                  <%= flash[:notice] %>
+                </div>
+              <% end %>
+              <%= form_for :session, url: login_path do |f| %>
+                Email: <%= f.email_field :email, class: 'form-control' %>
+                Password: <%= f.password_field :password, class: 'form-control' %>
+                <hr>
+                <%= f.submit "Submit", class: 'btn btn-primary form-control' %>
+              <% end %>
+            </div>
+        </div>
+    </div>
+</div>
