@@ -8,7 +8,13 @@
     <!-- /Icon -->
     <!-- Heading -->
     <div class="panel-heading">
-        <h2 class="panel-title"><strong><%= trip.name %></strong></h2>
+        <h2 class="panel-title">
+            <strong><%= trip.name %></strong>
+            <%= link_to trip, method: :delete, data: { confirm: "Are you sure?" } do %>
+                <i class="fa fa-trash-o trip-edit-delete-icons" aria-hidden="true"></i>
+            <% end %>
+            <i class="fa fa-pencil trip-edit-delete-icons" aria-hidden="true"></i>
+        </h2>
     </div>
     <!-- /Heading -->
     <!-- Body -->
