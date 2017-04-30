@@ -59,7 +59,7 @@
         <%= @activity.place%>
       </td>
       <td>
-        <%= link_to 'Destroy', [@trip, @schedule, @activity], method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Destroy', [@activity], method: :delete, data: { confirm: 'Are you sure?' } %>
       </td>
     </tr>
   </tbody>
@@ -83,8 +83,8 @@
       <td><%= participation.user_id %></td>
       <td><%= participation.user.first_name %></td>
       <td><%= participation.user.last_name %></td>
-      <td><%= link_to 'Show', [@trip, @schedule, @activity, participation] %></td>
-      <td><%= link_to 'Destroy', [@trip, @schedule, @activity, participation], method: :delete, data: { confirm: 'Are you sure?' } %>
+      <td><%= link_to 'Show', [participation] %></td>
+      <td><%= link_to 'Destroy', [participation], method: :delete, data: { confirm: 'Are you sure?' } %>
     <tr>
     <% end %>
   </tbody>

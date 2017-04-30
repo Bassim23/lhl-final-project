@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
   $('.trip-panel').on("click", function(e) {
     $tripID = $(this).data("id");
     $.ajax({
@@ -12,9 +12,6 @@ $(document).ready(function() {
       });
     })
   });
-
-
-
 })
 
 function createSchedules(schedule) {

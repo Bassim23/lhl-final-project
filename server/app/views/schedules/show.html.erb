@@ -13,7 +13,7 @@
               <% i=1 %>
               <% @schedule.trip.schedules.each do |schedule| %>
                 <% schedule_title = 'Schedule' + " " + i.to_s %>
-                <li><%= link_to schedule_title, [@schedule.trip, schedule] %></li>
+                <li><%= link_to schedule_title, [schedule] %></li>
               <% i=i+1 %>
               <% end %>
             </ul>
