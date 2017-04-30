@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  
+
   def new
     @age = (18..75).to_a
     @nationality = [
@@ -209,6 +209,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find params[:id]
+  end
+
   private
 
   def create_user
@@ -261,5 +265,5 @@ class UsersController < ApplicationController
     new_user.save!
     new_user
   end
-  
+
 end

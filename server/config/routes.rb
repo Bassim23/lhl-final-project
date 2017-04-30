@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :search, only: [:show]
+  resources :users, only: [:show]
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

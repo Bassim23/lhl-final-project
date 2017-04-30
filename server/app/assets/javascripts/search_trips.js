@@ -9,10 +9,11 @@ $(document).on('turbolinks:load', function() {
       }).done(function(tripResult) {
         console.log(tripResult)
         renderTrips(tripResult)
-        $('.featured-container').css({display: "block"});
+        // $('.featured-container').css({display: "block"});
         $('html,body').animate({
           scrollTop: $(".groupedcontent").offset().top},
         'slow');
+
       })
     }
   });
