@@ -5,7 +5,7 @@ class SchedulesController < ApplicationController
   # GET /schedules.json
   def index
     @schedules = Schedule.where 'trip_id': params[:trip_id]
-    render json: @schedules.as_json
+    render json: @schedules.as_json(:include => {:trip => {:only => :name}})
   end
 
   # GET /schedules/1
@@ -27,16 +27,10 @@ class SchedulesController < ApplicationController
   # POST /schedules.json
   def create
     @schedule = Schedule.new(schedule_params)
+    @schedule.save
+    @return = Schedule.find @schedule.id
 
-    respond_to do |format|
-      if @schedule.save
-        format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }
-        format.json { render :show, status: :created, location: @schedule }
-      else
-        format.html { render :new }
-        format.json { render json: @schedule.errors, status: :unprocessable_entity }
-      end
-    end
+    render json: @return.as_json(:include => {:trip => {:only => :name}})
   end
 
   # PATCH/PUT /schedules/1
@@ -71,6 +65,6 @@ class SchedulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_params
-      params.fetch(:schedule, {})
+      params.permit(:date, :destination_name, :trip_id)
     end
 end

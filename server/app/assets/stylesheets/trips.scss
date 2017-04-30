@@ -77,6 +77,16 @@
     float: left;
 }
 
+.timeline .panel .trip-edit-icon {
+    float: right;
+    padding-left: 15px;
+}
+
+.timeline .panel .trip-delete-icon {
+    float: right;
+    padding-left: 15px;
+}
+
 .timeline .panel-outline {
     border-color: transparent;
     background: transparent;
@@ -90,4 +100,13 @@
 .timeline .panel-outline .panel-heading:not(.icon),
 .timeline .panel-outline .panel-footer {
     display: none;
+}
+
+@keyframes grey-fade {
+   0% {background: grey;}
+   100% {background: none;}
+}
+
+.highlight {
+   animation: grey-fade 2s ease-in 1;
 }

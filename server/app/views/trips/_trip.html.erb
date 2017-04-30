@@ -1,31 +1,31 @@
-
-<!-- Panel -->
-<article class="panel panel-default trip-panel" data-id="<%= trip.id %>">
-    <!-- Icon -->
+<article class="panel panel-default trip-panel" data-id="<%= trip.id %>" data-name="<%= trip.name %>">
     <div class="panel-heading icon">
         <i class="fa fa-suitcase"></i>
     </div>
-    <!-- /Icon -->
-    <!-- Heading -->
     <div class="panel-heading">
-        <h2 class="panel-title"><strong><%= trip.name %></strong></h2>
+        <h2 class="panel-title">
+            <strong class="panel-title-text"><%= trip.name %></strong>
+            <%= link_to trip, method: :delete, data: { confirm: "Are you sure?" } do %>
+                <i class="fa fa-trash-o trip-delete-icon" aria-hidden="true"></i>
+            <% end %>
+            <i class="fa fa-pencil trip-edit-icon" aria-hidden="true"></i>
+        </h2>
     </div>
-    <!-- /Heading -->
-    <!-- Body -->
     <div class="panel-body">
         <%= trip.summary %>
     </div>
-    <!-- /Body -->
-    <!-- Footer -->
     <div class="panel-footer">
-        <small><%= trip.kind %></small>
+        <small>
+            <select class="panel-footer-kind-selector" disabled>
+                <option>Private</option>
+                    <%= trip.kind %>
+                <option>Public</option>
+            </select>
+        </small>
     </div>
-    <!-- /Footer -->
 </article>
-<!-- /Panel -->
-<!-- Separator -->
 <div class="separator text-muted">
     Created At
     <time><%= trip.created_at.to_formatted_s(:short) %></time>
 </div>
-<!-- /Separator -->
+
