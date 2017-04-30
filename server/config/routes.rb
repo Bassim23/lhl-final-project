@@ -5,10 +5,10 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'landing#index'
-  resources :trips, only: [:index, :show, :create, :update, :destroy] do
-    resources :schedules, only: [:index, :show, :create, :update, :destroy] do
-      resources :activities, only: [:show, :create, :destroy] do
-        resources :participations, only: [:show, :create, :update, :destroy]
+  resources :trips, only: [:index, :create, :update, :destroy] do
+    resources :schedules, shallow: true do
+      resources :activities, shallow: true do
+        resources :participations, shallow: true
       end
     end
   end

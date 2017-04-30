@@ -79,7 +79,7 @@
       <td><%= @participation.user_id %></td>
       <td><%= @participation.user.first_name %></td>
       <td><%= @participation.user.last_name %></td>
-      <td><%= link_to 'Destroy', [@trip, @schedule, @activity, @participation], method: :delete, data: { confirm: 'Are you sure?' } %>
+      <td><%= link_to 'Destroy', [@participation], method: :delete, data: { confirm: 'Are you sure?' } %>
     <tr>
   </tbody>
 </table>
