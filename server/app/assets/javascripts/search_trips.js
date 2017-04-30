@@ -24,7 +24,7 @@ function createTripsElement(trips, image) {
         <div class="card">
           <div class="card-block">
             <div class="view overlay hm-white-slight">
-              <img src=${image} alt="" />
+              <img src=${image} class="card-img" />
               <a href={"#"}>
                 <div class="mask waves-effect waves-light">
                 </div>
