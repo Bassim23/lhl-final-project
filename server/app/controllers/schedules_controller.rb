@@ -5,7 +5,7 @@ class SchedulesController < ApplicationController
   # GET /schedules.json
   def index
     @schedules = Schedule.where 'trip_id': params[:trip_id]
-    render json: @schedules.as_json
+    render json: @schedules.as_json(:include => {:trip => {:only => :name}})
   end
 
   # GET /schedules/1
@@ -28,10 +28,9 @@ class SchedulesController < ApplicationController
   def create
     @schedule = Schedule.new(schedule_params)
     @schedule.save
-
     @return = Schedule.find @schedule.id
 
-    render json: @return.as_json
+    render json: @return.as_json(:include => {:trip => {:only => :name}})
   end
 
   # PATCH/PUT /schedules/1

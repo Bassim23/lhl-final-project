@@ -3,11 +3,12 @@ $(document).on('turbolinks:load', function() {
     $('.form-trip').css('display', 'none');
     $('#schedule-display').addClass('animated fadeInRight').css('display', 'block');
     $tripID = $(this).data("id");
+    $tripName = $(this).data("name");
     $.ajax({
       method: "GET",
       url: "/trips/" + $tripID + "/schedules",
     }).done(function(schedules) {
-      renderSchedules(schedules);
+      renderSchedules($tripName, schedules);
       $('#new-schedule').on('click', (e) => {
         $('#trip-display').css('display', 'none');
         $('.form-schedule').addClass('animated fadeIn').css('display', 'block');
@@ -69,11 +70,11 @@ function createSchedules(schedule) {
   }
 }
 
-function renderSchedules(schedules) {
+function renderSchedules(tripName, schedules) {
   $('#schedule-display').empty();
   $('#schedule-display').append(`
     <div class="page-header">
-      <h2>My Schedules
+      <h2>${tripName}
         <button id="new-schedule" class="btn btn-primary">Create New</button>
       </h2>
     </div>

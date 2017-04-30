@@ -7951,3 +7951,281 @@ Processing by SchedulesController#create as JSON
 Completed 200 OK in 58ms (Views: 0.7ms | ActiveRecord: 3.4ms)
 
 
+Started GET "//schedules/1" for 127.0.0.1 at 2017-04-30 16:17:37 -0700
+Processing by SchedulesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSchedule Load (0.6ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 50ms (Views: 1.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/schedules/1" for 127.0.0.1 at 2017-04-30 16:17:44 -0700
+Processing by SchedulesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSchedule Load (0.3ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 28ms (Views: 1.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/schedules/1" for 127.0.0.1 at 2017-04-30 16:18:02 -0700
+Processing by SchedulesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSchedule Load (0.6ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTrip Load (0.6ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 55ms (Views: 1.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-04-30 16:22:40 -0700
+Processing by LandingController#index as HTML
+  Rendering landing/index.html.erb within layouts/application
+  Rendered sessions/_new.html.erb (98.1ms)
+  Rendered users/_new.html.erb (25.9ms)
+  Rendered landing/index.html.erb within layouts/application (163.5ms)
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (54.8ms)
+Completed 200 OK in 521ms (Views: 513.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/trips" for 127.0.0.1 at 2017-04-30 16:22:46 -0700
+Processing by TripsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (24.7ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."user_id" = 2[0m
+  Rendered collection of trips/_trip.html.erb [3 times] (7.7ms)
+  Rendered schedules/_new.html.erb (6.9ms)
+  Rendered trips/_new.html.erb (2.7ms)
+  Rendered trips/index.html.erb within layouts/application (78.4ms)
+  Rendered layouts/_nav.html.erb (1.5ms)
+Completed 200 OK in 952ms (Views: 208.2ms | ActiveRecord: 25.2ms)
+
+
+Started GET "/trips/2/schedules" for 127.0.0.1 at 2017-04-30 16:22:49 -0700
+Processing by SchedulesController#index as */*
+  Parameters: {"trip_id"=>"2"}
+  [1m[36mSchedule Load (0.6ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 2]]
+  [1m[36mTrip Load (0.5ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.4ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 85ms (Views: 4.3ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/trips/5/schedules" for 127.0.0.1 at 2017-04-30 16:22:51 -0700
+Processing by SchedulesController#index as */*
+  Parameters: {"trip_id"=>"5"}
+  [1m[36mSchedule Load (0.6ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 5]]
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+Completed 200 OK in 253ms (Views: 1.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/trips/7/schedules" for 127.0.0.1 at 2017-04-30 16:22:55 -0700
+Processing by SchedulesController#index as */*
+  Parameters: {"trip_id"=>"7"}
+  [1m[36mSchedule Load (0.5ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 7]]
+Completed 200 OK in 19ms (Views: 0.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/trips/5/schedules" for 127.0.0.1 at 2017-04-30 16:22:56 -0700
+Processing by SchedulesController#index as */*
+  Parameters: {"trip_id"=>"5"}
+  [1m[36mSchedule Load (0.4ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 5]]
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+Completed 200 OK in 30ms (Views: 0.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/trips/2/schedules" for 127.0.0.1 at 2017-04-30 16:22:58 -0700
+Processing by SchedulesController#index as */*
+  Parameters: {"trip_id"=>"2"}
+  [1m[36mSchedule Load (0.4ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 2]]
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 59ms (Views: 4.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/trips/5/schedules" for 127.0.0.1 at 2017-04-30 16:23:01 -0700
+Processing by SchedulesController#index as */*
+  Parameters: {"trip_id"=>"5"}
+  [1m[36mSchedule Load (0.4ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 5]]
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+Completed 200 OK in 36ms (Views: 0.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/trips" for 127.0.0.1 at 2017-04-30 16:23:02 -0700
+Processing by TripsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.7ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."user_id" = 2[0m
+  Rendered collection of trips/_trip.html.erb [3 times] (1.6ms)
+  Rendered schedules/_new.html.erb (3.9ms)
+  Rendered trips/_new.html.erb (2.3ms)
+  Rendered trips/index.html.erb within layouts/application (31.0ms)
+  Rendered layouts/_nav.html.erb (1.3ms)
+Completed 200 OK in 161ms (Views: 121.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/trips/2/schedules" for 127.0.0.1 at 2017-04-30 16:23:06 -0700
+Processing by SchedulesController#index as */*
+  Parameters: {"trip_id"=>"2"}
+  [1m[36mSchedule Load (0.6ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 2]]
+  [1m[36mTrip Load (0.4ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 77ms (Views: 4.4ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/trips/5/schedules" for 127.0.0.1 at 2017-04-30 16:24:58 -0700
+Processing by SchedulesController#index as */*
+  Parameters: {"trip_id"=>"5"}
+  [1m[36mSchedule Load (0.9ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 5]]
+  [1m[36mTrip Load (0.5ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+Completed 200 OK in 91ms (Views: 3.5ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/trips/2/schedules" for 127.0.0.1 at 2017-04-30 16:25:02 -0700
+Processing by SchedulesController#index as */*
+  Parameters: {"trip_id"=>"2"}
+  [1m[36mSchedule Load (0.6ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 2]]
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 72ms (Views: 4.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/trips/5/schedules" for 127.0.0.1 at 2017-04-30 16:25:03 -0700
+Processing by SchedulesController#index as */*
+  Parameters: {"trip_id"=>"5"}
+  [1m[36mSchedule Load (0.4ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 5]]
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+Completed 200 OK in 46ms (Views: 1.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/trips/7/schedules" for 127.0.0.1 at 2017-04-30 16:25:05 -0700
+Processing by SchedulesController#index as */*
+  Parameters: {"trip_id"=>"7"}
+  [1m[36mSchedule Load (0.4ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 7]]
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/trips/5/schedules" for 127.0.0.1 at 2017-04-30 16:25:07 -0700
+Processing by SchedulesController#index as */*
+  Parameters: {"trip_id"=>"5"}
+  [1m[36mSchedule Load (0.4ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 5]]
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+Completed 200 OK in 33ms (Views: 0.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/trips/2/schedules" for 127.0.0.1 at 2017-04-30 16:25:10 -0700
+Processing by SchedulesController#index as */*
+  Parameters: {"trip_id"=>"2"}
+  [1m[36mSchedule Load (0.5ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 2]]
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 56ms (Views: 2.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/trips/5/schedules" for 127.0.0.1 at 2017-04-30 16:25:16 -0700
+Processing by SchedulesController#index as */*
+  Parameters: {"trip_id"=>"5"}
+  [1m[36mSchedule Load (0.4ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 5]]
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+Completed 200 OK in 34ms (Views: 0.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/trips/2/schedules" for 127.0.0.1 at 2017-04-30 16:25:18 -0700
+Processing by SchedulesController#index as */*
+  Parameters: {"trip_id"=>"2"}
+  [1m[36mSchedule Load (0.5ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 2]]
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 66ms (Views: 4.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/trips" for 127.0.0.1 at 2017-04-30 16:25:28 -0700
+Processing by TripsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.4ms)[0m  [1m[34mSELECT "trips".* FROM "trips" WHERE "trips"."user_id" = 2[0m
+  Rendered collection of trips/_trip.html.erb [3 times] (1.7ms)
+  Rendered schedules/_new.html.erb (4.1ms)
+  Rendered trips/_new.html.erb (5.5ms)
+  Rendered trips/index.html.erb within layouts/application (32.2ms)
+  Rendered layouts/_nav.html.erb (1.9ms)
+Completed 200 OK in 245ms (Views: 190.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/trips/2/schedules" for 127.0.0.1 at 2017-04-30 16:25:30 -0700
+Processing by SchedulesController#index as */*
+  Parameters: {"trip_id"=>"2"}
+  [1m[36mSchedule Load (1.3ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 2]]
+  [1m[36mTrip Load (0.4ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 237ms (Views: 9.6ms | ActiveRecord: 2.3ms)
+
+
