@@ -12,11 +12,6 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :user_id %>
-    <%= f.text_field :user_id, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, class: 'form-control' %>
   </div>
@@ -25,8 +20,10 @@
     <%= f.label :summary %>
     <%= f.text_area :summary, class: 'form-control' %>
   </div>
+
   <div class="form-group">
     <%= f.submit 'Create', class: 'btn btn-primary submit-trip' %>
     <button class="btn btn-danger cancel-new-trip" type="button">Cancel</button>
   </div>
+  
 <% end %>

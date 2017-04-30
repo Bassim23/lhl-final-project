@@ -18,7 +18,7 @@ function createSchedules(schedule) {
   let $schedule = `
     <article class="panel panel-default schedule-panel" data-id="${schedule.id}" >
         <div class="panel-body">
-            <strong>${schedule.destination}</strong> @ <strong><time>${schedule.date}</time></strong>
+            <strong>${schedule.destination_name}</strong> @ <strong><time>${schedule.date}</time></strong>
         </div>
     </article>
 

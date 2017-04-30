@@ -110,37 +110,44 @@ Schedule.destroy_all
 
 schedule1 = trip1.schedules.create!({
   date: Date.new(2017,10,15),
-  destination: "ChIJh3uVA7I8h1QR9s_1dehBt0o"
+  destination: "ChIJh3uVA7I8h1QR9s_1dehBt0o",
+  destination_name: "Whistler"
 })
 
 schedule2 = trip2.schedules.create!({
   date: Date.new(2017,8,24),
-  destination: "ChIJ0X31pIK3voARo3mz1ebVzDo"
+  destination: "ChIJ0X31pIK3voARo3mz1ebVzDo",
+  destination_name: "Las Vegas"
 })
 
 schedule3 = trip3.schedules.create!({
   date: Date.new(2017,11,24),
-  destination: "ChIJOwg_06VPwokRYv534QaPC8g"
+  destination: "ChIJOwg_06VPwokRYv534QaPC8g",
+  destination_name: "New York"
 })
 
 schedule4 = trip4.schedules.create!({
   date: Date.new(2017,12,15),
-  destination: "ChIJh3uVA7I8h1QR9s_1dehBt0o"
+  destination: "ChIJh3uVA7I8h1QR9s_1dehBt0o",
+  destination_name: "Whistler"
 })
 
 schedule5 = trip5.schedules.create!({
   date: Date.new(2017,12,16),
-  destination: "ChIJ0X31pIK3voARo3mz1ebVzDo"
+  destination: "ChIJ0X31pIK3voARo3mz1ebVzDo",
+  destination_name: "Las Vegas"
 })
 
 schedule6 = trip6.schedules.create!({
   date: Date.new(2017,12,17),
-  destination: "ChIJOwg_06VPwokRYv534QaPC8g"
+  destination: "ChIJOwg_06VPwokRYv534QaPC8g",
+  destination_name: "New York"
 })
 
 schedule7 = trip2.schedules.create!({
   date: Date.new(2017,8,25),
-  destination: "ChIJ0X31pIK3voARo3mz1ebVzDo"
+  destination: "ChIJ0X31pIK3voARo3mz1ebVzDo",
+  destination_name: "Las Vegas"
 })
 
 puts "Creating activities ..."
