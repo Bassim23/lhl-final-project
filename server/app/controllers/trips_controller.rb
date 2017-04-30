@@ -5,9 +5,13 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    @trips = Trip.all
-    @schedules = Schedule.all
-    @trip = Trip.new
+    if current_user
+      @trips = Trip.where(user_id: current_user)
+      @schedules = Schedule.all
+      @trip = Trip.new
+    else
+      redirect_to root_path
+    end
   end
 
   # GET /trips/1
