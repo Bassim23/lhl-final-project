@@ -1,4 +1,4 @@
-jQuery(document).ready(function() {
+$(document).on('turbolinks:load', function() {
   // commands go here
   $('#custom-search-input input').on("keyup", function(e) {
     if (e.which == 13) {
@@ -19,7 +19,7 @@ jQuery(document).ready(function() {
 })
 
 function createTripsElement(trips, image) {
-  let tripId = "/trips/" + trips.trip.id
+  let tripId = "/schedules/" + trips.id
   let $trip =
     `
       <div class="col-md-4">
