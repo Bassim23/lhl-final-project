@@ -1,17 +1,49 @@
 $(document).on('turbolinks:load', function() {
 
   $('.trip-panel').on("click", function(e) {
+    $('.form-trip').css('display', 'none');
+    $('#schedule-display').addClass('animated fadeInRight').css('display', 'block');
     $tripID = $(this).data("id");
+    $tripName = $(this).data("name");
     $.ajax({
       method: "GET",
       url: "/trips/" + $tripID + "/schedules",
     }).done(function(schedules) {
-      renderSchedules(schedules);
+      renderSchedules($tripName, schedules);
       $('#new-schedule').on('click', (e) => {
         $('#trip-display').css('display', 'none');
         $('.form-schedule').addClass('animated fadeIn').css('display', 'block');
+        $('.form-schedule-close').on('click', (e) => {
+          $('.form-schedule').css('display', 'none');
+          $('#trip-display').addClass('animated fadeIn').css('display', 'block');
+        });
+        $('.cancel-new-schedule').on('click', (e) => {
+          e.preventDefault();
+          $('.form-schedule').css('display', 'none');
+          $('#trip-display').addClass('animated fadeIn').css('display', 'block');
+        });
+
+        $('.submit-schedule').on('click', (e) => {
+          e.preventDefault();
+          $.ajax({
+            method: "POST",
+            url: "/trips/" + $tripID + "/schedules",
+            dataType: 'json',
+            data: {
+              date: $('#date_').val(),
+              destination_name: $('#destination').val()
+          }
+          }).done(function(data) {
+            $('#schedule-display').append(createSchedules(data));
+
+            $('#schedule-display').stop().animate({
+              scrollTop: $('#schedule-display')[0].scrollHeight
+            }, 800);
+          });
+        })
       });
     })
+
   });
 
   $('.trip-panel').on('mouseleave', function(e) {
@@ -32,11 +64,12 @@ $(document).on('turbolinks:load', function() {
     //$('.form-trip').addClass('animated fadeInRight').css('display', 'block');
   });
 
+
 })
 
 function createSchedules(schedule) {
   let $schedule = `
-    <article class="panel panel-default schedule-panel" data-id="${schedule.id}" >
+    <article class="panel panel-default schedule-panel animated fadeIn" data-id="${schedule.id}" >
         <div class="panel-body">
             <strong>${schedule.destination_name}</strong> @ <strong><time>${schedule.date}</time></strong>
         </div>
@@ -59,12 +92,12 @@ function createSchedules(schedule) {
   }
 }
 
-function renderSchedules(schedules) {
+function renderSchedules(tripName, schedules) {
   $('#schedule-display').empty();
   $('#schedule-display').append(`
     <div class="page-header">
-      <h2>My Schedules
-        <button id="new-schedule" class="btn btn-primary pull-right">Create New</button>
+      <h2>${tripName}
+        <button id="new-schedule" class="btn btn-primary">Create New</button>
       </h2>
     </div>
     `);
@@ -73,4 +106,3 @@ function renderSchedules(schedules) {
     $('.schedule-panel').addClass('animated fadeIn');
   }
 }
-

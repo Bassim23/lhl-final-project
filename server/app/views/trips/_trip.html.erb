@@ -1,12 +1,7 @@
-
-<!-- Panel -->
-<article class="panel panel-default trip-panel" data-id="<%= trip.id %>">
-    <!-- Icon -->
+<article class="panel panel-default trip-panel" data-id="<%= trip.id %>" data-name="<%= trip.name %>">
     <div class="panel-heading icon">
         <i class="fa fa-suitcase"></i>
     </div>
-    <!-- /Icon -->
-    <!-- Heading -->
     <div class="panel-heading">
         <h2 class="panel-title">
             <strong class="panel-title-text"><%= trip.name %></strong>
@@ -16,13 +11,9 @@
             <i class="fa fa-pencil trip-edit-icon" aria-hidden="true"></i>
         </h2>
     </div>
-    <!-- /Heading -->
-    <!-- Body -->
     <div class="panel-body">
         <%= trip.summary %>
     </div>
-    <!-- /Body -->
-    <!-- Footer -->
     <div class="panel-footer">
         <small>
             <select class="panel-footer-kind-selector" disabled>
@@ -32,12 +23,9 @@
             </select>
         </small>
     </div>
-    <!-- /Footer -->
 </article>
-<!-- /Panel -->
-<!-- Separator -->
 <div class="separator text-muted">
     Created At
     <time><%= trip.created_at.to_formatted_s(:short) %></time>
 </div>
-<!-- /Separator -->
+

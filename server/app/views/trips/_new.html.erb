@@ -1,0 +1,28 @@
+<% if flash[:notice] %>
+  <div>
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<%= form_tag do |f| %>
+
+  <div class="form-group">
+    <%= label_tag 'name', 'Trip Name:' %>
+    <%= text_field_tag :name, "", class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag 'summary', 'Trip Summary:' %>
+    <%= text_area_tag :summary, "", class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag 'kind', 'Public/Private' %>
+    <%= select_tag(:kind, options_for_select(['Public', 'Private'])) %>
+  </div>
+
+  <div class="form-group">
+    <%= submit_tag 'Create', class: 'btn btn-primary submit-trip' %>
+    <button class="btn btn-danger cancel-new-trip" type="button">Cancel</button>
+  </div>
+
+<% end %>

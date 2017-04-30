@@ -7,7 +7,7 @@
     </div>
     <!-- /Page header -->
     <!-- Timeline -->
-    <div class="timeline">
+    <div id="trip-list" class="timeline">
       <div class="line text-muted"></div>
 
       <%= render @trips %>
@@ -16,22 +16,25 @@
 
   <div class="col-md-8 left form-schedule">
     <div class="page-header">
-        <h2>New Schedule</h2>
+        <h2>New Schedule
+          <i class="fa fa-arrow-left form-schedule-close pull-right"></i>
+        </h2>
     </div>
+    <%= render partial: "schedules/new" %>
   </div>
 
   <div id="schedule-display" class="col-md-4 right">
     <div class="page-header">
         <h2>My Schedules</h2>
     </div>
-    Select a trip to begin.
+    &nbsp; Select a trip to begin.
   </div>
 
   <div class="col-md-4 right form-trip">
     <div class="page-header">
         <h2>New Trip</h2>
     </div>
-    <%= render partial: "form" %>
+    <%= render partial: "new" %>
   </div>
 
 

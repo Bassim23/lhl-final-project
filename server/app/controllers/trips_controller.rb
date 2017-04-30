@@ -8,7 +8,6 @@ class TripsController < ApplicationController
     if current_user
       @trips = Trip.where(user_id: current_user)
       @schedules = Schedule.all
-      @trip = Trip.new
     else
       redirect_to root_path
     end
@@ -32,13 +31,12 @@ class TripsController < ApplicationController
   # POST /trips.json
   def create
     @trip = Trip.new(trip_params)
-    params.each do |e|
-      puts params[e]
-      puts e
-      puts '...............'
-    end
+    @trip.user_id = current_user.id
+    @trip.save
 
-    # @trip.save!
+    @return = Trip.find @trip.id
+
+    render json: @return.as_json
   end
 
   # PATCH/PUT /trips/1
@@ -73,6 +71,6 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.fetch(:trip, {})
+      params.permit(:name, :summary, :kind)
     end
 end
