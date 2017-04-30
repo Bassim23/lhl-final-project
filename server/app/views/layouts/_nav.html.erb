@@ -4,7 +4,7 @@
       <i class="fa fa-arrow-right menu-close"></i>
       <hr />
       <% if current_user %>
-        <a href="#"><%= current_user.first_name %></a>
+        <%= link_to current_user.first_name, show_users_path %></a>
         <%= link_to 'My Trips', [:trips] %>
         <%= link_to "Logout", '/logout' %>
       <% else %>

@@ -7,7 +7,7 @@ $(document).on('turbolinks:load', function() {
         url: "/search/" + searchInput,
       }).done(function(tripResult) {
         renderTrips(tripResult)
-        // $('.featured-container').css({display: "block"});
+        $('#content').css({display: "block"});
         $('html,body').animate({
           scrollTop: $("#content").offset().top},
         'slow');
