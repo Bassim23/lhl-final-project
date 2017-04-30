@@ -1,29 +1,28 @@
-<%= form_for @trip do |f| %>
-  <% if @trip.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
-
-      <ul>
-      <% trip.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<% if flash[:notice] %>
+  <div>
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<%= form_tag do |f| %>
 
   <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control' %>
+    <%= label_tag 'name', 'Trip Name:' %>
+    <%= text_field_tag :name, "", class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :summary %>
-    <%= f.text_area :summary, class: 'form-control' %>
+    <%= label_tag 'summary', 'Trip Summary:' %>
+    <%= text_area_tag :summary, "", class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.submit 'Create', class: 'btn btn-primary submit-trip' %>
+    <%= label_tag 'kind', 'Public/Private' %>
+    <%= select_tag(:kind, options_for_select(['Public', 'Private'])) %>
+  </div>
+
+  <div class="form-group">
+    <%= submit_tag 'Create', class: 'btn btn-primary submit-trip' %>
     <button class="btn btn-danger cancel-new-trip" type="button">Cancel</button>
   </div>
-  
+
 <% end %>

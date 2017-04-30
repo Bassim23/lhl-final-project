@@ -91,3 +91,12 @@
 .timeline .panel-outline .panel-footer {
     display: none;
 }
+
+@keyframes grey-fade {
+   0% {background: grey;}
+   100% {background: none;}
+}
+
+.highlight {
+   animation: grey-fade 2s ease-in 1;
+}

@@ -22,6 +22,7 @@ $(document).on('turbolinks:load', function() {
         kind: $('#kind option:selected').val()
      }
     }).done(function(data) {
+      console.log(data);
       $('#trip-list').append(
         `
         <article class="panel panel-default trip-panel highlight" data-id="${data.id}">

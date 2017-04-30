@@ -44,7 +44,7 @@ function renderSchedules(schedules) {
   $('#schedule-display').append(`
     <div class="page-header">
       <h2>My Schedules
-        <button id="new-schedule" class="btn btn-primary pull-right">Create New</button>
+        <button id="new-schedule" class="btn btn-primary">Create New</button>
       </h2>
     </div>
     `);
