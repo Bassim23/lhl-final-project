@@ -3,7 +3,7 @@ $(document).on('turbolinks:load', function() {
     $scheduleID = $('#request-to-join-button').data('id');
     $.ajax({
       method: "POST",
-      url: "/activities/" + $scheduleID + "/participations"
+      url: "/schedules/" + $scheduleID + "/participations"
     }).done(function(schedules) {
       $('#request-to-join-button').attr("disabled", true).text('Pending');
     })

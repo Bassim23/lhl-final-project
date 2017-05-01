@@ -12,8 +12,9 @@ class SchedulesController < ApplicationController
   # GET /schedules/1.json
   def show
     @schedule = Schedule.find(params[:id])
-    @participation = @schedule.participations
-
+    @participation = @schedule.participations.where('user_id' => current_user.id)
+    @pending = @participation.count > 0
+    @status = @participation.pluck :status
   end
 
   # GET /schedules/new

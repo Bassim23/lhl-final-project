@@ -272,29 +272,3 @@ participation5 = schedule3.participations.create!({
   user_id: user2.id,
   status: "Declined"
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
