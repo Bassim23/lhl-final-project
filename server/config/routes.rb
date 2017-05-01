@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'participations/index'
+
   get 'landing/index'
 
   get 'search/show'
@@ -13,7 +15,10 @@ Rails.application.routes.draw do
   end
 
   resources :search, only: [:show]
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    resources :participations, only: [:index]
+  end
+
 
   # get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

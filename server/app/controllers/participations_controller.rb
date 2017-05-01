@@ -4,7 +4,10 @@ class ParticipationsController < ApplicationController
   # GET /participations
   # GET /participations.json
   def index
-    @participations = Participation.all
+
+
+    #select all users (joining participation table on user id) where (schedule id = user(params id).trips.schedule.id )
+
   end
 
   # GET /participations/1

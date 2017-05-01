@@ -1,5 +1,6 @@
 module ApplicationCable
   class Channel < ActionCable::Channel::Base
+    #setup identification based on user id
     # identified_by :current_user
 
     # def connect
