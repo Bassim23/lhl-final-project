@@ -13,5 +13,5 @@ App.notification = App.cable.subscriptions.create "NotificationChannel",
    @perform 'notify', message: message
 
   $(document).on 'click', '[data-behavior~=notifcation]', (event) ->
-    App.notification.notify "New Trip Request"
+    App.notification.notify @schedule.id
     event.preventDefault()
