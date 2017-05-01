@@ -10,6 +10,7 @@ $(document).on('turbolinks:load', function() {
       url: "/trips/" + $tripID + "/schedules",
     }).done(function(schedules) {
       renderSchedules($tripName, schedules);
+
       $('[data-class="schedule-trash"]').on('click', function(e) {
           e.preventDefault();
           e.stopPropagation();
@@ -22,6 +23,7 @@ $(document).on('turbolinks:load', function() {
               });
           }   
       });
+      
       $('#new-schedule').on('click', (e) => {
         $('#trip-display').css('display', 'none');
         $('.form-schedule').addClass('animated fadeIn').css('display', 'block');
@@ -107,13 +109,14 @@ function renderCancelEditTripButton() {
 
 function createSchedules(schedule) {
   let $schedule = `
-    <article class="panel panel-default schedule-panel animated fadeIn" data-id="${schedule.id}">
-        <div class="panel-body">
-            <strong>${schedule.destination_name}</strong> @ <strong><time>${schedule.date}</time></strong>
-                <i class="fa fa-trash-o" aria-hidden="true" data-class="schedule-trash"></i>
-        </div>
-    </article>
-
+    <a href="/schedules/${schedule.id}">
+      <article class="panel panel-default schedule-panel animated fadeIn" data-id="${schedule.id}">
+          <div class="panel-body">
+              <strong>${schedule.destination_name}</strong> @ <strong><time>${schedule.date}</time></strong>
+                  <i class="fa fa-trash-o" aria-hidden="true" data-class="schedule-trash"></i>
+          </div>
+      </article>
+    </a>
     `
   let $empty =
     `
