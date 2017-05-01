@@ -8,7 +8,7 @@
         <%= link_to 'My Trips', [:trips] %>
         <%= link_to "Logout", '/logout' %>
       <% else %>
-        <%= link_to "Login", login_path, :class => "login-modal-toggle", :remote => true, "data-target" => "#login-modal" %>
+        <%= link_to "Login", root_path, :class => "login-modal-toggle", :remote => true, "data-target" => "#login-modal" %>
         <%= link_to "Sign up", register_path, :class => "register-modal-toggle", :remote => true, "data-target" => "#register-modal" %>
       <% end %>
       <a class="#"><i class="fa fa-envelope"></i></a>
