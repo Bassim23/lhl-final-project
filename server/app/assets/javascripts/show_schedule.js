@@ -10,6 +10,18 @@ $(document).on('turbolinks:load', function() {
       url: "/trips/" + $tripID + "/schedules",
     }).done(function(schedules) {
       renderSchedules($tripName, schedules);
+      $('[data-class="schedule-trash"]').on('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (confirm("Are you sure you ant to delete?")) {
+            $.ajax({
+                method: "DELETE",
+                url: "/schedules/" + $(this).closest('.schedule-panel').data("id")
+              }).done(function(data) {
+                console.log('Delete was successful');
+              });
+          }   
+      });
       $('#new-schedule').on('click', (e) => {
         $('#trip-display').css('display', 'none');
         $('.form-schedule').addClass('animated fadeIn').css('display', 'block');
@@ -71,12 +83,12 @@ $(document).on('turbolinks:load', function() {
 
   $('.trip-edit-icon').on('click', function(e) {
     e.stopPropagation();
+    console.log('Hello for trip edit');
     $(this).closest('.trip-panel').find('.panel-title-text').attr('contenteditable', 'true');
     $(this).closest('.trip-panel').find('.panel-body').attr('contenteditable', 'true');
     $(this).closest('.trip-panel').find('.panel-footer-kind-selector').removeAttr('disabled');
     $(this).closest('.trip-panel').find('.panel-body').focus();
   });
-
 })
 
 function renderSaveEditTripButton() {
@@ -98,6 +110,7 @@ function createSchedules(schedule) {
     <article class="panel panel-default schedule-panel animated fadeIn" data-id="${schedule.id}" >
         <div class="panel-body">
             <strong>${schedule.destination_name}</strong> @ <strong><time>${schedule.date}</time></strong>
+                <i class="fa fa-trash-o" aria-hidden="true" data-class="schedule-trash"></i>
         </div>
     </article>
 
