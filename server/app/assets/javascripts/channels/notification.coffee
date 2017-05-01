@@ -7,6 +7,11 @@ App.notification = App.cable.subscriptions.create "NotificationChannel",
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
+    alert(data['message'])
 
-  notification: ->
-   @perform 'notification'
+  notify: (message) ->
+   @perform 'notify', message: message
+
+  $(document).on 'click', '[data-behavior~=notifcation]', (event) ->
+    App.notification.notify "New Trip Request"
+    event.preventDefault()

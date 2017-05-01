@@ -4,8 +4,8 @@
   </header>
   <section class="container-fluid col-md-4">
     <div class="row mini-nav">
-      <div><button id="participate" type="button" class="btn btn-success">Participate</button></div>
-      <% if @schedule.trip.schedules.length > 1%>       
+      <div><button id="participate" type="button" class="btn btn-success" data-behavior="notifcation">Participate</button></div>
+      <% if @schedule.trip.schedules.length > 1%>
         <div class="dropdown">
           <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown">Trip Schedules
           <span class="caret"></span></button>
@@ -85,13 +85,13 @@
         <% @schedule.activities.each do |activity| %>
           placesArray.push("<%= activity.place %>");
         <% end %>
-        
+
         for (var i=0; i<placesArray.length; i++) {
           var geocoder = new google.maps.Geocoder;
           var infowindow = new google.maps.InfoWindow;
           geocodePlaceId(geocoder, map, infowindow, placesArray[i], i);
         }
-     
+
       }
 
       function animateCircle(line) {
@@ -113,7 +113,7 @@
               map.setZoom(14);
               map.setCenter(results[0].geometry.location);
               var coordinate = {
-                'lat': results[0].geometry.location.lat(), 
+                'lat': results[0].geometry.location.lat(),
                 'lng': results[0].geometry.location.lng()
               }
               polylineCoordinates.push(coordinate);
@@ -167,7 +167,7 @@
                     offset: '100%'
                   }]
                 });
-               //rendering trip path polyline on map object 
+               //rendering trip path polyline on map object
                tripPath.setMap(map);
                //calls the animate function for line symbol
                animateCircle(tripPath);

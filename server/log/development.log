@@ -8229,3 +8229,407 @@ Processing by SchedulesController#index as */*
 Completed 200 OK in 237ms (Views: 9.6ms | ActiveRecord: 2.3ms)
 
 
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:11:21 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:11:22 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:11:25 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:11:25 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel
+Started GET "/" for 10.0.2.2 at 2017-05-01 02:17:09 +0000
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:17:09 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Started GET "/schedules/2" for 10.0.2.2 at 2017-05-01 02:17:10 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by LandingController#index as HTML
+Processing by SchedulesController#show as HTML
+  Parameters: {"id"=>"2"}
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:17:11 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+  Rendering landing/index.html.erb within layouts/application
+  Rendered sessions/_new.html.erb (47.7ms)
+  Rendered users/_new.html.erb (17.8ms)
+  Rendered landing/index.html.erb within layouts/application (20001.5ms)
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:17:32 +0000
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:17:32 +0000
+Started GET "/" for 10.0.2.2 at 2017-05-01 02:17:32 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Finished "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:17:32 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by LandingController#index as HTML
+  [1m[36mSchedule Load (1.1ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:17:32 +0000
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:17:32 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+  Rendered layouts/_nav.html.erb (421.0ms)
+Started GET "/schedules/2" for 10.0.2.2 at 2017-05-01 02:17:32 +0000
+Finished "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:17:32 +0000
+Completed 200 OK in 21208ms (Views: 20926.1ms | ActiveRecord: 205.0ms)
+
+
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:17:32 +0000
+  Rendering landing/index.html.erb within layouts/application
+Finished "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:17:32 +0000
+  Rendering schedules/show.html.erb within layouts/application
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SchedulesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mSchedule Load (28.6ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:17:32 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+  Rendered sessions/_new.html.erb (2.0ms)
+  Rendered users/_new.html.erb (5.9ms)
+  Rendered landing/index.html.erb within layouts/application (244.6ms)
+  Rendering schedules/show.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (4.8ms)
+Completed 200 OK in 1074ms (Views: 953.5ms | ActiveRecord: 0.9ms)
+
+
+Finished "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:17:33 +0000
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:17:33 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:17:33 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+  [1m[36mTrip Load (33.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTrip Load (7.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Finished "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:17:33 +0000
+  [1m[36mSchedule Load (5.8ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 2]]
+  [1m[36mSchedule Load (57.7ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 2]]
+DEPRECATION WARNING: Time columns will become time zone aware in Rails 5.1. This
+still causes `String`s to be parsed as if they were in `Time.zone`,
+and `Time`s to be converted to `Time.zone`.
+
+To keep the old behavior, you must add the following to your initializer:
+
+    config.active_record.time_zone_aware_types = [:datetime]
+
+To silence this deprecation warning, add the following:
+
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+ (called from _app_views_schedules_show_html_erb___4515380713974737369_70343880511060 at /vagrant/lhl-final-project/server/app/views/schedules/show.html.erb:30)
+DEPRECATION WARNING: Time columns will become time zone aware in Rails 5.1. This
+still causes `String`s to be parsed as if they were in `Time.zone`,
+and `Time`s to be converted to `Time.zone`.
+
+To keep the old behavior, you must add the following to your initializer:
+
+    config.active_record.time_zone_aware_types = [:datetime]
+
+To silence this deprecation warning, add the following:
+
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+ (called from _app_views_schedules_show_html_erb___4515380713974737369_70343880511060 at /vagrant/lhl-final-project/server/app/views/schedules/show.html.erb:30)
+DEPRECATION WARNING: Time columns will become time zone aware in Rails 5.1. This
+still causes `String`s to be parsed as if they were in `Time.zone`,
+and `Time`s to be converted to `Time.zone`.
+
+To keep the old behavior, you must add the following to your initializer:
+
+    config.active_record.time_zone_aware_types = [:datetime]
+
+To silence this deprecation warning, add the following:
+
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+ (called from _app_views_schedules_show_html_erb___4515380713974737369_70343780661000 at /vagrant/lhl-final-project/server/app/views/schedules/show.html.erb:30)
+DEPRECATION WARNING: Time columns will become time zone aware in Rails 5.1. This
+still causes `String`s to be parsed as if they were in `Time.zone`,
+and `Time`s to be converted to `Time.zone`.
+
+To keep the old behavior, you must add the following to your initializer:
+
+    config.active_record.time_zone_aware_types = [:datetime]
+
+To silence this deprecation warning, add the following:
+
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+ (called from _app_views_schedules_show_html_erb___4515380713974737369_70343780661000 at /vagrant/lhl-final-project/server/app/views/schedules/show.html.erb:30)
+  [1m[36mActivity Load (0.7ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."schedule_id" = $1[0m  [["schedule_id", 2]]
+  [1m[36mActivity Load (29.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."schedule_id" = $1[0m  [["schedule_id", 2]]
+  Rendered schedules/show.html.erb within layouts/application (1259.6ms)
+  Rendered schedules/show.html.erb within layouts/application (1549.7ms)
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:17:34 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:17:35 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (17.5ms)
+Completed 200 OK in 2813ms (Views: 2489.3ms | ActiveRecord: 245.6ms)
+
+
+  [1m[36mUser Load (4.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (14.5ms)
+Completed 200 OK in 24181ms (Views: 2942.0ms | ActiveRecord: 281.1ms)
+
+
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:17:35 +0000
+Finished "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:17:35 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:17:35 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+NotificationChannel stopped streaming from notification_channel
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:17:36 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:17:36 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel
+Started GET "/schedules/2" for 10.0.2.2 at 2017-05-01 02:17:50 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SchedulesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mSchedule Load (1.0ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering schedules/show.html.erb within layouts/application
+  [1m[36mTrip Load (0.8ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mSchedule Load (0.5ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 2]]
+  [1m[36mActivity Load (0.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."schedule_id" = $1[0m  [["schedule_id", 2]]
+  Rendered schedules/show.html.erb within layouts/application (12.8ms)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (4.6ms)
+Completed 200 OK in 537ms (Views: 477.2ms | ActiveRecord: 3.6ms)
+
+
+Finished "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:17:51 +0000
+NotificationChannel stopped streaming from notification_channel
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:17:52 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:17:52 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel
+Started GET "/" for 10.0.2.2 at 2017-05-01 02:17:53 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by LandingController#index as HTML
+  Rendering landing/index.html.erb within layouts/application
+  Rendered sessions/_new.html.erb (2.3ms)
+  Rendered users/_new.html.erb (6.4ms)
+  Rendered landing/index.html.erb within layouts/application (117.4ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (4.3ms)
+Completed 200 OK in 729ms (Views: 687.7ms | ActiveRecord: 0.4ms)
+
+
+Finished "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:17:54 +0000
+NotificationChannel stopped streaming from notification_channel
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:17:55 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:17:55 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel
+Started GET "/schedules/2" for 10.0.2.2 at 2017-05-01 02:19:13 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SchedulesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mSchedule Load (0.6ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering schedules/show.html.erb within layouts/application
+  [1m[36mTrip Load (0.4ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mSchedule Load (0.3ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 2]]
+  [1m[36mActivity Load (0.6ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."schedule_id" = $1[0m  [["schedule_id", 2]]
+  Rendered schedules/show.html.erb within layouts/application (15.1ms)
+Started GET "/" for 10.0.2.2 at 2017-05-01 02:19:14 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by LandingController#index as HTML
+  Rendering landing/index.html.erb within layouts/application
+  Rendered sessions/_new.html.erb (1.7ms)
+  Rendered users/_new.html.erb (7.1ms)
+  Rendered landing/index.html.erb within layouts/application (66.0ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (3.7ms)
+Completed 200 OK in 1400ms (Views: 1346.6ms | ActiveRecord: 2.5ms)
+
+
+Finished "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:19:15 +0000
+NotificationChannel stopped streaming from notification_channel
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (14.2ms)
+Completed 200 OK in 1099ms (Views: 1059.5ms | ActiveRecord: 0.7ms)
+
+
+Finished "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:19:15 +0000
+NotificationChannel stopped streaming from notification_channel
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:19:17 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:19:17 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:19:17 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:19:17 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel
+NotificationChannel#notify
+Could not execute command from {"command"=>"message", "identifier"=>"{\"channel\":\"NotificationChannel\"}", "data"=>"{\"action\":\"notify\"}"}) [NameError - undefined local variable or method `data' for #<NotificationChannel:0x007ff4542b7f00>]: /vagrant/lhl-final-project/server/app/channels/notification_channel.rb:11:in `notify' | /home/vagrant/.rvm/gems/ruby-2.3.3/gems/actioncable-5.0.2/lib/action_cable/channel/base.rb:266:in `public_send' | /home/vagrant/.rvm/gems/ruby-2.3.3/gems/actioncable-5.0.2/lib/action_cable/channel/base.rb:266:in `dispatch_action' | /home/vagrant/.rvm/gems/ruby-2.3.3/gems/actioncable-5.0.2/lib/action_cable/channel/base.rb:166:in `block in perform_action' | /home/vagrant/.rvm/gems/ruby-2.3.3/gems/activesupport-5.0.2/lib/active_support/notifications.rb:166:in `instrument'
+Started GET "/" for 10.0.2.2 at 2017-05-01 02:20:28 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by LandingController#index as HTML
+  Rendering landing/index.html.erb within layouts/application
+  Rendered sessions/_new.html.erb (1.6ms)
+  Rendered users/_new.html.erb (5.1ms)
+  Rendered landing/index.html.erb within layouts/application (136.6ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (2.9ms)
+Completed 200 OK in 832ms (Views: 781.8ms | ActiveRecord: 0.5ms)
+
+
+Finished "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:20:29 +0000
+NotificationChannel stopped streaming from notification_channel
+Started GET "/schedules/2" for 10.0.2.2 at 2017-05-01 02:20:30 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SchedulesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mSchedule Load (57.1ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering schedules/show.html.erb within layouts/application
+  [1m[36mTrip Load (19.6ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mSchedule Load (2.3ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 2]]
+  [1m[36mActivity Load (0.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."schedule_id" = $1[0m  [["schedule_id", 2]]
+  Rendered schedules/show.html.erb within layouts/application (129.4ms)
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:20:31 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:20:31 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (3.0ms)
+Completed 200 OK in 1389ms (Views: 1167.6ms | ActiveRecord: 80.5ms)
+
+
+Finished "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:20:31 +0000
+NotificationChannel stopped streaming from notification_channel
+Started GET "/schedules/2" for 10.0.2.2 at 2017-05-01 02:20:32 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SchedulesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mSchedule Load (0.4ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering schedules/show.html.erb within layouts/application
+  [1m[36mTrip Load (16.2ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mSchedule Load (0.3ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 2]]
+  [1m[36mActivity Load (3.8ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."schedule_id" = $1[0m  [["schedule_id", 2]]
+  Rendered schedules/show.html.erb within layouts/application (69.7ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (4.0ms)
+Completed 200 OK in 663ms (Views: 542.2ms | ActiveRecord: 21.2ms)
+
+
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:20:34 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:20:34 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel
+NotificationChannel#notify
+Could not execute command from {"command"=>"message", "identifier"=>"{\"channel\":\"NotificationChannel\"}", "data"=>"{\"action\":\"notify\"}"}) [NameError - undefined local variable or method `data' for #<NotificationChannel:0x007ff461586940>]: /vagrant/lhl-final-project/server/app/channels/notification_channel.rb:11:in `notify' | /home/vagrant/.rvm/gems/ruby-2.3.3/gems/actioncable-5.0.2/lib/action_cable/channel/base.rb:266:in `public_send' | /home/vagrant/.rvm/gems/ruby-2.3.3/gems/actioncable-5.0.2/lib/action_cable/channel/base.rb:266:in `dispatch_action' | /home/vagrant/.rvm/gems/ruby-2.3.3/gems/actioncable-5.0.2/lib/action_cable/channel/base.rb:166:in `block in perform_action' | /home/vagrant/.rvm/gems/ruby-2.3.3/gems/activesupport-5.0.2/lib/active_support/notifications.rb:166:in `instrument'
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:21:06 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:21:08 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:21:08 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:21:08 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel
+Started GET "/" for 10.0.2.2 at 2017-05-01 02:22:33 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by LandingController#index as HTML
+  Rendering landing/index.html.erb within layouts/application
+Started GET "/schedules/2" for 10.0.2.2 at 2017-05-01 02:22:33 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  Rendered sessions/_new.html.erb (59.8ms)
+  Rendered users/_new.html.erb (19.4ms)
+  Rendered landing/index.html.erb within layouts/application (3597.5ms)
+Processing by SchedulesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (177.9ms)
+Completed 200 OK in 4559ms (Views: 4486.1ms | ActiveRecord: 8.4ms)
+
+
+Finished "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:22:37 +0000
+NotificationChannel stopped streaming from notification_channel
+  [1m[36mSchedule Load (0.8ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering schedules/show.html.erb within layouts/application
+  [1m[36mTrip Load (2.4ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mSchedule Load (0.5ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 2]]
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:22:39 +0000
+DEPRECATION WARNING: Time columns will become time zone aware in Rails 5.1. This
+still causes `String`s to be parsed as if they were in `Time.zone`,
+and `Time`s to be converted to `Time.zone`.
+
+To keep the old behavior, you must add the following to your initializer:
+
+    config.active_record.time_zone_aware_types = [:datetime]
+
+To silence this deprecation warning, add the following:
+
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+ (called from _app_views_schedules_show_html_erb__4333559997824385922_70251790636180 at /vagrant/lhl-final-project/server/app/views/schedules/show.html.erb:30)
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+DEPRECATION WARNING: Time columns will become time zone aware in Rails 5.1. This
+still causes `String`s to be parsed as if they were in `Time.zone`,
+and `Time`s to be converted to `Time.zone`.
+
+To keep the old behavior, you must add the following to your initializer:
+
+    config.active_record.time_zone_aware_types = [:datetime]
+
+To silence this deprecation warning, add the following:
+
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+ (called from _app_views_schedules_show_html_erb__4333559997824385922_70251790636180 at /vagrant/lhl-final-project/server/app/views/schedules/show.html.erb:30)
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:22:39 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+  [1m[36mActivity Load (18.0ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."schedule_id" = $1[0m  [["schedule_id", 2]]
+  Rendered schedules/show.html.erb within layouts/application (799.8ms)
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (3.6ms)
+Completed 200 OK in 2436ms (Views: 1562.3ms | ActiveRecord: 195.8ms)
+
+
+Finished "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:22:40 +0000
+NotificationChannel stopped streaming from notification_channel
+NotificationChannel#notify({"message"=>"New Trip Request"})
+[ActionCable] Broadcasting to notification_channel: {:message=>"New Trip Request"}
+NotificationChannel transmitting {"message"=>"New Trip Request"} (via streamed from notification_channel)
+Started GET "/cable" for 10.0.2.2 at 2017-05-01 02:22:41 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-01 02:22:41 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel
+NotificationChannel#notify({"message"=>"New Trip Request"})
+[ActionCable] Broadcasting to notification_channel: {:message=>"New Trip Request"}
+NotificationChannel transmitting {"message"=>"New Trip Request"} (via streamed from notification_channel)
+NotificationChannel transmitting {"message"=>"New Trip Request"} (via streamed from notification_channel)
