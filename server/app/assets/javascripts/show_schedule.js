@@ -48,24 +48,50 @@ $(document).on('turbolinks:load', function() {
 
   $('.trip-panel').on('mouseleave', function(e) {
     e.stopPropagation();
-    $(this).closest('.trip-panel').find('.panel-title-text').attr('contenteditable', 'false');
-    $(this).closest('.trip-panel').find('.panel-body').attr('contenteditable', 'false');
-    $(this).closest('.trip-panel').find('.panel-footer-kind-selector').attr('disabled');
-  })
+    $(this).find('.panel-title-text').attr('contenteditable', 'false');
+    $(this).find('.panel-body').attr('contenteditable', 'false');
+    $(this).find('.panel-footer-kind-selector').attr('disabled', 'disabled');
+    $.ajax({
+      method: "PUT",
+      url: "/trips/" + $(this).closest('.trip-panel').data("id"),
+      dataType: 'json',
+      data: {
+        name: $(this).closest('.trip-panel').find('.panel-title-text').text().trim(),
+        summary: $(this).closest('.trip-panel').find('.panel-body').text().trim(),
+        kind: $('.panel-footer-kind-selector option:selected').text()
+      }
+    }).done(function(data) {
+      console.log('Edit was successful');
+    });
+  });
+
+  $('.panel-footer-kind-selector').on('click', function (e) {
+    e.stopPropagation();
+  });
 
   $('.trip-edit-icon').on('click', function(e) {
     e.stopPropagation();
     $(this).closest('.trip-panel').find('.panel-title-text').attr('contenteditable', 'true');
     $(this).closest('.trip-panel').find('.panel-body').attr('contenteditable', 'true');
     $(this).closest('.trip-panel').find('.panel-footer-kind-selector').removeAttr('disabled');
-    $(this).closest('.trip-panel').find('.panel-title-text').focus();
-    //$(this).find('.panel-body').attr('contenteditable', 'true');
-    //$('#schedule-display').css('display', 'none');
-    //$('.form-trip').addClass('animated fadeInRight').css('display', 'block');
+    $(this).closest('.trip-panel').find('.panel-body').focus();
   });
 
-
 })
+
+function renderSaveEditTripButton() {
+  let $saveEditTripButton = `
+    <button class="btn btn-xs btn-primary save-edit-trip">Save</button> 
+  `
+  return $saveEditTripButton
+}
+
+function renderCancelEditTripButton() {
+  let $cancelEditTripButton = `
+    <button class="btn btn-xs btn-warning cancel-edit-trip">Cancel</button> 
+  `
+  return $cancelEditTripButton
+}
 
 function createSchedules(schedule) {
   let $schedule = `
