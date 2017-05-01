@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       redirect_to :back
     else
       flash[:notice] = "Oops, email or password is invalid. Please try again."
-      render partial: "sessions/new", :class => "login-modal-toggle", :remote => true, "data-target" => "#login-modal"
+      redirect_to :back
     end
   end
 
