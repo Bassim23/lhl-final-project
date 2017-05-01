@@ -12,6 +12,8 @@ class SchedulesController < ApplicationController
   # GET /schedules/1.json
   def show
     @schedule = Schedule.find(params[:id])
+    @participation = @schedule.participations
+
   end
 
   # GET /schedules/new

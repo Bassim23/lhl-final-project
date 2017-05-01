@@ -299,10 +299,6 @@ h1 {
   // border-color: #1E90FF;
 }
 
-#agendaDay-view #calendar {
-  padding: 0px;
-}
-
 .btn{
     border-radius: .5em;
 }
@@ -334,4 +330,6 @@ h1 {
 @import "trips";
 @import "place";
 @import "forms";
+@import "activities";
+
 

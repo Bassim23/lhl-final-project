@@ -33,7 +33,8 @@ user1 = User.create!({
   upvotes: 15,
   downvotes: 5,
   summary: "I'm Kobe and I like to hike!",
-  password_digest: "$2a$10$bReZ2887yez7d5bunZi0XuVDQsSkh6o2340AxbF4rnGlZkPsDfeFa"
+  password: "bryant",
+  password_confirmation: "bryant"
 })
 
 user2 = User.create!({
@@ -47,7 +48,8 @@ user2 = User.create!({
   upvotes: 5,
   downvotes: 15,
   summary: "I'm Lebron and that's all I have to say.",
-  password_digest: "$2a$10$8N/CLwE2cLbFESRDbDD32OvRRPhSXs9ho3x0bx.f8by1Aozv3tqwW"
+  password: "lebron",
+  password_confirmation: "lebron"
 })
 
 user3 = User.create!({
@@ -61,7 +63,8 @@ user3 = User.create!({
   upvotes: 25,
   downvotes: 1,
   summary: "I'm Kevin Love and I love to travel",
-  password_digest: "$2a$10$YuD5PmZB.w.Pyk444bAeQ.BzQMi9W.zdtui0.4/YM3pSRr9JaBPuG"
+  password: "kevin",
+  password_confirmation: "kevin"
 })
 
 puts "Creating trips ..."
@@ -240,32 +243,32 @@ puts "Creating participations ..."
 
 Participation.destroy_all
 
-participation1 = activity1.participations.create!({
+participation1 = schedule1.participations.create!({
   user_id: user2.id,
   status: ''
 })
 
-participation2 = activity1.participations.create!({
+participation2 = schedule1.participations.create!({
   user_id: user3.id,
   status: "Accepted"
 })
 
-participation3 = activity2.participations.create!({
+participation3 = schedule1.participations.create!({
   user_id: user2.id,
   status: "Declined"
 })
 
-participation4 = activity2.participations.create!({
+participation4 = schedule2.participations.create!({
   user_id: user3.id,
   status: "Accepted"
 })
 
-participation4 = activity7.participations.create!({
+participation4 = schedule3.participations.create!({
   user_id: user1.id,
   status: "Accepted"
 })
 
-participation5 = activity7.participations.create!({
+participation5 = schedule3.participations.create!({
   user_id: user2.id,
   status: "Declined"
 })
