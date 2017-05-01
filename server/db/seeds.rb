@@ -244,58 +244,32 @@ puts "Creating participations ..."
 
 Participation.destroy_all
 
-participation1 = activity1.participations.create!({
+participation1 = schedule1.participations.create!({
   user_id: user2.id,
   status: ''
 })
 
-participation2 = activity1.participations.create!({
+participation2 = schedule1.participations.create!({
   user_id: user3.id,
   status: "Accepted"
 })
 
-participation3 = activity2.participations.create!({
+participation3 = schedule1.participations.create!({
   user_id: user2.id,
   status: "Declined"
 })
 
-participation4 = activity2.participations.create!({
+participation4 = schedule2.participations.create!({
   user_id: user3.id,
   status: "Accepted"
 })
 
-participation4 = activity7.participations.create!({
+participation4 = schedule3.participations.create!({
   user_id: user1.id,
   status: "Accepted"
 })
 
-participation5 = activity7.participations.create!({
+participation5 = schedule3.participations.create!({
   user_id: user2.id,
   status: "Declined"
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

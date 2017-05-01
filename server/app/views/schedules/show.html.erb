@@ -1,191 +1,217 @@
-<main class="container-fluid">
+<div class="col-md-4 left">
   <header class="page-header">
     <h1><%= @schedule.trip.name %></h1>
   </header>
-  <section class="container-fluid col-md-4">
-    <div class="row mini-nav">
-      <div><button id="participate" type="button" class="btn btn-success" data-behavior="notifcation">Participate</button></div>
-      <% if @schedule.trip.schedules.length > 1%>
-        <div class="dropdown">
-          <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown">Trip Schedules
-          <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <% i=1 %>
-              <% @schedule.trip.schedules.each do |schedule| %>
-                <% schedule_title = 'Schedule' + " " + i.to_s %>
-                <li><%= link_to schedule_title, [schedule] %></li>
-              <% i=i+1 %>
-              <% end %>
-            </ul>
+
+  <div class="row mini-nav">
+    <div class="col-sm-4" style="text-align: center">
+        <% if @schedule.trip.schedules.length > 1 %>
+          <div class="dropdown">
+            <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown">Trip Schedules
+            <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <% i = 1 %>
+                <% @schedule.trip.schedules.each do |schedule| %>
+                  <% schedule_title = 'Schedule ' + i.to_s %>
+                  <li><%= link_to schedule_title, [schedule] %></li>
+                <% i = i + 1 %>
+                <% end %>
+              </ul>
+          </div>
+        <% end %>
+    </div>
+    <% if (@pending) %>
+      <% if @status[0] == 'Declined' %>
+        <div class="col-sm-4" style="text-align: center">
+          <button id="request-to-join-button" type="button" class="btn btn-warning" data-id="<%= @schedule.id %>" disabled>Declined</button>
+        </div>
+      <% elsif @status[0] == 'Accepted' %>
+        <div class="col-sm-4" style="text-align: center">
+          <button id="request-to-join-button" type="button" class="btn btn-success" data-id="<%= @schedule.id %>" disabled>Accepted</button>
+        </div>
+      <% else %>
+        <div class="col-sm-4" style="text-align: center">
+          <button id="request-to-join-button" type="button" class="btn btn-info" data-id="<%= @schedule.id %>" disabled>Pending</button>
+
         </div>
       <% end %>
-    </div>
-    <div class="row">
-      <div id="agendaDay-view">
-        <div id="calendar"></div>
+    <% else %>
+      <div class="col-sm-4" style="text-align: center">
+        <button id="request-to-join-button" type="button" class="btn btn-success" data-id="<%= @schedule.id %>" data-behavior="notifcation">Request to Join</button>
       </div>
-      <script>
-        console.log("<%=@schedule.trip.schedules.length%>");
-        var eventsArray = [];
-        <%@schedule.activities.each do |activity|%>
-          var eventObject = {
-            title: "<%=activity.name%>",
-            description: "<%=activity.description%>",
-            start: "<%=@schedule.date%>" + " " + "<%=(activity.start_time - 25200).to_s(:time)%>",
-            end: "<%=@schedule.date%>" + " " + "<%=(activity.end_time - 25200).to_s(:time)%>"
-          }
-          eventsArray.push(eventObject);
-        <%end%>
-        $(() => {
-          $('#calendar').fullCalendar({
-            height: 'auto',
-            defaultView: 'agendaDay',
-            allDaySlot: false,
-            allDayText: false,
-            minTime: '08:00:00',
-            slotEventOverlap: false,
-            defaultDate: "<%=@schedule.date%>",
-            editable: false,
-            droppable: true,
-            buttonIcons: false,
-            scrollTime: '12:00:00',
-            header: {
-              left:   'title',
-              center: '',
-              right:  ''
-            },
-            eventSources: [
-              {
-                events: eventsArray,
-                color: '#1E90FF'
-              }
-            ]
-          });
-        });
-      </script>
+    <% end %>
+    <div class="col-sm-4" style="text-align: center">
+      <button class="btn btn-info">Toggle</button>
     </div>
-  </section>
 
-  <section class="container-fluid col-md-8">
-    <div id="map"></div>
-    <script>
-      var map;
-      var polylineCoordinates = [];
-      var placesArray = [];
+  </div>
+  <div class="row">
+    <div id="agendaDay-view">
+      <div id="calendar"></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="col-md-8">
+  <div id="map"></div>
+</div>
 
 
-      function initMap() {
-        var origin = {lat: -33.871, lng: 151.197};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: origin,
-          zoom: 11,
-          mapTypeId: 'terrain'
-        });
 
-        <% @schedule.activities.each do |activity| %>
-          placesArray.push("<%= activity.place %>");
-        <% end %>
 
-        for (var i=0; i<placesArray.length; i++) {
-          var geocoder = new google.maps.Geocoder;
-          var infowindow = new google.maps.InfoWindow;
-          geocodePlaceId(geocoder, map, infowindow, placesArray[i], i);
+<script>
+  var eventsArray = [];
+  <%@schedule.activities.each do |activity|%>
+    var eventObject = {
+      title: "<%=activity.name%>",
+      description: "<%=activity.description%>",
+      start: "<%=@schedule.date%>" + " " + "<%=(activity.start_time - 25200).to_s(:time)%>",
+      end: "<%=@schedule.date%>" + " " + "<%=(activity.end_time - 25200).to_s(:time)%>"
+    }
+    eventsArray.push(eventObject);
+  <%end%>
+  $(() => {
+    $('#calendar').fullCalendar({
+      height: 'auto',
+      defaultView: 'agendaDay',
+      allDaySlot: false,
+      allDayText: false,
+      minTime: '08:00:00',
+      slotEventOverlap: false,
+      defaultDate: "<%=@schedule.date%>",
+      editable: false,
+      droppable: true,
+      buttonIcons: false,
+      scrollTime: '12:00:00',
+      header: {
+        left:   'title',
+        center: '',
+        right:  ''
+      },
+      eventSources: [
+        {
+          events: eventsArray,
+          color: '#1E90FF'
         }
+      ]
+    });
+  });
+</script>
 
-      }
+<script>
+  var map;
+  var polylineCoordinates = [];
+  var placesArray = [];
 
-      function animateCircle(line) {
-          var count = 0;
-          window.setInterval(function() {
-            count = (count + 1) % 200;
+  function initMap() {
+    var origin = {lat: -33.871, lng: 151.197};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: origin,
+      zoom: 11,
+      mapTypeId: 'terrain'
+    });
 
-            var icons = line.get('icons');
-            icons[0].offset = (count / 2) + '%';
-            line.set('icons', icons);
-        }, 80);
-      }
+    <% @schedule.activities.each do |activity| %>
+      placesArray.push("<%= activity.place %>");
+    <% end %>
 
-      function geocodePlaceId(geocoder, map, infowindow, placeId, i) {
-        var label = (i+1).toString();
-        geocoder.geocode({'placeId': placeId}, function(results, status) {
-          if (status === 'OK') {
-            if (results[0]) {
-              map.setZoom(14);
-              map.setCenter(results[0].geometry.location);
-              var coordinate = {
-                'lat': results[0].geometry.location.lat(),
-                'lng': results[0].geometry.location.lng()
-              }
-              polylineCoordinates.push(coordinate);
-              var service = new google.maps.places.PlacesService(map);
-              service.getDetails({
-                placeId: placeId
-              }, function(place, status) {
-                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                  var marker = new google.maps.Marker({
-                    map: map,
-                    position: place.geometry.location,
-                    animation: google.maps.Animation.DROP,
-                    icon: {
-                      path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-                      fillOpacity: 1.0,
-                      fillColor: '#FF0000',
-                      strokeWeight: 2,
-                      scale: 12,
-                      labelOrigin: new google.maps.Point(0,-2.3)
-                    },
-                    label: {
-                      text: label,
-                      fontWeight: 'bold',
-                      color: 'white'
-                    }
-                  });
-                  google.maps.event.addListener(marker, 'click', function() {
-                    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                      'Place ID: ' + place.place_id + '<br>' +
-                      place.formatted_address + '</div>');
-                    infowindow.open(map, this);
-                  });
+    for (var i=0; i<placesArray.length; i++) {
+      var geocoder = new google.maps.Geocoder;
+      var infowindow = new google.maps.InfoWindow;
+      geocodePlaceId(geocoder, map, infowindow, placesArray[i], i);
+    }
+
+  }
+
+  function animateCircle(line) {
+      var count = 0;
+      window.setInterval(function() {
+        count = (count + 1) % 200;
+
+        var icons = line.get('icons');
+        icons[0].offset = (count / 2) + '%';
+        line.set('icons', icons);
+    }, 80);
+  }
+
+  function geocodePlaceId(geocoder, map, infowindow, placeId, i) {
+    var label = (i+1).toString();
+    geocoder.geocode({'placeId': placeId}, function(results, status) {
+      if (status === 'OK') {
+        if (results[0]) {
+          map.setZoom(14);
+          map.setCenter(results[0].geometry.location);
+          var coordinate = {
+            'lat': results[0].geometry.location.lat(),
+            'lng': results[0].geometry.location.lng()
+          }
+          polylineCoordinates.push(coordinate);
+          var service = new google.maps.places.PlacesService(map);
+          service.getDetails({
+            placeId: placeId
+          }, function(place, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+              var marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location,
+                animation: google.maps.Animation.DROP,
+                icon: {
+                  path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+                  fillOpacity: 1.0,
+                  fillColor: '#FF0000',
+                  strokeWeight: 2,
+                  scale: 12,
+                  labelOrigin: new google.maps.Point(0,-2.3)
+                },
+                label: {
+                  text: label,
+                  fontWeight: 'bold',
+                  color: 'white'
                 }
               });
-              if (i === placesArray.length-1) {
-                //initializing line symbol for path animation
-                var lineSymbol = {
-                 path: google.maps.SymbolPath.CIRCLE,
-                 scale: 8,
-                 strokeColor: '#FF0000'
-                };
-                //initializing polyline for drawing trip path
-                var tripPath = new google.maps.Polyline({
-                  path: polylineCoordinates,
-                  geodesic: true,
-                  strokeColor: '#1E90FF',
-                  strokeOpacity: 0.5,
-                  strokeWeight: 4,
-                  icons: [{
-                    icon: lineSymbol,
-                    offset: '100%'
-                  }]
-                });
-               //rendering trip path polyline on map object
-               tripPath.setMap(map);
-               //calls the animate function for line symbol
-               animateCircle(tripPath);
-              }
-            } else {
-              window.alert('No results found');
+              google.maps.event.addListener(marker, 'click', function() {
+                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                  'Place ID: ' + place.place_id + '<br>' +
+                  place.formatted_address + '</div>');
+                infowindow.open(map, this);
+              });
+
             }
-          } else {
-            window.alert('Geocoder failed due to: ' + status);
+          });
+          if (i === placesArray.length-1) {
+            //initializing line symbol for path animation
+            var lineSymbol = {
+              path: google.maps.SymbolPath.CIRCLE,
+              scale: 8,
+              strokeColor: '#FF0000'
+            };
+            //initializing polyline for drawing trip path
+            var tripPath = new google.maps.Polyline({
+              path: polylineCoordinates,
+              geodesic: true,
+              strokeColor: '#1E90FF',
+              strokeOpacity: 0.5,
+              strokeWeight: 4,
+              icons: [{
+                icon: lineSymbol,
+                offset: '100%'
+              }]
+            });
+            //rendering trip path polyline on map object
+            tripPath.setMap(map);
+            //calls the animate function for line symbol
+            animateCircle(tripPath);
           }
-        });
+        } else {
+          window.alert('No results found');
+        }
+      } else {
+        window.alert('Geocoder failed due to: ' + status);
       }
+    });
+  }
 
-    </script>
-    <% src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAASqwWQRArL2ee1jkkD-Zdm4zb7SiRFnk&libraries=places&callback=initMap" %>
-    <script src=<%=src%> async defer></script>
-  </section>
-</main>
-
-
-
+</script>
+<% src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAASqwWQRArL2ee1jkkD-Zdm4zb7SiRFnk&libraries=places&callback=initMap" %>
+<script src=<%=src%> async defer></script>

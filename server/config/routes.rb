@@ -7,9 +7,8 @@ Rails.application.routes.draw do
   root to: 'landing#index'
   resources :trips, only: [:index, :create, :update, :destroy] do
     resources :schedules, shallow: true do
-      resources :activities, shallow: true do
-        resources :participations, shallow: true
-      end
+      resources :activities, shallow: true
+      resources :participations, shallow: true
     end
   end
 

@@ -30,11 +30,11 @@ ActiveRecord::Schema.define(version: 20170430020008) do
 
   create_table "participations", force: :cascade do |t|
     t.string   "status"
-    t.integer  "activity_id"
+    t.integer  "schedule_id"
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["activity_id"], name: "index_participations_on_activity_id", using: :btree
+    t.index ["schedule_id"], name: "index_participations_on_schedule_id", using: :btree
     t.index ["user_id"], name: "index_participations_on_user_id", using: :btree
   end
 
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20170430020008) do
   end
 
   add_foreign_key "activities", "schedules"
-  add_foreign_key "participations", "activities"
+  add_foreign_key "participations", "schedules"
   add_foreign_key "participations", "users"
   add_foreign_key "schedules", "trips"
   add_foreign_key "trips", "users"
