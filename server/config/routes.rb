@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'participations/index'
+
   get 'landing/index'
 
   get 'search/show'
@@ -7,14 +9,16 @@ Rails.application.routes.draw do
   root to: 'landing#index'
   resources :trips, only: [:index, :create, :update, :destroy] do
     resources :schedules, shallow: true do
-      resources :activities, shallow: true do
-        resources :participations, shallow: true
-      end
+      resources :activities, shallow: true
+      resources :participations, shallow: true
     end
   end
 
   resources :search, only: [:show]
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    resources :participations, only: [:index]
+  end
+
 
   # get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

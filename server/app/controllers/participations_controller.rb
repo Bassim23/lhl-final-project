@@ -4,7 +4,10 @@ class ParticipationsController < ApplicationController
   # GET /participations
   # GET /participations.json
   def index
-    @participations = Participation.all
+
+
+    #select all users (joining participation table on user id) where (schedule id = user(params id).trips.schedule.id )
+
   end
 
   # GET /participations/1
@@ -26,16 +29,8 @@ class ParticipationsController < ApplicationController
   # POST /participations.json
   def create
     @participation = Participation.new(participation_params)
-
-    respond_to do |format|
-      if @participation.save
-        format.html { redirect_to @participation, notice: 'Participation was successfully created.' }
-        format.json { render :show, status: :created, location: @participation }
-      else
-        format.html { render :new }
-        format.json { render json: @participation.errors, status: :unprocessable_entity }
-      end
-    end
+    @participation.user_id = current_user.id
+    @participation.save
   end
 
   # PATCH/PUT /participations/1
@@ -70,6 +65,6 @@ class ParticipationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def participation_params
-      params.fetch(:participation, {})
+      params.permit(:schedule_id)
     end
 end
