@@ -4,25 +4,8 @@ class ParticipationsController < ApplicationController
   # GET /participations
   # GET /participations.json
   def index
-
-  # @user = User.find(params[:id])
-  # @participations = User.left_outer_joins(trips: [:schedules, schedules: [:participations, participations: [:user]]]).find(params[:user_id])
-  @participations = User.includes(trips: [:schedules, schedules: [:participations, participations: [:user]]]).find(params[:user_id])
-  puts @participations.inspect
-  puts @participations.trips.inspect
-  #Because there is only one trip but there are multiple trips. We need to define one trip.
-  puts @participations.trips[0].schedules.inspect
-  @participation = User.left_outer_joins(trips: [:schedules]).joins(participations: [:user]).find(params[:user_id])
-
-  # User.left_outer_joins(trips: [:schedules, schedules: [:participations]]).find(1)
-
-  # User.all.select("users.id AS creatorID, users.first_name as creatorName").joins(:participations)
-  # @user.select("id AS creatorID, first_name as creatorName").joins("INNER JOIN participations ON participations.user_id = user.id")
-
-  #select all users (joining participation table on user id) where (schedule id = user(params id).trips.schedule.id )
-  # @user = User.all
-  # @user.joins("INNER JOIN participations ON participations.user_id = users.id").where(users.participations.schedule_id = Users.find(params[:id]).trips.schedules.id)
-
+    @participations = User.includes(trips: [:schedules, schedules: [:participations, participations: [:user]]]).find(params[:user_id])
+    @participation = User.left_outer_joins(trips: [:schedules]).joins(participations: [:user]).find(params[:user_id])
   end
 
   # GET /participations/1

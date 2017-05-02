@@ -9,12 +9,10 @@ class NotificationChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
-  def notify (data, id)
+  def notify (data)
     # broadcasts to specific user channel
-    # @schedule = Schedule.find(params[:id])
-    # @user = @schedule.trip.user_id
-    # puts "WHATUP IS ME"
-    # puts @user
-    ActionCable.server.broadcast "notification_channel#{id}", message: data['message']
+    @schedule = Schedule.find(data['id'])
+    user = @schedule.trip.user_id
+    ActionCable.server.broadcast "notification_channel#{user}", message: data['message']
   end
 end
