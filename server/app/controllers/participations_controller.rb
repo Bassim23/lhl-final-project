@@ -36,15 +36,8 @@ class ParticipationsController < ApplicationController
   # PATCH/PUT /participations/1
   # PATCH/PUT /participations/1.json
   def update
-    respond_to do |format|
-      if @participation.update(participation_params)
-        format.html { redirect_to @participation, notice: 'Participation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @participation }
-      else
-        format.html { render :edit }
-        format.json { render json: @participation.errors, status: :unprocessable_entity }
-      end
-    end
+    @participation = Participation.find(params[:id])
+    @participation.update( status: params[:status])
   end
 
   # DELETE /participations/1
