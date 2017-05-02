@@ -1,21 +1,6 @@
 module ApplicationCable
   class Channel < ActionCable::Channel::Base
-    #setup identification based on user id
-    # identified_by :current_user
 
-    # def connect
-    #   self.current_user = find_verified_user
-    # end
-
-    # private
-    #   def find_verified_user
-    #     if verified_user = session[:user_id])
-    #       verified_user
-    #     else
-    #       reject_unauthorized_connection
-    #     end
-    #   end
-    # end
 
   end
 end
