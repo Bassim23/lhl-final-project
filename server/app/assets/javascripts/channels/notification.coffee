@@ -16,8 +16,3 @@ App.notification = App.cable.subscriptions.create "NotificationChannel",
     scheduleId = $('#request-to-join-button').data('id')
     App.notification.notify "New trips request", scheduleId
     event.preventDefault()
-
-  # $jQuery(document).on 'turbolinks:load', ->
-  #   $('#request-to-join-button').on 'click', '[data-behavior~=notifcation]', (event) ->
-  #   App.notification.notify "New trips request" $(this.data-id)
-  #   event.preventDefault()
