@@ -245,11 +245,12 @@ hr {
     background-color: white;
     height: 100vh;
     overflow-y: scroll;
-    .schedule-save{
+    position: relative;
+    .schedule-save {
         font-size: 2em;
         position: fixed;
-        bottom: 0;
-        left: 17em;
+        top: 0;
+        right: 0;
         z-index: 999;
     }
     #calendar {

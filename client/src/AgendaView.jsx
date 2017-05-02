@@ -18,13 +18,10 @@ class AgendaView extends Component {
     const { fullCalendar } = this;
 
     $(fullCalendar).fullCalendar({
-      customButtons: {
-        text: 'Save'
-      },
       defaultView: 'agendaDay',
       header: {
         left: 'title',
-        center: 'customButtons',
+        right: ''
       },
       height: 'auto',
       timezone: 'local',

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Place from './Place.jsx';
-import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
+import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
+
 
 // const API_KEY = 'AIzaSyC3yCuJtptjR5ToKEdsPqHvPnlQXcLMTRk';
 // const API_KEY = 'AIzaSyA7GEO6ZSaCShhm7K1Jg5PG-KtUA3StVpQ'; // David's
@@ -19,6 +21,7 @@ class ActivityList extends Component {
       address: '',
       places: []
     };
+    this.logChange = this.logChange.bind(this);
     this.onChange = (address) => this.setState({ address });
     this.loadData = this.loadData.bind(this);
   }
@@ -50,6 +53,10 @@ class ActivityList extends Component {
         }
     });
     this.setState({ places: placeList });
+  }
+
+  logChange(val) {
+    console.log("Selected: " + val);
   }
 
   handleFormSubmit = (event) => {
@@ -103,9 +110,23 @@ class ActivityList extends Component {
 
     return (
       <div id="item-list" className="col-md-8 right">
-        <form onBlur={this.handleFormSubmit}>
-          <PlacesAutocomplete inputProps={inputProps} classNames={cssClasses} />
-        </form>
+        <div className="row">
+          <div className="col-md-2">
+            <DropdownButton title='Category' id='dropdown-basic' className="dropdown-google btn btn-warning">
+              <MenuItem eventKey="1">Action</MenuItem>
+              <MenuItem eventKey="2">Another action</MenuItem>
+              <MenuItem eventKey="3" active>Active Item</MenuItem>
+              <MenuItem divider />
+              <MenuItem eventKey="4">Separated link</MenuItem>
+            </DropdownButton>
+          </div>
+          <div className="col-md-10">
+            <form onBlur={this.handleFormSubmit}>
+              <PlacesAutocomplete inputProps={inputProps} classNames={cssClasses} />
+            </form>
+          </div>
+        </div>
+
         <ul id='external-events' className="event-list">
           <h1>Places</h1>
           {this.state.places.map((e) => {
