@@ -19975,3 +19975,165 @@ Started GET "/cable/" [WebSocket] for 127.0.0.1 at 2017-05-01 18:22:30 -0700
 Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
 NotificationChannel is transmitting the subscription confirmation
 NotificationChannel is streaming from notification_channel
+Started GET "/schedules/2" for 127.0.0.1 at 2017-05-01 18:23:35 -0700
+Processing by SchedulesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mSchedule Load (0.3ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "participations" WHERE "participations"."schedule_id" = $1 AND "participations"."user_id" = $2[0m  [["schedule_id", 2], ["user_id", 1]]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "participations"."status" FROM "participations" WHERE "participations"."schedule_id" = $1 AND "participations"."user_id" = $2[0m  [["schedule_id", 2], ["user_id", 1]]
+  [1m[36mTrip Load (0.4ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering schedules/show.html.erb within layouts/application
+  [1m[36mSchedule Load (0.3ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 2]]
+  [1m[36mParticipation Load (0.4ms)[0m  [1m[34mSELECT "participations".* FROM "participations" WHERE "participations"."schedule_id" = $1[0m  [["schedule_id", 2]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (3, 2)[0m
+DEPRECATION WARNING: Time columns will become time zone aware in Rails 5.1. This
+still causes `String`s to be parsed as if they were in `Time.zone`,
+and `Time`s to be converted to `Time.zone`.
+
+To keep the old behavior, you must add the following to your initializer:
+
+    config.active_record.time_zone_aware_types = [:datetime]
+
+To silence this deprecation warning, add the following:
+
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+ (called from _app_views_schedules_show_html_erb__4277816163576904360_70206296726960 at /Users/sharonhsu/lighthouse/projects/lhl-final-project/server/app/views/schedules/show.html.erb:133)
+DEPRECATION WARNING: Time columns will become time zone aware in Rails 5.1. This
+still causes `String`s to be parsed as if they were in `Time.zone`,
+and `Time`s to be converted to `Time.zone`.
+
+To keep the old behavior, you must add the following to your initializer:
+
+    config.active_record.time_zone_aware_types = [:datetime]
+
+To silence this deprecation warning, add the following:
+
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+ (called from _app_views_schedules_show_html_erb__4277816163576904360_70206296726960 at /Users/sharonhsu/lighthouse/projects/lhl-final-project/server/app/views/schedules/show.html.erb:133)
+  [1m[36mActivity Load (0.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."schedule_id" = $1[0m  [["schedule_id", 2]]
+  Rendered schedules/show.html.erb within layouts/application (47.8ms)
+  Rendered layouts/_nav.html.erb (1.5ms)
+Completed 200 OK in 346ms (Views: 142.5ms | ActiveRecord: 24.8ms)
+
+
+Started GET "/cable" for 127.0.0.1 at 2017-05-01 18:23:36 -0700
+Started GET "/cable/" [WebSocket] for 127.0.0.1 at 2017-05-01 18:23:36 -0700
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel
+Started POST "/schedules/2/participations" for 127.0.0.1 at 2017-05-01 18:23:41 -0700
+NotificationChannel#notify({"message"=>"New trips request"})
+[ActionCable] Broadcasting to notification_channel: {:message=>"New trips request"}
+Processing by ParticipationsController#create as */*
+  Parameters: {"schedule_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSchedule Load (0.3ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (14.3ms)[0m  [1m[32mINSERT INTO "participations" ("schedule_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["schedule_id", 2], ["user_id", 1], ["created_at", 2017-05-01 18:23:42 -0700], ["updated_at", 2017-05-01 18:23:42 -0700]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+No template found for ParticipationsController#create, rendering head :no_content
+Completed 204 No Content in 209ms (ActiveRecord: 17.0ms)
+
+
+Started GET "/schedules/2" for 127.0.0.1 at 2017-05-01 18:23:47 -0700
+Processing by SchedulesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mSchedule Load (1.2ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "participations" WHERE "participations"."schedule_id" = $1 AND "participations"."user_id" = $2[0m  [["schedule_id", 2], ["user_id", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "participations"."status" FROM "participations" WHERE "participations"."schedule_id" = $1 AND "participations"."user_id" = $2[0m  [["schedule_id", 2], ["user_id", 1]]
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering schedules/show.html.erb within layouts/application
+  [1m[36mSchedule Load (0.4ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 2]]
+  [1m[36mParticipation Load (0.5ms)[0m  [1m[34mSELECT "participations".* FROM "participations" WHERE "participations"."schedule_id" = $1[0m  [["schedule_id", 2]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (3, 2, 1)[0m
+DEPRECATION WARNING: Time columns will become time zone aware in Rails 5.1. This
+still causes `String`s to be parsed as if they were in `Time.zone`,
+and `Time`s to be converted to `Time.zone`.
+
+To keep the old behavior, you must add the following to your initializer:
+
+    config.active_record.time_zone_aware_types = [:datetime]
+
+To silence this deprecation warning, add the following:
+
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+ (called from _app_views_schedules_show_html_erb__4277816163576904360_70206258595480 at /Users/sharonhsu/lighthouse/projects/lhl-final-project/server/app/views/schedules/show.html.erb:133)
+DEPRECATION WARNING: Time columns will become time zone aware in Rails 5.1. This
+still causes `String`s to be parsed as if they were in `Time.zone`,
+and `Time`s to be converted to `Time.zone`.
+
+To keep the old behavior, you must add the following to your initializer:
+
+    config.active_record.time_zone_aware_types = [:datetime]
+
+To silence this deprecation warning, add the following:
+
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+ (called from _app_views_schedules_show_html_erb__4277816163576904360_70206258595480 at /Users/sharonhsu/lighthouse/projects/lhl-final-project/server/app/views/schedules/show.html.erb:133)
+  [1m[36mActivity Load (0.3ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."schedule_id" = $1[0m  [["schedule_id", 2]]
+  Rendered schedules/show.html.erb within layouts/application (67.5ms)
+  Rendered layouts/_nav.html.erb (1.4ms)
+Completed 200 OK in 304ms (Views: 178.5ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/cable" for 127.0.0.1 at 2017-05-01 18:23:47 -0700
+Started GET "/cable/" [WebSocket] for 127.0.0.1 at 2017-05-01 18:23:47 -0700
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel
+Started GET "/schedules/2" for 127.0.0.1 at 2017-05-01 18:24:58 -0700
+Processing by SchedulesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mSchedule Load (0.7ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "participations" WHERE "participations"."schedule_id" = $1 AND "participations"."user_id" = $2[0m  [["schedule_id", 2], ["user_id", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "participations"."status" FROM "participations" WHERE "participations"."schedule_id" = $1 AND "participations"."user_id" = $2[0m  [["schedule_id", 2], ["user_id", 1]]
+  [1m[36mTrip Load (0.4ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering schedules/show.html.erb within layouts/application
+  [1m[36mSchedule Load (0.4ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE "schedules"."trip_id" = $1[0m  [["trip_id", 2]]
+  [1m[36mParticipation Load (0.4ms)[0m  [1m[34mSELECT "participations".* FROM "participations" WHERE "participations"."schedule_id" = $1[0m  [["schedule_id", 2]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (3, 2, 1)[0m
+DEPRECATION WARNING: Time columns will become time zone aware in Rails 5.1. This
+still causes `String`s to be parsed as if they were in `Time.zone`,
+and `Time`s to be converted to `Time.zone`.
+
+To keep the old behavior, you must add the following to your initializer:
+
+    config.active_record.time_zone_aware_types = [:datetime]
+
+To silence this deprecation warning, add the following:
+
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+ (called from _app_views_schedules_show_html_erb__4277816163576904360_70206283632760 at /Users/sharonhsu/lighthouse/projects/lhl-final-project/server/app/views/schedules/show.html.erb:133)
+DEPRECATION WARNING: Time columns will become time zone aware in Rails 5.1. This
+still causes `String`s to be parsed as if they were in `Time.zone`,
+and `Time`s to be converted to `Time.zone`.
+
+To keep the old behavior, you must add the following to your initializer:
+
+    config.active_record.time_zone_aware_types = [:datetime]
+
+To silence this deprecation warning, add the following:
+
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+ (called from _app_views_schedules_show_html_erb__4277816163576904360_70206283632760 at /Users/sharonhsu/lighthouse/projects/lhl-final-project/server/app/views/schedules/show.html.erb:133)
+  [1m[36mActivity Load (0.7ms)[0m  [1m[34mSELECT "activities".* FROM "activities" WHERE "activities"."schedule_id" = $1[0m  [["schedule_id", 2]]
+  Rendered schedules/show.html.erb within layouts/application (66.6ms)
+  Rendered layouts/_nav.html.erb (2.2ms)
+Completed 200 OK in 574ms (Views: 465.6ms | ActiveRecord: 5.4ms)
+
+
+Started GET "/cable" for 127.0.0.1 at 2017-05-01 18:25:00 -0700
+Started GET "/cable/" [WebSocket] for 127.0.0.1 at 2017-05-01 18:25:00 -0700
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel
