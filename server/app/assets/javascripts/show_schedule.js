@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function() {
 
-  $('.trip-panel').on("click", function(e) {
+  $('[data-class="trip-panel"]').on("click", function(e) {
     $('.form-trip').css('display', 'none');
     $('#schedule-display').addClass('animated fadeInRight').css('display', 'block');
     $tripID = $(this).data("id");
@@ -10,10 +10,11 @@ $(document).on('turbolinks:load', function() {
       url: "/trips/" + $tripID + "/schedules",
     }).done(function(schedules) {
       renderSchedules($tripName, schedules);
+
       $('[data-class="schedule-trash"]').on('click', function(e) {
           e.preventDefault();
           e.stopPropagation();
-          if (confirm("Are you sure you ant to delete?")) {
+          if (confirm("Are you sure you want to delete?")) {
             $.ajax({
                 method: "DELETE",
                 url: "/schedules/" + $(this).closest('.schedule-panel').data("id")
@@ -22,6 +23,7 @@ $(document).on('turbolinks:load', function() {
               });
           }   
       });
+      
       $('#new-schedule').on('click', (e) => {
         $('#trip-display').css('display', 'none');
         $('.form-schedule').addClass('animated fadeIn').css('display', 'block');
@@ -58,7 +60,7 @@ $(document).on('turbolinks:load', function() {
 
   });
 
-  $('.trip-panel').on('mouseleave', function(e) {
+  $('[data-class="trip-panel"]').on('mouseleave', function(e) {
     e.stopPropagation();
     $(this).find('.panel-title-text').attr('contenteditable', 'false');
     $(this).find('.panel-body').attr('contenteditable', 'false');
@@ -107,13 +109,14 @@ function renderCancelEditTripButton() {
 
 function createSchedules(schedule) {
   let $schedule = `
-    <article class="panel panel-default schedule-panel animated fadeIn" data-id="${schedule.id}" >
-        <div class="panel-body">
-            <strong>${schedule.destination_name}</strong> @ <strong><time>${schedule.date}</time></strong>
-                <i class="fa fa-trash-o" aria-hidden="true" data-class="schedule-trash"></i>
-        </div>
-    </article>
-
+    <a href="/schedules/${schedule.id}">
+      <article class="panel panel-default schedule-panel animated fadeIn" data-id="${schedule.id}">
+          <div class="panel-body">
+              <strong>${schedule.destination_name}</strong> @ <strong><time>${schedule.date}</time></strong>
+                  <i class="fa fa-trash-o" aria-hidden="true" data-class="schedule-trash"></i>
+          </div>
+      </article>
+    </a>
     `
   let $empty =
     `
