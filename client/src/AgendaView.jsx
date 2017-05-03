@@ -30,6 +30,7 @@ class AgendaView extends Component {
       },
       height: 'auto',
       timezone: 'local',
+      minTime: '06:00:00',
       allDaySlot: false,
       allDayText: false,
       defaultDate: this.state.date,
