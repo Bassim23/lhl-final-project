@@ -49,11 +49,14 @@ class AgendaView extends Component {
         };
       }.bind(this),
       eventResize: function(event, delta) {
+        this.state.events[event.id].start = event.start._d;
         this.state.events[event.id].end = event.end._d;
       }.bind(this),
       eventDrop: function(event) {
+        console.log(event);
         this.state.events[event.id].start = event.start._d;
-        this.state.events[event.id].end = moment(event.start._d).add(2, 'hours')._d;
+        this.state.events[event.id].end = event.end._d ? event.end._d : moment(event.start._d).add(2, 'hours')._d;
+        console.log(this.state.events[event.id]);
       }.bind(this),
       eventRender: function(event, element) {
         const self = this;
@@ -94,15 +97,15 @@ class AgendaView extends Component {
               this.state.events[o.uuid] = {
                 id: o.uuid,
                 name: event.title,
-                start: this.state.date  + ' ' + moment(o.start_time).format("hh:mm:ss"),
-                end: this.state.date  + ' ' + moment(o.end_time).format("hh:mm:ss")
+                start: this.state.date  + ' ' + moment(o.start_time).format("HH:mm:ss"),
+                end: this.state.date  + ' ' + moment(o.end_time).format("HH:mm:ss")
               };
               
               let eventObject = {
                 title: o.name,
                 id: o.uuid,
-                start: this.state.date  + ' ' + moment(o.start_time).format("hh:mm:ss"),
-                end: this.state.date  + ' ' + moment(o.end_time).format("hh:mm:ss")
+                start: this.state.date  + ' ' + moment(o.start_time).format("HH:mm:ss"),
+                end: this.state.date  + ' ' + moment(o.end_time).format("HH:mm:ss")
               };
               eventList.push(eventObject);
             });

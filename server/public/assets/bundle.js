@@ -43910,11 +43910,14 @@ var AgendaView = function (_Component) {
           };
         }.bind(this),
         eventResize: function (event, delta) {
+          this.state.events[event.id].start = event.start._d;
           this.state.events[event.id].end = event.end._d;
         }.bind(this),
         eventDrop: function (event) {
+          console.log(event);
           this.state.events[event.id].start = event.start._d;
-          this.state.events[event.id].end = (0, _moment2.default)(event.start._d).add(2, 'hours')._d;
+          this.state.events[event.id].end = event.end._d ? event.end._d : (0, _moment2.default)(event.start._d).add(2, 'hours')._d;
+          console.log(this.state.events[event.id]);
         }.bind(this),
         eventRender: function (event, element) {
           var self = this;
@@ -43956,15 +43959,15 @@ var AgendaView = function (_Component) {
                 _this2.state.events[o.uuid] = {
                   id: o.uuid,
                   name: event.title,
-                  start: _this2.state.date + ' ' + (0, _moment2.default)(o.start_time).format("hh:mm:ss"),
-                  end: _this2.state.date + ' ' + (0, _moment2.default)(o.end_time).format("hh:mm:ss")
+                  start: _this2.state.date + ' ' + (0, _moment2.default)(o.start_time).format("HH:mm:ss"),
+                  end: _this2.state.date + ' ' + (0, _moment2.default)(o.end_time).format("HH:mm:ss")
                 };
 
                 var eventObject = {
                   title: o.name,
                   id: o.uuid,
-                  start: _this2.state.date + ' ' + (0, _moment2.default)(o.start_time).format("hh:mm:ss"),
-                  end: _this2.state.date + ' ' + (0, _moment2.default)(o.end_time).format("hh:mm:ss")
+                  start: _this2.state.date + ' ' + (0, _moment2.default)(o.start_time).format("HH:mm:ss"),
+                  end: _this2.state.date + ' ' + (0, _moment2.default)(o.end_time).format("HH:mm:ss")
                 };
                 eventList.push(eventObject);
               });
