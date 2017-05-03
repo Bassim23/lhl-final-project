@@ -17,6 +17,11 @@ class SchedulesController < ApplicationController
     @pending = @participation_exists.count > 0
     @status = @participation_exists.pluck :status
     @belongs_to_current_user = @schedule.trip.user.id == current_user.id
+
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @schedule }
+    end
   end
 
   # GET /schedules/new

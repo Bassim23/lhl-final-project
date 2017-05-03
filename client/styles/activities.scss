@@ -247,11 +247,16 @@ hr {
     overflow-y: scroll;
     position: relative;
     .schedule-save {
-        font-size: 2em;
+        margin: 0;
+        padding: 0;
         position: fixed;
-        top: 0;
+        bottom: 0;
         right: 0;
         z-index: 999;
+        button{
+            font-size: 2em;
+            border: none;
+        }
     }
     #calendar {
         padding: 1.5em;

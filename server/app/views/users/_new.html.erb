@@ -7,11 +7,6 @@
                 <h4 class="modal-title">Register</h4>
             </div>
             <div class="modal-body">
-              <% if flash[:notice] %>
-                <div>
-                  <%= flash[:notice] %>
-                </div>
-              <% end %>
               <%= form_for :user, url: register_path do |f| %>
 
                 First Name: <%= f.text_field :first_name, class: 'form-control' %>

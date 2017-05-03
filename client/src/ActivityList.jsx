@@ -18,18 +18,19 @@ class ActivityList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      category: '',
       address: '',
       places: []
     };
-    this.logChange = this.logChange.bind(this);
+    this.handleCategory = this.handleCategory.bind(this);
     this.onChange = (address) => this.setState({ address });
     this.loadData = this.loadData.bind(this);
   }
 
-  loadData(address) {
+  loadData(address, category) {
     address = address.split(' ').join('');
     const GOOGLE_PLACE_URL = `https://crossorigin.me/https://maps.googleapis.com/maps/api/place/textsearch/json?`;
-    const QUERY = `query=poi+in+${address}`;
+    const QUERY = `query=${category}+in+${address}`;
 
     const COMPLETE_URL = `${GOOGLE_PLACE_URL}${QUERY}&key=${API_KEY}`
 
@@ -55,8 +56,8 @@ class ActivityList extends Component {
     this.setState({ places: placeList });
   }
 
-  logChange(val) {
-    console.log("Selected: " + val);
+  handleCategory = (event) => {
+    this.setState({ category: event });
   }
 
   handleFormSubmit = (event) => {
@@ -64,8 +65,7 @@ class ActivityList extends Component {
     if (this.state.address){
       geocodeByAddress(this.state.address,  (err, latLng) => {
         if (err) { console.log('Oh no!', err) };
-        console.log('Address ', this.state.address);
-        this.loadData(this.state.address);
+        this.loadData(this.state.address, this.state.category);
       });
     } else {
       console.log('no place');
@@ -112,15 +112,22 @@ class ActivityList extends Component {
       <div id="item-list" className="col-md-8 right">
         <div className="row">
           <div className="col-md-2">
-            <DropdownButton title='Category' id='dropdown-basic' className="dropdown-google btn btn-warning">
-              <MenuItem eventKey="1">Action</MenuItem>
-              <MenuItem eventKey="2">Another action</MenuItem>
-              <MenuItem eventKey="3" active>Active Item</MenuItem>
-              <MenuItem divider />
-              <MenuItem eventKey="4">Separated link</MenuItem>
+            <DropdownButton title={this.state.category} id='dropdown-basic' className="dropdown-google btn btn-warning" onSelect={this.handleCategory}>
+              <MenuItem eventKey="amusement_park">Amusement Park</MenuItem>
+              <MenuItem eventKey="aquarium">Aquarium</MenuItem>
+              <MenuItem eventKey="art_gallery">Art Gallery</MenuItem>
+              <MenuItem eventKey="casino">Casino</MenuItem>
+              <MenuItem eventKey="park">Park</MenuItem>
+              <MenuItem eventKey="parking">Parking</MenuItem>
+              <MenuItem eventKey="museum">Museum</MenuItem>
+              <MenuItem eventKey="department_store">Department Store</MenuItem>
+              <MenuItem eventKey="shopping_mall">Shopping Mall</MenuItem>
+              <MenuItem eventKey="convenience_store">Convenience Store</MenuItem>
+              <MenuItem eventKey="restaurant">Restaurant</MenuItem>
+              <MenuItem eventKey="zoo">Zoo</MenuItem>
             </DropdownButton>
           </div>
-          <div className="col-md-10">
+          <div className="col-md-8">
             <form onBlur={this.handleFormSubmit}>
               <PlacesAutocomplete inputProps={inputProps} classNames={cssClasses} />
             </form>

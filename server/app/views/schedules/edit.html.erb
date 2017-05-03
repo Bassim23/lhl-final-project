@@ -1,6 +1,15 @@
-<h1>Editing Schedule</h1>
+<div id="react-root" data-id="<%= params[:id] %>"></div>
 
-<%= render 'form', schedule: @schedule %>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src='https://code.jquery.com/ui/1.12.0/jquery-ui.min.js'></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCH4bIlrAPDcVFlr3iKeYP0q0vmxIcrpaA&libraries=places"></script>
 
-<%= link_to 'Show', @schedule %> |
-<%= link_to 'Back', schedules_path %>
+<script src="/assets/bundle.js"></script>
+
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.css' rel='stylesheet' type='text/css'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.print.css' rel='stylesheet' media='print'>

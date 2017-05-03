@@ -1,31 +1,37 @@
 <div id="activity-list" class="col-md-4 left">
   <header class="page-header">
     <h1><%= @schedule.trip.name %>
-      <button class="btn btn-primary pull-right">Edit</button>
     </h1>
   </header>
 
   <div class="row mini-nav">
-    <% if (@pending) %>
-      <% if @status[0] == 'Declined' %>
-        <div class="col-sm-4">
-          <button id="request-to-join-button" type="button" class="btn btn-danger" style="width: 100%" data-id="<%= @schedule.id %>" disabled>Declined</button>
-        </div>
-      <% elsif @status[0] == 'Accepted' %>
-        <div class="col-sm-4">
-          <button id="request-to-join-button" type="button" class="btn btn-success" style="width: 100%" data-id="<%= @schedule.id %>" disabled>Accepted</button>
-        </div>
+    <% if @belongs_to_current_user %>
+      <div class="col-sm-4">
+        <button class="btn btn-primary" style="width: 100%">Edit</button>
+      </div>
+    <% else %>
+      <% if (@pending) %>
+        <% if @status[0] == 'Declined' %>
+          <div class="col-sm-4">
+            <button id="request-to-join-button" type="button" class="btn btn-danger" style="width: 100%" data-id="<%= @schedule.id %>" disabled>Declined</button>
+          </div>
+        <% elsif @status[0] == 'Accepted' %>
+          <div class="col-sm-4">
+            <button id="request-to-join-button" type="button" class="btn btn-success" style="width: 100%" data-id="<%= @schedule.id %>" disabled>Accepted</button>
+          </div>
+        <% else %>
+          <div class="col-sm-4">
+            <button id="request-to-join-button" type="button" class="btn btn-info" style="width: 100%" data-id="<%= @schedule.id %>" disabled>Pending</button>
+
+          </div>
+        <% end %>
       <% else %>
         <div class="col-sm-4">
-          <button id="request-to-join-button" type="button" class="btn btn-info" style="width: 100%" data-id="<%= @schedule.id %>" disabled>Pending</button>
-
+          <button id="request-to-join-button" type="button" class="btn btn-success" style="width: 100%" data-id="<%= @schedule.id %>" data-behavior="notifcation">Participate</button>
         </div>
       <% end %>
-    <% else %>
-      <div class="col-sm-4">
-        <button id="request-to-join-button" type="button" class="btn btn-success" style="width: 100%" data-id="<%= @schedule.id %>" data-behavior="notifcation">Participate</button>
-      </div>
     <% end %>
+
     <div class="col-sm-4">
       <button class="btn btn-info" id="participant-list-toggle" style="width: 100%">Participant List</button>
     </div>
@@ -145,7 +151,6 @@
       defaultView: 'agendaDay',
       allDaySlot: false,
       allDayText: false,
-      minTime: '08:00:00',
       slotEventOverlap: false,
       defaultDate: "<%=@schedule.date%>",
       editable: false,
