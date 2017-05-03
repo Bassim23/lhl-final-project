@@ -85,7 +85,7 @@
         <% @participations.each do |x| %>
           <tr class="participant-">
             <td>
-              <a href="#" class="user-link"><%= x.user.first_name %> <%= x.user.last_name %></a>
+              <%= link_to (x.user.first_name + " " + x.user.last_name), x.user %>
             </td>
             <td class="text-center" id="status-<%= x.id %>">
               <% if x.status == "Accepted"%>
@@ -179,10 +179,10 @@
   var placesArray = [];
 
   function initMap() {
-    var origin = {lat: -33.871, lng: 151.197};
+    var origin = {lat: 49.25, lng: -123.17};
     var map = new google.maps.Map(document.getElementById('map'), {
       center: origin,
-      zoom: 11,
+      zoom: 12,
       mapTypeId: 'terrain'
     });
 
