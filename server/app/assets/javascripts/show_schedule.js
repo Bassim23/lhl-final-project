@@ -72,7 +72,7 @@ $(document).on('turbolinks:load', function() {
       data: {
         name: $(this).closest('.trip-panel').find('.panel-title-text').text().trim(),
         summary: $(this).closest('.trip-panel').find('.panel-body').text().trim(),
-        kind: $(this).closest('.trip-panel').find('.panel-footer-kind-selector option:selected').val()
+        kind: $('.panel-footer-kind-selector option:selected').text()
       }
     }).done(function(data) {
       console.log('Edit was successful');
@@ -85,6 +85,7 @@ $(document).on('turbolinks:load', function() {
 
   $('.trip-edit-icon').on('click', function(e) {
     e.stopPropagation();
+    console.log('Hello for trip edit');
     $(this).closest('.trip-panel').find('.panel-title-text').attr('contenteditable', 'true');
     $(this).closest('.trip-panel').find('.panel-body').attr('contenteditable', 'true');
     $(this).closest('.trip-panel').find('.panel-footer-kind-selector').removeAttr('disabled');

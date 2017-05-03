@@ -16,14 +16,10 @@
     </div>
     <div class="panel-footer">
         <small>
-            <select class="panel-footer-kind-selector" data-class="panel-footer-kind-selector" disabled>
-            <% if trip.kind === 'Private' %>
-                <option selected>Private</option>
-                <option>Public</option>
-            <% else %>
+            <select class="panel-footer-kind-selector" disabled>
                 <option>Private</option>
-                <option selected>Public</option>
-            <% end %>
+                    <%= trip.kind %>
+                <option>Public</option>
             </select>
         </small>
     </div>
