@@ -52,6 +52,29 @@
           </div>
         <% end %>
     </div>
+    <% if (@pending) %>
+      <% if @status[0] == 'Declined' %>
+        <div class="col-sm-4" style="text-align: center">
+          <button id="request-to-join-button" type="button" class="btn btn-warning" data-id="<%= @schedule.id %>" disabled>Declined</button>
+        </div>
+      <% elsif @status[0] == 'Accepted' %>
+        <div class="col-sm-4" style="text-align: center">
+          <button id="request-to-join-button" type="button" class="btn btn-success" data-id="<%= @schedule.id %>" disabled>Accepted</button>
+        </div>
+      <% else %>
+        <div class="col-sm-4" style="text-align: center">
+          <button id="request-to-join-button" type="button" class="btn btn-info" data-id="<%= @schedule.id %>" disabled>Pending</button>
+
+        </div>
+      <% end %>
+    <% else %>
+      <div class="col-sm-4" style="text-align: center">
+        <button id="request-to-join-button" type="button" class="btn btn-success" data-id=<%= @schedule.id %> data-behavior="notifcation">Request to Join</button>
+      </div>
+    <% end %>
+    <div class="col-sm-4" style="text-align: center">
+      <button class="btn btn-info">Toggle</button>
+    </div>
 
   </div>
   <div class="row">

@@ -4,10 +4,8 @@ class ParticipationsController < ApplicationController
   # GET /participations
   # GET /participations.json
   def index
-
-
-    #select all users (joining participation table on user id) where (schedule id = user(params id).trips.schedule.id )
-
+    @participations = User.includes(trips: [:schedules, schedules: [:participations, participations: [:user]]]).find(params[:user_id])
+    @participation = User.left_outer_joins(trips: [:schedules]).joins(participations: [:user]).find(params[:user_id])
   end
 
   # GET /participations/1

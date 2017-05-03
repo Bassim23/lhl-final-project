@@ -5,52 +5,66 @@
       <div class="main-box no-header clearfix">
         <div class="main-box-body clearfix">
           <div class="table-responsive">
-            <table class="table user-list">
-              <thead>
-                <tr>
-                <th><span>User</span></th>
-                <th><span>Created</span></th>
-                <th class="text-center"><span>Status</span></th>
-                <th><span>Email</span></th>
-                <th>&nbsp;</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <img src="http://bootdey.com/img/Content/user_1.jpg" alt="">
-                    <a href="#" class="user-link">Full name 1</a>
-                  </td>
-                  <td>2013/08/12</td>
-                  <td class="text-center">
-                    <span class="label label-default">pending</span>
-                  </td>
-                  <td>
-                    <a href="#">marlon@brando.com</a>
-                  </td>
-                  <td style="width: 20%;">
-                    <a href="#" class="table-link">
-                      <span class="fa-stack">
-                        <i class="fa fa-square fa-stack-2x"></i>
-                        <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                      </span>
-                    </a>
-                    <a href="#" class="table-link">
-                      <span class="fa-stack">
-                        <i class="fa fa-square fa-stack-2x"></i>
-                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                      </span>
-                    </a>
-                    <a href="#" class="table-link danger">
-                      <span class="fa-stack">
-                        <i class="fa fa-square fa-stack-2x"></i>
-                        <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                      </span>
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <% @participations.trips.each do |trip| %>
+              <h1><%= trip.name %></h1>
+              <% trip.schedules.each do |schedule| %>
+                <%= schedule.destination_name %>
+                <hr>
+                <table class="table user-list">
+                  <thead>
+                    <tr>
+                    <th><span>Tourists</span></th>
+                    <th><span>Created</span></th>
+                    <th class="text-center"><span>Status</span></th>
+                    <th><span>Email</span></th>
+                    <th>&nbsp;</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% schedule.participations.each do |participation| %>
+                      <tr>
+                        <td>
+                          <% if participation.user.photo.nil? %>
+                            <img src="http://eadb.org/wp-content/uploads/2015/08/profile-placeholder.jpg" alt="" style="height:100px; width:100">
+                          <% else %>
+                            <img src=<%=participation.user.photo %> alt="" style="height:100px; width:100">
+                          <% end %>
+                          <a href="#" class="user-link"></a>
+                          <span class="user-subhead"><%= participation.user.first_name %> <%= participation.user.last_name%></span>
+                        </td>
+                        <td>2013/08/12</td>
+                        <td class="text-center">
+                          <span class="label label-default"><%= participation.status %></span>
+                        </td>
+                        <td>
+                          <a href="mailto:<%= participation.user.email %>"><%= participation.user.email %></a>
+                        </td>
+                        <td style="width: 20%;">
+                          <a href="/users/<%= participation.user.id %>" class="table-link">
+                            <span class="fa-stack">
+                              <i class="fa fa-square fa-stack-2x"></i>
+                              <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                            </span>
+                          </a>
+                          <a href="#" class="table-link">
+                            <span class="fa-stack">
+                              <i class="fa fa-square fa-stack-2x"></i>
+                              <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                            </span>
+                          </a>
+                          <a href="#" class="table-link danger">
+                            <span class="fa-stack">
+                              <i class="fa fa-square fa-stack-2x"></i>
+                              <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                            </span>
+                          </a>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>

@@ -48,7 +48,7 @@ class SchedulesController < ApplicationController
   def update
     respond_to do |format|
       if @schedule.update(schedule_params)
-        format.html { redirect_to @schedule, notice: 'Schedule was successfully updated.' }
+        format.html { redirect_to @schedule }
         format.json { render :show, status: :ok, location: @schedule }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class SchedulesController < ApplicationController
   def destroy
     @schedule.destroy
     respond_to do |format|
-      format.html { redirect_to trips_path, notice: 'Schedule was successfully destroyed.' }
+      format.html { redirect_to trips_path }
       format.json { head :no_content }
     end
   end
