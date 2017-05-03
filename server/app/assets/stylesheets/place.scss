@@ -23,20 +23,23 @@
   border: none;
 }
 
+.dropdown-google {
+  float: right;
+  border-radius: 1em;
+  margin: 1.5em;
+  padding-left: 1em;
+  line-height: 2em;
+}
+
 .searchPlace {
   border: none;
   border-radius: 1em;
-  margin: 1.5em 1em;
+  margin: 1.5em 0em;
   width: 80%;
   background-color: #bfbfbf;
   line-height: 2em;
   padding-left: 1em;
   color: #000000;
-}
-.autocomplete-container{
-  width: 80%;
-  background-color: #555555;
-  border-radius: 1em;
 }
 
 .right {

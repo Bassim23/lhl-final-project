@@ -4,13 +4,21 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'source-map',
   entry: [
-    'webpack-dev-server/client?http://localhost:1234', './src/index.jsx'
+    './src/index.jsx'
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: '../server/public/assets/',
     filename: 'bundle.js',
-    publicPath: '/build/'
+    publicPath: '../server/public/assets/'
   },
+  // entry: [
+  //   'webpack-dev-server/client?http://localhost:3001', './src/index.jsx'
+  // ],
+  // output: {
+  //   path: path.join(__dirname, 'dist'),
+  //   filename: 'bundle.js',
+  //   publicPath: '/build/'
+  // },
   module: {
     rules: [
       {

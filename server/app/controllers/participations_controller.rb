@@ -4,10 +4,8 @@ class ParticipationsController < ApplicationController
   # GET /participations
   # GET /participations.json
   def index
-
-
-    #select all users (joining participation table on user id) where (schedule id = user(params id).trips.schedule.id )
-
+    @participations = User.includes(trips: [:schedules, schedules: [:participations, participations: [:user]]]).find(params[:user_id])
+    @participation = User.left_outer_joins(trips: [:schedules]).joins(participations: [:user]).find(params[:user_id])
   end
 
   # GET /participations/1
@@ -36,15 +34,8 @@ class ParticipationsController < ApplicationController
   # PATCH/PUT /participations/1
   # PATCH/PUT /participations/1.json
   def update
-    respond_to do |format|
-      if @participation.update(participation_params)
-        format.html { redirect_to @participation, notice: 'Participation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @participation }
-      else
-        format.html { render :edit }
-        format.json { render json: @participation.errors, status: :unprocessable_entity }
-      end
-    end
+    @participation = Participation.find(params[:id])
+    @participation.update( status: params[:status])
   end
 
   # DELETE /participations/1

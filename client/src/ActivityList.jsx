@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Place from './Place.jsx';
-import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
+import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
+
 
 // const API_KEY = 'AIzaSyC3yCuJtptjR5ToKEdsPqHvPnlQXcLMTRk';
 // const API_KEY = 'AIzaSyA7GEO6ZSaCShhm7K1Jg5PG-KtUA3StVpQ'; // David's
@@ -16,17 +18,19 @@ class ActivityList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      category: '',
       address: '',
       places: []
     };
+    this.handleCategory = this.handleCategory.bind(this);
     this.onChange = (address) => this.setState({ address });
     this.loadData = this.loadData.bind(this);
   }
 
-  loadData(address) {
+  loadData(address, category) {
     address = address.split(' ').join('');
     const GOOGLE_PLACE_URL = `https://crossorigin.me/https://maps.googleapis.com/maps/api/place/textsearch/json?`;
-    const QUERY = `query=poi+in+${address}`;
+    const QUERY = `query=${category}+in+${address}`;
 
     const COMPLETE_URL = `${GOOGLE_PLACE_URL}${QUERY}&key=${API_KEY}`
 
@@ -52,13 +56,16 @@ class ActivityList extends Component {
     this.setState({ places: placeList });
   }
 
+  handleCategory = (event) => {
+    this.setState({ category: event });
+  }
+
   handleFormSubmit = (event) => {
     event.preventDefault();
     if (this.state.address){
       geocodeByAddress(this.state.address,  (err, latLng) => {
         if (err) { console.log('Oh no!', err) };
-        console.log('Address ', this.state.address);
-        this.loadData(this.state.address);
+        this.loadData(this.state.address, this.state.category);
       });
     } else {
       console.log('no place');
@@ -103,9 +110,30 @@ class ActivityList extends Component {
 
     return (
       <div id="item-list" className="col-md-8 right">
-        <form onBlur={this.handleFormSubmit}>
-          <PlacesAutocomplete inputProps={inputProps} classNames={cssClasses} />
-        </form>
+        <div className="row">
+          <div className="col-md-2">
+            <DropdownButton title={this.state.category} id='dropdown-basic' className="dropdown-google btn btn-warning" onSelect={this.handleCategory}>
+              <MenuItem eventKey="amusement_park">Amusement Park</MenuItem>
+              <MenuItem eventKey="aquarium">Aquarium</MenuItem>
+              <MenuItem eventKey="art_gallery">Art Gallery</MenuItem>
+              <MenuItem eventKey="casino">Casino</MenuItem>
+              <MenuItem eventKey="park">Park</MenuItem>
+              <MenuItem eventKey="parking">Parking</MenuItem>
+              <MenuItem eventKey="museum">Museum</MenuItem>
+              <MenuItem eventKey="department_store">Department Store</MenuItem>
+              <MenuItem eventKey="shopping_mall">Shopping Mall</MenuItem>
+              <MenuItem eventKey="convenience_store">Convenience Store</MenuItem>
+              <MenuItem eventKey="restaurant">Restaurant</MenuItem>
+              <MenuItem eventKey="zoo">Zoo</MenuItem>
+            </DropdownButton>
+          </div>
+          <div className="col-md-8">
+            <form onBlur={this.handleFormSubmit}>
+              <PlacesAutocomplete inputProps={inputProps} classNames={cssClasses} />
+            </form>
+          </div>
+        </div>
+
         <ul id='external-events' className="event-list">
           <h1>Places</h1>
           {this.state.places.map((e) => {

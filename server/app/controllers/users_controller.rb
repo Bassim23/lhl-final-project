@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create
     new_user = create_user
     if new_user
-      session[:user_id] = new_user.id
+      cookies.encrypted[:user_id] = new_user.id
       redirect_to root_path
     else
       redirect_to :back

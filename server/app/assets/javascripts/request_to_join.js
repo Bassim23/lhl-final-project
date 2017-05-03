@@ -5,7 +5,7 @@ $(document).on('turbolinks:load', function() {
       method: "POST",
       url: "/schedules/" + $scheduleID + "/participations"
     }).done(function(schedules) {
-      $('#request-to-join-button').attr("disabled", true).text('Pending');
+      $('#request-to-join-button').attr("disabled", true).text('Pending').removeClass('btn-success').addClass('btn-info');
     })
   })
 })

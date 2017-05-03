@@ -7,11 +7,6 @@
                 <h4 class="modal-title">Login</h4>
             </div>
             <div class="modal-body">
-              <% if flash[:notice] %>
-                <div>
-                  <%= flash[:notice] %>
-                </div>
-              <% end %>
               <%= form_for :session, url: login_path do |f| %>
                 Email: <%= f.email_field :email, class: 'form-control' %>
                 Password: <%= f.password_field :password, class: 'form-control' %>

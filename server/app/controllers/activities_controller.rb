@@ -10,7 +10,8 @@ class ActivitiesController < ApplicationController
   # GET /activities/1
   # GET /activities/1.json
   def show
-    @activity = Activity.find(params[:id])
+    @activities = Activity.where('schedule_id': params[:id])
+    render json: @activities.as_json
   end
 
   # GET /activities/new

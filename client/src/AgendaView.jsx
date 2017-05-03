@@ -8,29 +8,31 @@ class AgendaView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: {},
+      title: '',
+      date: '',
+      schedule_id: 0,
+      events: [],
     };
 
+
     this.handleSave = this.handleSave.bind(this);
+    this.renderCalendar = this.renderCalendar.bind(this);
   }
 
-  componentDidMount() {
+  renderCalendar(){
     const { fullCalendar } = this;
 
     $(fullCalendar).fullCalendar({
-      customButtons: {
-        text: 'Save'
-      },
       defaultView: 'agendaDay',
       header: {
         left: 'title',
-        center: 'customButtons',
+        right: ''
       },
       height: 'auto',
       timezone: 'local',
       allDaySlot: false,
       allDayText: false,
-      defaultDate: '2017-4-24',
+      defaultDate: this.state.date,
       editable: true,
       droppable: true,
       events: this.state.events,
@@ -59,13 +61,51 @@ class AgendaView extends Component {
         	$('#calendar').fullCalendar('removeEvents', event._id);
           delete self.state.events[event.id];
           $.ajax({
-            url: '/trips/1/schedules/1/activities/' + event.id,
+            url: '/activities/' + event.id,
             type: 'DELETE',
             success: function(data) {
             }
           });
         });
       }.bind(this),
+    });
+  }
+  componentDidMount() {
+    const schedule_id = $('#react-root').data('id');
+
+     $.ajax({
+      url: '/activities/' + schedule_id,
+      dataType: 'json',
+      type: 'GET',
+      success: function(data) {
+        const eventList = [];
+        
+        data.forEach((o) =>{
+          let eventObject = {
+            title: o.description,
+            description: o.description,
+            start: moment(o.start_time).add(-7, 'HH').format("hh:mm:ss"),
+            end: moment(o.end_time).add(-7, 'HH').format("hh:mm:ss")
+          };
+          eventList.push(eventObject);
+        });
+        
+        this.setState({ schedule_id });
+        this.setState({ events: eventList });
+        console.log(this.state.events);
+      }.bind(this)
+    });
+
+    $.ajax({
+      url: '/schedules/' + schedule_id + '.json',
+      dataType: 'json',
+      type: 'GET',
+      success: function(data) {
+        this.setState({ title: data.destination_name });
+        this.setState({ date: data.date });
+        this.renderCalendar();
+        
+      }.bind(this)
     });
   }
 
@@ -76,7 +116,7 @@ class AgendaView extends Component {
     }
     console.log(arrayOfEvents);
     $.ajax({
-      url: '/trips/1/schedules/1/activities',
+      url: '/schedules/' + this.state.schedule_id + '/activities',
       dataType: 'json',
       type: 'POST',
       data: { events: arrayOfEvents },
@@ -89,7 +129,11 @@ class AgendaView extends Component {
     return (
       <div id="agendaDay-view" className="col-md-4 left">
         <div id="calendar" ref={(calendar) => { this.fullCalendar = calendar; }} />
-        <button className="btn btn-primary schedule-save" onClick={this.handleSave}><i className="fa fa-floppy-o"></i></button>
+          <div className="schedule-save">
+            <a href={"/schedules/" + this.state.schedule_id }><button className="btn btn-warning"><i className="fa fa-arrow-left"></i></button></a>
+            <button className="btn btn-primary" onClick={this.handleSave}><i className="fa fa-floppy-o"></i></button>
+
+          </div>
       </div>
     );
   }
