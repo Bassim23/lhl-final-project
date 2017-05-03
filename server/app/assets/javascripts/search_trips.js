@@ -32,7 +32,7 @@ function createTripsElement(trips, image) {
               </a>
             </div>
             <div class="card-block">
-              <h4 class="card-title">${trips.destination}</h4>
+              <h4 class="card-title">${trips.destination_name}</h4>
               <div class="card-event">${trips.trip.name}</div>
               <div class="card-host"> Host: ${trips.trip.user.first_name} ${trips.trip.user.last_name} </div>
               <div class="card-date">${trips.date}</div>
