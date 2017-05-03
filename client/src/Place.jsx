@@ -21,9 +21,9 @@ class Place extends Component {
           <img src={"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + this.props.place.photos[0].photo_reference + "&key=" + API_KEY} />
           <div className="info">
             <h3 className="title">{this.props.place.name}
-              <h3 className="pull-right">{this.props.place.rating} &nbsp; <i className="fa fa-star"></i></h3>
             </h3>
           </div>
+          <h4 className="pull-right">{this.props.place.rating} &nbsp; <i className="fa fa-star"></i></h4>
         </li>
       );
     } else {
@@ -37,9 +37,9 @@ class Place extends Component {
           <img src={this.props.place.icon} />
           <div className="info">
             <h3 className="title">{this.props.place.name}
-              <h3 className="pull-right">{this.props.place.rating} &nbsp; <i className="fa fa-star"></i></h3>
             </h3>
           </div>
+          <h4 className="pull-right">{this.props.place.rating} &nbsp; <i className="fa fa-star"></i></h4>
         </li>
       );
     }

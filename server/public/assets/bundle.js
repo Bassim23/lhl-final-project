@@ -43593,10 +43593,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// const API_KEY = 'AIzaSyC3yCuJtptjR5ToKEdsPqHvPnlQXcLMTRk';
+var API_KEY = 'AIzaSyC3yCuJtptjR5ToKEdsPqHvPnlQXcLMTRk';
 // const API_KEY = 'AIzaSyA7GEO6ZSaCShhm7K1Jg5PG-KtUA3StVpQ'; // David's
 // const API_KEY = 'AIzaSyBdWUYZB5naeCvhryosoTLnqATSH0NkR9c'; // Ben's
-var API_KEY = 'AIzaSyDGzXs4DJ0MwXv8WYsAGNS-xBoOLNIo91U'; // Ben's second
+// const API_KEY = 'AIzaSyDGzXs4DJ0MwXv8WYsAGNS-xBoOLNIo91U'; // Ben's second
 // const API_KEY = 'AIzaSyCSTQQCsTp3LuWHmPaZYWDk_LxgkHcjsX4'; // Ben's third
 
 var backgroundColor = ['#1ABC9C', '#2ECC71', '#3498DB', '#9B59B6', '#34495E'];
@@ -43679,7 +43679,6 @@ var ActivityList = function (_Component) {
           title: $.trim($(this).text()),
           backgroundColor: $(this).data("color"),
           google_id: $(this).data("id"),
-          // url: $(this).data("url"),
           stick: true
         });
 
@@ -43910,6 +43909,9 @@ var AgendaView = function (_Component) {
           };
         }.bind(this),
         eventResize: function (event, delta) {
+          console.log(event);
+          console.log(event.end);
+          console.log(event.end._d);
           this.state.events[event.id].end = event.end._d;
         }.bind(this),
         eventDrop: function (event) {
@@ -43937,36 +43939,37 @@ var AgendaView = function (_Component) {
       var schedule_id = $('#react-root').data('id');
 
       $.ajax({
-        url: '/activities/' + schedule_id,
-        dataType: 'json',
-        type: 'GET',
-        success: function (data) {
-          var eventList = [];
-
-          data.forEach(function (o) {
-            var eventObject = {
-              title: o.description,
-              description: o.description,
-              start: (0, _moment2.default)(o.start_time).add(-7, 'HH').format("hh:mm:ss"),
-              end: (0, _moment2.default)(o.end_time).add(-7, 'HH').format("hh:mm:ss")
-            };
-            eventList.push(eventObject);
-          });
-
-          this.setState({ schedule_id: schedule_id });
-          this.setState({ events: eventList });
-          console.log(this.state.events);
-        }.bind(this)
-      });
-
-      $.ajax({
         url: '/schedules/' + schedule_id + '.json',
         dataType: 'json',
         type: 'GET',
         success: function (data) {
           this.setState({ title: data.destination_name });
           this.setState({ date: data.date });
-          this.renderCalendar();
+          $.ajax({
+            url: '/activities/' + schedule_id,
+            dataType: 'json',
+            type: 'GET',
+            success: function (data) {
+              var _this2 = this;
+
+              var eventList = [];
+              data.forEach(function (o) {
+                var start = new Date(_this2.state.date + ' ' + (0, _moment2.default)(o.start_time).format("hh:mm:ss"));
+                var end = new Date(_this2.state.date + ' ' + (0, _moment2.default)(o.end_time).format("hh:mm:ss"));
+                var eventObject = {
+                  title: o.name,
+                  id: o.uuid,
+                  start: _this2.state.date + ' ' + (0, _moment2.default)(o.start_time).format("hh:mm:ss"),
+                  end: _this2.state.date + ' ' + (0, _moment2.default)(o.end_time).format("hh:mm:ss")
+                };
+                eventList.push(eventObject);
+              });
+
+              this.setState({ schedule_id: schedule_id });
+              this.setState({ events: eventList });
+              this.renderCalendar();
+            }.bind(this)
+          });
         }.bind(this)
       });
     }
@@ -43977,7 +43980,6 @@ var AgendaView = function (_Component) {
       for (var i in this.state.events) {
         arrayOfEvents.push(this.state.events[i]);
       }
-      console.log(arrayOfEvents);
       $.ajax({
         url: '/schedules/' + this.state.schedule_id + '/activities',
         dataType: 'json',
@@ -43989,13 +43991,13 @@ var AgendaView = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _react2.default.createElement(
         'div',
         { id: 'agendaDay-view', className: 'col-md-4 left' },
         _react2.default.createElement('div', { id: 'calendar', ref: function ref(calendar) {
-            _this2.fullCalendar = calendar;
+            _this3.fullCalendar = calendar;
           } }),
         _react2.default.createElement(
           'div',
@@ -44202,15 +44204,15 @@ var Place = function (_Component) {
             _react2.default.createElement(
               'h3',
               { className: 'title' },
-              this.props.place.name,
-              _react2.default.createElement(
-                'h3',
-                { className: 'pull-right' },
-                this.props.place.rating,
-                ' \xA0 ',
-                _react2.default.createElement('i', { className: 'fa fa-star' })
-              )
+              this.props.place.name
             )
+          ),
+          _react2.default.createElement(
+            'h4',
+            { className: 'pull-right' },
+            this.props.place.rating,
+            ' \xA0 ',
+            _react2.default.createElement('i', { className: 'fa fa-star' })
           )
         );
       } else {
@@ -44229,15 +44231,15 @@ var Place = function (_Component) {
             _react2.default.createElement(
               'h3',
               { className: 'title' },
-              this.props.place.name,
-              _react2.default.createElement(
-                'h3',
-                { className: 'pull-right' },
-                this.props.place.rating,
-                ' \xA0 ',
-                _react2.default.createElement('i', { className: 'fa fa-star' })
-              )
+              this.props.place.name
             )
+          ),
+          _react2.default.createElement(
+            'h4',
+            { className: 'pull-right' },
+            this.props.place.rating,
+            ' \xA0 ',
+            _react2.default.createElement('i', { className: 'fa fa-star' })
           )
         );
       }
@@ -45218,7 +45220,7 @@ exports = module.exports = __webpack_require__(374)();
 
 
 // module
-exports.push([module.i, "body {\n  background-color: #f2f2f2;\n  font-family: Lato;\n  font-weight: 300;\n  font-size: 16px;\n  color: #AAA;\n  -webkit-font-smoothing: antialiased;\n  -webkit-overflow-scrolling: touch; }\n\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: Raleway;\n  font-weight: 300;\n  color: #fff; }\n\np {\n  line-height: 28px;\n  margin-bottom: 25px;\n  font-size: 18px; }\n\na {\n  color: #16a085;\n  word-wrap: break-word;\n  -webkit-transition: color .1s ease-in, background .1s ease-in;\n  -moz-transition: color .1s ease-in, background .1s ease-in;\n  -ms-transition: color .1s ease-in, background .1s ease-in;\n  -o-transition: color .1s ease-in, background .1s ease-in;\n  transition: color .1s ease-in, background .1s ease-in; }\n\na:hover,\na:focus {\n  color: #7b7b7b;\n  text-decoration: none;\n  outline: 0; }\n\na:before,\na:after {\n  -webkit-transition: color .1s ease-in, background .1s ease-in;\n  -moz-transition: color .1s ease-in, background .1s ease-in;\n  -ms-transition: color .1s ease-in, background .1s ease-in;\n  -o-transition: color .1s ease-in, background .1s ease-in;\n  transition: color .1s ease-in, background .1s ease-in; }\n\nhr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  margin: 1em 0;\n  padding: 0; }\n\n.btn {\n  border-radius: 0; }\n\n.btn-green {\n  color: #fff;\n  background-color: #1abc9c;\n  border-color: #1abc9c;\n  font-weight: 300; }\n\n.btn-green:hover,\n.btn-green:focus,\n.btn-green:active,\n.btn-green.active,\n.open .dropdown-toggle.btn-green {\n  color: #fff;\n  background-color: #16a085;\n  border-color: #16a085;\n  font-weight: 300; }\n\n.tm {\n  font-size: 14px;\n  line-height: 20px; }\n\n.menu {\n  position: fixed;\n  right: -200px;\n  width: 260px;\n  height: 100%;\n  top: 0;\n  z-index: 10;\n  text-align: left; }\n\n.menu.menu-open {\n  right: 0; }\n\n.menu-wrap {\n  position: absolute;\n  top: 0;\n  left: 60px;\n  background: #1a1a1a;\n  width: 200px;\n  height: 100%; }\n\n.menu h1.logo a {\n  font-family: Raleway, Helvetica, Arial, sans-serif;\n  font-size: 16px;\n  font-weight: 800;\n  letter-spacing: .15em;\n  line-height: 40px;\n  text-transform: uppercase;\n  color: #fff;\n  margin-top: 20px; }\n\n.menu h1.logo a:hover {\n  color: #1abc9c; }\n\n.menu img.logo {\n  margin: 20px 0;\n  max-width: 160px; }\n\n.menu a {\n  margin-left: 20px;\n  color: gray;\n  display: block;\n  font-size: 12px;\n  font-weight: 700;\n  line-height: 40px;\n  letter-spacing: .1em;\n  text-transform: uppercase; }\n\n.menu a:hover {\n  color: #fff; }\n\n.menu a:active {\n  color: #fff; }\n\n.menu a > i {\n  float: left;\n  display: inline-block;\n  vertical-align: middle;\n  text-align: left;\n  width: 25px;\n  font-size: 14px;\n  line-height: 40px;\n  margin: 25px 2px; }\n\n.menu-close {\n  cursor: pointer;\n  display: block;\n  position: absolute;\n  font-size: 14px;\n  color: gray;\n  width: 40px;\n  height: 40px;\n  line-height: 40px;\n  top: 20px;\n  right: 5px;\n  -webkit-transition: all .1s ease-in-out;\n  -moz-transition: all .1s ease-in-out;\n  -ms-transition: all .1s ease-in-out;\n  -o-transition: all .1s ease-in-out;\n  transition: all .1s ease-in-out; }\n\n.menu-close:hover {\n  color: #fff;\n  -webkit-transition: all .1s ease-in-out;\n  -moz-transition: all .1s ease-in-out;\n  -ms-transition: all .1s ease-in-out;\n  -o-transition: all .1s ease-in-out;\n  transition: all .1s ease-in-out; }\n\n.body-push {\n  overflow-x: hidden;\n  position: relative;\n  left: 0; }\n\n.body-push-toright {\n  left: 200px; }\n\n.body-push-toleft {\n  left: -200px; }\n\n.menu,\n.body-push {\n  -webkit-transition: all .3s ease;\n  -moz-transition: all .3s ease;\n  -ms-transition: all .3s ease;\n  -o-transition: all .3s ease;\n  transition: all .3s ease; }\n\n#menuToggle {\n  position: absolute;\n  top: 20px;\n  left: 0;\n  z-index: 11;\n  display: block;\n  text-align: center;\n  font-size: 14px;\n  color: #fff;\n  width: 40px;\n  height: 40px;\n  line-height: 40px;\n  cursor: pointer;\n  background: rgba(0, 0, 0, 0.25);\n  -webkit-transition: all .1s ease-in-out;\n  -moz-transition: all .1s ease-in-out;\n  -ms-transition: all .1s ease-in-out;\n  -o-transition: all .1s ease-in-out;\n  transition: all .1s ease-in-out; }\n\n#menuToggle:hover {\n  color: #fff;\n  background: rgba(0, 0, 0, 0.2);\n  -webkit-transition: all .1s ease-in-out;\n  -moz-transition: all .1s ease-in-out;\n  -ms-transition: all .1s ease-in-out;\n  -o-transition: all .1s ease-in-out;\n  transition: all .1s ease-in-out; }\n\n.left {\n  background-color: white;\n  height: 100vh;\n  overflow-y: scroll;\n  position: relative; }\n  .left .schedule-save {\n    margin: 0;\n    padding: 0;\n    position: fixed;\n    bottom: 0;\n    right: 0;\n    z-index: 999; }\n    .left .schedule-save button {\n      font-size: 2em;\n      border: none; }\n  .left #calendar {\n    padding: 1.5em; }\n    .left #calendar h2 {\n      color: #2F2F2F; }\n    .left #calendar .closeon {\n      float: right; }\n\n.event-list {\n  list-style: none;\n  font-family: 'Lato', sans-serif;\n  margin: 0px;\n  padding: 0px; }\n\n.event-list > li {\n  padding: 0px;\n  margin: 0px 0px 20px; }\n\n.event-list > li > img {\n  width: 100%; }\n\n.event-list > li > .info {\n  padding-top: 1em;\n  text-align: center; }\n\n.fc-event {\n  margin: 1em 1em;\n  padding: 1em 1em;\n  border: none; }\n\n.dropdown-google {\n  float: right;\n  border-radius: 1em;\n  margin: 1.5em;\n  padding-left: 1em;\n  line-height: 2em; }\n\n.searchPlace {\n  border: none;\n  border-radius: 1em;\n  margin: 1.5em 0em;\n  width: 80%;\n  background-color: #bfbfbf;\n  line-height: 2em;\n  padding-left: 1em;\n  color: #000000; }\n\n.autocomplete-container {\n  width: 80%;\n  border-radius: 1em; }\n\n.right {\n  background: #2f2f2f;\n  height: 100vh;\n  overflow-y: scroll;\n  overflow-x: hidden h4;\n    overflow-x-color: #fff;\n    overflow-x-margin-left: 15px;\n    overflow-x-margin-top: 15px; }\n  .right p {\n    color: #fff;\n    font-size: 15px;\n    line-height: 18px;\n    margin-left: 15px; }\n  .right .container {\n    width: 100%; }\n  .right .col-lg-8 {\n    margin: 0;\n    padding: 0; }\n\n@media (min-width: 768px) {\n  .event-list > li {\n    position: relative;\n    display: block;\n    width: 100%;\n    height: 120px;\n    padding: 0px; }\n  .event-list > li > img {\n    display: inline-block; }\n  .event-list > li > img {\n    width: 120px;\n    float: left; }\n  .event-list > li > .info {\n    overflow: hidden; }\n  .event-list > li > time,\n  .event-list > li > img {\n    width: 120px;\n    height: 120px;\n    padding: 0px;\n    margin: 0px; }\n  .event-list > li > .info {\n    position: relative;\n    height: 120px;\n    text-align: left;\n    padding-right: 40px; }\n  .event-list > li > .info > .title,\n  .event-list > li > .info > .desc {\n    padding: 0px 10px; }\n  .event-list > li > .info > ul {\n    position: absolute;\n    left: 0px;\n    bottom: 0px; } }\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 

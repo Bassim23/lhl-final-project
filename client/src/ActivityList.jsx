@@ -4,10 +4,10 @@ import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 
 
-// const API_KEY = 'AIzaSyC3yCuJtptjR5ToKEdsPqHvPnlQXcLMTRk';
+const API_KEY = 'AIzaSyC3yCuJtptjR5ToKEdsPqHvPnlQXcLMTRk';
 // const API_KEY = 'AIzaSyA7GEO6ZSaCShhm7K1Jg5PG-KtUA3StVpQ'; // David's
 // const API_KEY = 'AIzaSyBdWUYZB5naeCvhryosoTLnqATSH0NkR9c'; // Ben's
-const API_KEY = 'AIzaSyDGzXs4DJ0MwXv8WYsAGNS-xBoOLNIo91U'; // Ben's second
+// const API_KEY = 'AIzaSyDGzXs4DJ0MwXv8WYsAGNS-xBoOLNIo91U'; // Ben's second
 // const API_KEY = 'AIzaSyCSTQQCsTp3LuWHmPaZYWDk_LxgkHcjsX4'; // Ben's third
 
 const backgroundColor = ['#1ABC9C', '#2ECC71', '#3498DB', '#9B59B6', '#34495E'];
@@ -78,7 +78,6 @@ class ActivityList extends Component {
         title: $.trim($(this).text()),
         backgroundColor: $(this).data("color"),
         google_id: $(this).data("id"),
-        // url: $(this).data("url"),
         stick: true
       });
 

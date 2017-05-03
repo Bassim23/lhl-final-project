@@ -137,9 +137,10 @@
   var eventsArray = [];
   <%@schedule.activities.each do |activity|%>
     var eventObject = {
-      title: "<%=activity.name%>" + "\n" + "<%=activity.description%>",
-      start: "<%=@schedule.date%>" + " " + "<%=(activity.start_time - 25200).to_s(:time)%>",
-      end: "<%=@schedule.date%>" + " " + "<%=(activity.end_time - 25200).to_s(:time)%>"
+      title: "<%=activity.name%>",
+      description: "<%=activity.description%>",
+      start: "<%=@schedule.date%>" + " " + "<%=(activity.start_time).to_s(:time)%>",
+      end: "<%=@schedule.date%>" + " " + "<%=(activity.end_time).to_s(:time)%>"
     }
     eventsArray.push(eventObject);
   <%end%>

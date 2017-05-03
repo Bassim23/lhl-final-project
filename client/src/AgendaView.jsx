@@ -48,6 +48,9 @@ class AgendaView extends Component {
         };
       }.bind(this),
       eventResize: function(event, delta) {
+        console.log(event);
+        console.log(event.end);
+        console.log(event.end._d);
         this.state.events[event.id].end = event.end._d;
       }.bind(this),
       eventDrop: function(event) {
@@ -73,28 +76,7 @@ class AgendaView extends Component {
   componentDidMount() {
     const schedule_id = $('#react-root').data('id');
 
-     $.ajax({
-      url: '/activities/' + schedule_id,
-      dataType: 'json',
-      type: 'GET',
-      success: function(data) {
-        const eventList = [];
-        
-        data.forEach((o) =>{
-          let eventObject = {
-            title: o.description,
-            description: o.description,
-            start: moment(o.start_time).add(-7, 'HH').format("hh:mm:ss"),
-            end: moment(o.end_time).add(-7, 'HH').format("hh:mm:ss")
-          };
-          eventList.push(eventObject);
-        });
-        
-        this.setState({ schedule_id });
-        this.setState({ events: eventList });
-        console.log(this.state.events);
-      }.bind(this)
-    });
+
 
     $.ajax({
       url: '/schedules/' + schedule_id + '.json',
@@ -103,10 +85,33 @@ class AgendaView extends Component {
       success: function(data) {
         this.setState({ title: data.destination_name });
         this.setState({ date: data.date });
-        this.renderCalendar();
+        $.ajax({
+          url: '/activities/' + schedule_id,
+          dataType: 'json',
+          type: 'GET',
+          success: function(data) {
+            const eventList = [];
+            data.forEach((o) =>{
+              let start = new Date(this.state.date  + ' ' + moment(o.start_time).format("hh:mm:ss"));
+              let end = new Date(this.state.date  + ' ' + moment(o.end_time).format("hh:mm:ss"));
+              let eventObject = {
+                title: o.name,
+                id: o.uuid,
+                start: this.state.date  + ' ' + moment(o.start_time).format("hh:mm:ss"),
+                end: this.state.date  + ' ' + moment(o.end_time).format("hh:mm:ss")
+              };
+              eventList.push(eventObject);
+            });
+            
+            this.setState({ schedule_id });
+            this.setState({ events: eventList });
+            this.renderCalendar();
+          }.bind(this)
+        });
         
       }.bind(this)
     });
+
   }
 
   handleSave() {
@@ -114,7 +119,6 @@ class AgendaView extends Component {
     for (let i in this.state.events){
       arrayOfEvents.push(this.state.events[i]);
     }
-    console.log(arrayOfEvents);
     $.ajax({
       url: '/schedules/' + this.state.schedule_id + '/activities',
       dataType: 'json',
