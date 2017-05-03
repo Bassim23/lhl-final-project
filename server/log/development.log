@@ -41624,3 +41624,79 @@ Processing by SearchController#show as */*
 Completed 200 OK in 26ms (Views: 1.4ms | ActiveRecord: 1.7ms)
 
 
+Started GET "/" for 10.0.2.2 at 2017-05-03 00:15:35 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by LandingController#index as HTML
+  Rendering landing/index.html.erb within layouts/application
+  Rendered sessions/_new.html.erb (1.7ms)
+  Rendered users/_new.html.erb (15.6ms)
+  Rendered landing/index.html.erb within layouts/application (80.1ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (3.8ms)
+Completed 200 OK in 2394ms (Views: 2364.6ms | ActiveRecord: 0.4ms)
+
+
+Finished "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-03 00:15:37 +0000
+NotificationChannel stopped streaming from notification_channel
+NotificationChannel stopped streaming from notification_channel8
+Started GET "/cable" for 10.0.2.2 at 2017-05-03 00:15:39 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-03 00:15:39 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+Registered connection (Z2lkOi8vbGhsLWZpbmFsLXByb2plY3QvVXNlci84)
+NotificationChannel is streaming from notification_channel
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel8
+Started GET "/search/las" for 10.0.2.2 at 2017-05-03 00:15:42 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SearchController#show as */*
+  Parameters: {"id"=>"las"}
+  [1m[36mSchedule Load (0.7ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE ( (destination_name) ILIKE '%las%' )[0m
+  [1m[36mTrip Load (0.7ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTrip Load (0.6ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 21ms (Views: 1.6ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/" for 10.0.2.2 at 2017-05-03 00:24:59 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by LandingController#index as HTML
+  Rendering landing/index.html.erb within layouts/application
+  Rendered sessions/_new.html.erb (1.5ms)
+  Rendered users/_new.html.erb (4.4ms)
+  Rendered landing/index.html.erb within layouts/application (55.3ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (3.5ms)
+Completed 200 OK in 481ms (Views: 453.2ms | ActiveRecord: 0.4ms)
+
+
+Finished "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-03 00:25:00 +0000
+NotificationChannel stopped streaming from notification_channel
+NotificationChannel stopped streaming from notification_channel2
+Started GET "/cable" for 10.0.2.2 at 2017-05-03 00:25:01 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Started GET "/cable/" [WebSocket] for 10.0.2.2 at 2017-05-03 00:25:01 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Registered connection (Z2lkOi8vbGhsLWZpbmFsLXByb2plY3QvVXNlci8y)
+NotificationChannel is streaming from notification_channel
+NotificationChannel is transmitting the subscription confirmation
+NotificationChannel is streaming from notification_channel2
+Started GET "/search/las" for 10.0.2.2 at 2017-05-03 00:25:15 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SearchController#show as */*
+  Parameters: {"id"=>"las"}
+  [1m[36mSchedule Load (0.6ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules" WHERE ( (destination_name) ILIKE '%las%' )[0m
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTrip Load (0.4ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "trips".* FROM "trips" WHERE "trips"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 19ms (Views: 1.6ms | ActiveRecord: 1.9ms)
+
+
