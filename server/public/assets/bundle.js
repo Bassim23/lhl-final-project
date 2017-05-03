@@ -43879,7 +43879,7 @@ var AgendaView = function (_Component) {
 
   _createClass(AgendaView, [{
     key: 'renderCalendar',
-    value: function renderCalendar() {
+    value: function renderCalendar(events) {
       var fullCalendar = this.fullCalendar;
 
 
@@ -43897,7 +43897,7 @@ var AgendaView = function (_Component) {
         defaultDate: this.state.date,
         editable: true,
         droppable: true,
-        events: this.state.events,
+        events: events,
         eventReceive: function (event) {
           event.id = (0, _v2.default)();
           this.state.events[event.id] = {
@@ -43910,9 +43910,6 @@ var AgendaView = function (_Component) {
           };
         }.bind(this),
         eventResize: function (event, delta) {
-          console.log(event);
-          console.log(event.end);
-          console.log(event.end._d);
           this.state.events[event.id].end = event.end._d;
         }.bind(this),
         eventDrop: function (event) {
@@ -43954,9 +43951,15 @@ var AgendaView = function (_Component) {
               var _this2 = this;
 
               var eventList = [];
+
               data.forEach(function (o) {
-                var start = new Date(_this2.state.date + ' ' + (0, _moment2.default)(o.start_time).format("hh:mm:ss"));
-                var end = new Date(_this2.state.date + ' ' + (0, _moment2.default)(o.end_time).format("hh:mm:ss"));
+                _this2.state.events[o.uuid] = {
+                  id: o.uuid,
+                  name: event.title,
+                  start: _this2.state.date + ' ' + (0, _moment2.default)(o.start_time).format("hh:mm:ss"),
+                  end: _this2.state.date + ' ' + (0, _moment2.default)(o.end_time).format("hh:mm:ss")
+                };
+
                 var eventObject = {
                   title: o.name,
                   id: o.uuid,
@@ -43967,8 +43970,7 @@ var AgendaView = function (_Component) {
               });
 
               this.setState({ schedule_id: schedule_id });
-              this.setState({ events: eventList });
-              this.renderCalendar();
+              this.renderCalendar(eventList);
             }.bind(this)
           });
         }.bind(this)

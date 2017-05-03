@@ -19,7 +19,7 @@ class AgendaView extends Component {
     this.renderCalendar = this.renderCalendar.bind(this);
   }
 
-  renderCalendar(){
+  renderCalendar(events){
     const { fullCalendar } = this;
 
     $(fullCalendar).fullCalendar({
@@ -36,7 +36,7 @@ class AgendaView extends Component {
       defaultDate: this.state.date,
       editable: true,
       droppable: true,
-      events: this.state.events,
+      events: events,
       eventReceive: function(event) {
         event.id = uuidV1();
         this.state.events[event.id] = {
@@ -49,9 +49,6 @@ class AgendaView extends Component {
         };
       }.bind(this),
       eventResize: function(event, delta) {
-        console.log(event);
-        console.log(event.end);
-        console.log(event.end._d);
         this.state.events[event.id].end = event.end._d;
       }.bind(this),
       eventDrop: function(event) {
@@ -91,10 +88,16 @@ class AgendaView extends Component {
           dataType: 'json',
           type: 'GET',
           success: function(data) {
-            const eventList = [];
+            let eventList = [];
+            
             data.forEach((o) =>{
-              let start = new Date(this.state.date  + ' ' + moment(o.start_time).format("hh:mm:ss"));
-              let end = new Date(this.state.date  + ' ' + moment(o.end_time).format("hh:mm:ss"));
+              this.state.events[o.uuid] = {
+                id: o.uuid,
+                name: event.title,
+                start: this.state.date  + ' ' + moment(o.start_time).format("hh:mm:ss"),
+                end: this.state.date  + ' ' + moment(o.end_time).format("hh:mm:ss")
+              };
+              
               let eventObject = {
                 title: o.name,
                 id: o.uuid,
@@ -105,8 +108,7 @@ class AgendaView extends Component {
             });
             
             this.setState({ schedule_id });
-            this.setState({ events: eventList });
-            this.renderCalendar();
+            this.renderCalendar(eventList);
           }.bind(this)
         });
         
