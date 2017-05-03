@@ -43659,7 +43659,7 @@ var ActivityList = function (_Component) {
         success: function success(response) {
           response.results.forEach(function (e) {
             var place = {};
-            place.id = e.id;
+            place.id = e.place_id;
             place.rating = e.rating;
             place.name = e.name;
             place.types = e.types;
@@ -43900,6 +43900,7 @@ var AgendaView = function (_Component) {
         events: events,
         eventReceive: function (event) {
           event.id = (0, _v2.default)();
+          console.log(event.google_id);
           this.state.events[event.id] = {
             id: event.id,
             google_id: event.google_id,

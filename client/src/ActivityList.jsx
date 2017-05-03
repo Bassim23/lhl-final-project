@@ -43,7 +43,7 @@ class ActivityList extends Component {
         success : function(response) {
           response.results.forEach((e) => {
             let place = {};
-            place.id = e.id;
+            place.id = e.place_id;
             place.rating = e.rating;
             place.name = e.name;
             place.types = e.types;

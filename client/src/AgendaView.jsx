@@ -39,6 +39,7 @@ class AgendaView extends Component {
       events: events,
       eventReceive: function(event) {
         event.id = uuidV1();
+        console.log(event.google_id);
         this.state.events[event.id] = {
           id: event.id,
           google_id: event.google_id,
@@ -92,7 +93,7 @@ class AgendaView extends Component {
           type: 'GET',
           success: function(data) {
             let eventList = [];
-            
+
             data.forEach((o) =>{
               this.state.events[o.uuid] = {
                 id: o.uuid,
@@ -100,7 +101,7 @@ class AgendaView extends Component {
                 start: this.state.date  + ' ' + moment(o.start_time).format("HH:mm:ss"),
                 end: this.state.date  + ' ' + moment(o.end_time).format("HH:mm:ss")
               };
-              
+
               let eventObject = {
                 title: o.name,
                 id: o.uuid,
@@ -109,12 +110,12 @@ class AgendaView extends Component {
               };
               eventList.push(eventObject);
             });
-            
+
             this.setState({ schedule_id });
             this.renderCalendar(eventList);
           }.bind(this)
         });
-        
+
       }.bind(this)
     });
 
