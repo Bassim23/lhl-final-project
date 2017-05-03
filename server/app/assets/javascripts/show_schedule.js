@@ -72,7 +72,7 @@ $(document).on('turbolinks:load', function() {
       data: {
         name: $(this).closest('.trip-panel').find('.panel-title-text').text().trim(),
         summary: $(this).closest('.trip-panel').find('.panel-body').text().trim(),
-        kind: $('.panel-footer-kind-selector option:selected').text()
+        kind: $(this).closest('.trip-panel').find('.panel-footer-kind-selector option:selected').val()
       }
     }).done(function(data) {
       console.log('Edit was successful');
