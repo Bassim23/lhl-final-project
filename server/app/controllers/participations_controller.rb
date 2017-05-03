@@ -43,7 +43,7 @@ class ParticipationsController < ApplicationController
   def destroy
     @participation.destroy
     respond_to do |format|
-      format.html { redirect_to trips_path, notice: 'Participation was successfully destroyed.' }
+      format.html { redirect_to trips_path }
       format.json { head :no_content }
     end
   end
