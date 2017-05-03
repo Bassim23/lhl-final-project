@@ -160,7 +160,7 @@ Activity.destroy_all
 
 activity1 = schedule1.activities.create!({
   start_time: '16:00',
-  end_time: '17:00',
+  end_time: '18:00',
   uuid: 1,
   name:"Hiking",
   description:"Hiking a lot!!",
