@@ -186,8 +186,8 @@ activity3 = schedule1.activities.create!({
 })
 
 activity4 = schedule2.activities.create!({
-  start_time: '16:00',
-  end_time: '18:00',
+  start_time: '17:00',
+  end_time: '19:00',
   uuid: 4,
   name:"Bellagio",
   description:"Visit Bellagio for fun!",
@@ -195,8 +195,8 @@ activity4 = schedule2.activities.create!({
 })
 
 activity5 = schedule2.activities.create!({
-  start_time: '18:00',
-  end_time: '20:00',
+  start_time: '20:00',
+  end_time: '22:00',
   uuid: 5,
   name:"Strip",
   description:"Time to hit the strip!",
@@ -204,8 +204,8 @@ activity5 = schedule2.activities.create!({
 })
 
 activity6 = schedule2.activities.create!({
-  start_time: '20:00',
-  end_time: '22:00',
+  start_time: '24:00',
+  end_time: '02:00',
   uuid: 6,
   name:"Dinner",
   description:"Dinner time at a fancy place!",
