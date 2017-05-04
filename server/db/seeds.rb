@@ -279,11 +279,13 @@ participation1 = schedule2.participations.create!({
 })
 
 participation3 = schedule2.participations.create!({
-  user_id: user3.id
+  user_id: user3.id,
+  status: 'Accepted'
 })
 
 participation4 = schedule2.participations.create!({
-  user_id: user5.id
+  user_id: user5.id,
+  status: 'Accepted'
 })
 
 participation5 = schedule1.participations.create!({
