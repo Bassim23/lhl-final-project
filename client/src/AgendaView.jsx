@@ -39,7 +39,6 @@ class AgendaView extends Component {
       events: events,
       eventReceive: function(event) {
         event.id = uuidV1();
-        console.log(event.google_id);
         this.state.events[event.id] = {
           id: event.id,
           google_id: event.google_id,
@@ -48,16 +47,19 @@ class AgendaView extends Component {
           end: moment(event.start._d).add(2, 'hours')._d,
           color: event.backgroundColor
         };
+        console.log(event);
       }.bind(this),
       eventResize: function(event, delta) {
         this.state.events[event.id].start = event.start._d;
         this.state.events[event.id].end = event.end._d;
       }.bind(this),
       eventDrop: function(event) {
-        console.log(event);
         this.state.events[event.id].start = event.start._d;
-        this.state.events[event.id].end = event.end._d ? event.end._d : moment(event.start._d).add(2, 'hours')._d;
-        console.log(this.state.events[event.id]);
+        if (event.end){
+          this.state.events[event.id].end = event.end._d;
+        } else {
+          this.state.events[event.id].end = moment(event.start._d).add(2, 'hours')._d;
+        }
       }.bind(this),
       eventRender: function(event, element) {
         const self = this;

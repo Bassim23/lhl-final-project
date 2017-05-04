@@ -23,7 +23,6 @@ class Place extends Component {
             <h3 className="title">{this.props.place.name}
             </h3>
           </div>
-          <h4 className="pull-right">{this.props.place.rating} &nbsp; <i className="fa fa-star"></i></h4>
         </li>
       );
     } else {
@@ -32,14 +31,15 @@ class Place extends Component {
           data-id={this.props.place.id}
           data-url={PLACE_URL + this.props.place.id}
           data-color={this.props.color}
-          style={{ backgroundColor: this.props.color }}
+          style={{
+            backgroundColor: this.props.color
+             }}
           >
           <img src={this.props.place.icon} />
           <div className="info">
             <h3 className="title">{this.props.place.name}
             </h3>
           </div>
-          <h4 className="pull-right">{this.props.place.rating} &nbsp; <i className="fa fa-star"></i></h4>
         </li>
       );
     }

@@ -43599,7 +43599,7 @@ var API_KEY = 'AIzaSyC3yCuJtptjR5ToKEdsPqHvPnlQXcLMTRk';
 // const API_KEY = 'AIzaSyDGzXs4DJ0MwXv8WYsAGNS-xBoOLNIo91U'; // Ben's second
 // const API_KEY = 'AIzaSyCSTQQCsTp3LuWHmPaZYWDk_LxgkHcjsX4'; // Ben's third
 
-var backgroundColor = ['#1ABC9C', '#2ECC71', '#3498DB', '#9B59B6', '#34495E'];
+var backgroundColor = ['#DFBA69', '#5A2E2E', '#2B4E72', '#94BA65'];
 var index = -1;
 
 var ActivityList = function (_Component) {
@@ -43900,7 +43900,6 @@ var AgendaView = function (_Component) {
         events: events,
         eventReceive: function (event) {
           event.id = (0, _v2.default)();
-          console.log(event.google_id);
           this.state.events[event.id] = {
             id: event.id,
             google_id: event.google_id,
@@ -43909,16 +43908,19 @@ var AgendaView = function (_Component) {
             end: (0, _moment2.default)(event.start._d).add(2, 'hours')._d,
             color: event.backgroundColor
           };
+          console.log(event);
         }.bind(this),
         eventResize: function (event, delta) {
           this.state.events[event.id].start = event.start._d;
           this.state.events[event.id].end = event.end._d;
         }.bind(this),
         eventDrop: function (event) {
-          console.log(event);
           this.state.events[event.id].start = event.start._d;
-          this.state.events[event.id].end = event.end._d ? event.end._d : (0, _moment2.default)(event.start._d).add(2, 'hours')._d;
-          console.log(this.state.events[event.id]);
+          if (event.end) {
+            this.state.events[event.id].end = event.end._d;
+          } else {
+            this.state.events[event.id].end = (0, _moment2.default)(event.start._d).add(2, 'hours')._d;
+          }
         }.bind(this),
         eventRender: function (event, element) {
           var self = this;
@@ -44213,13 +44215,6 @@ var Place = function (_Component) {
               { className: 'title' },
               this.props.place.name
             )
-          ),
-          _react2.default.createElement(
-            'h4',
-            { className: 'pull-right' },
-            this.props.place.rating,
-            ' \xA0 ',
-            _react2.default.createElement('i', { className: 'fa fa-star' })
           )
         );
       } else {
@@ -44229,7 +44224,9 @@ var Place = function (_Component) {
             'data-id': this.props.place.id,
             'data-url': PLACE_URL + this.props.place.id,
             'data-color': this.props.color,
-            style: { backgroundColor: this.props.color }
+            style: {
+              backgroundColor: this.props.color
+            }
           },
           _react2.default.createElement('img', { src: this.props.place.icon }),
           _react2.default.createElement(
@@ -44240,13 +44237,6 @@ var Place = function (_Component) {
               { className: 'title' },
               this.props.place.name
             )
-          ),
-          _react2.default.createElement(
-            'h4',
-            { className: 'pull-right' },
-            this.props.place.rating,
-            ' \xA0 ',
-            _react2.default.createElement('i', { className: 'fa fa-star' })
           )
         );
       }

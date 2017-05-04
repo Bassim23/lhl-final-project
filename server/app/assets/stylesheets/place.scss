@@ -20,7 +20,7 @@
 .fc-event {
   margin: 1em 1em;
   padding: 1em 1em;
-  border: none;
+  border: none !important;
 }
 
 .dropdown-google {
@@ -67,6 +67,9 @@
   }
 }
 
+#item-list{
+
+}
 
 @media (min-width: 768px) {
   .event-list > li {

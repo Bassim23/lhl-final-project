@@ -10,7 +10,7 @@ const API_KEY = 'AIzaSyC3yCuJtptjR5ToKEdsPqHvPnlQXcLMTRk';
 // const API_KEY = 'AIzaSyDGzXs4DJ0MwXv8WYsAGNS-xBoOLNIo91U'; // Ben's second
 // const API_KEY = 'AIzaSyCSTQQCsTp3LuWHmPaZYWDk_LxgkHcjsX4'; // Ben's third
 
-const backgroundColor = ['#1ABC9C', '#2ECC71', '#3498DB', '#9B59B6', '#34495E'];
+const backgroundColor = ['#DFBA69', '#5A2E2E', '#2B4E72', '#94BA65'];
 let index = -1;
 
 class ActivityList extends Component {

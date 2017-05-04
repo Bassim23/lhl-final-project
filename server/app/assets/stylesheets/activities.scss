@@ -1,3 +1,5 @@
+$colors: #DFBA69, #5A2E2E, #2B4E72, #94BA65;
+
 .left {
     background-color: white;
     height: 100vh;
@@ -23,6 +25,15 @@
         }
         .closeon{
             float:right;
+        }
+
+        @for $i from 1 through length($colors) {
+            .fc-event:nth-child(#{length($colors)}n+#{$i}) {
+                background: (nth($colors, $i));
+            }
+        }
+        .fc-content{
+            border: none;
         }
     }
 }
