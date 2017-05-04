@@ -12974,3 +12974,649 @@ Registered connection (Z2lkOi8vbGhsLWZpbmFsLXByb2plY3QvVXNlci80)
 NotificationChannel is streaming from notification_channel4
 NotificationChannel is transmitting the subscription confirmation
 NotificationChannel is streaming from notification_channel
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[35m (132.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "lhl_final_project_development"[0m
+  [1m[35m (128.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "lhl_final_project_test"[0m
+  [1m[35m (541.7ms)[0m  [1m[35mCREATE DATABASE "lhl_final_project_development" ENCODING = 'unicode'[0m
+  [1m[35m (328.5ms)[0m  [1m[35mCREATE DATABASE "lhl_final_project_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (20.7ms)[0m  [1m[35mCREATE TABLE "activities" ("id" serial primary key, "start_time" time, "end_time" time, "uuid" character varying, "name" character varying, "description" text, "place" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "schedule_id" integer)[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE  INDEX  "index_activities_on_schedule_id" ON "activities" USING btree ("schedule_id")[0m
+  [1m[35m (28.3ms)[0m  [1m[35mCREATE TABLE "participations" ("id" serial primary key, "status" character varying, "schedule_id" integer, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (10.1ms)[0m  [1m[35mCREATE  INDEX  "index_participations_on_schedule_id" ON "participations" USING btree ("schedule_id")[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE  INDEX  "index_participations_on_user_id" ON "participations" USING btree ("user_id")[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "schedules" ("id" serial primary key, "date" date, "destination" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "trip_id" integer, "destination_name" character varying)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_schedules_on_trip_id" ON "schedules" USING btree ("trip_id")[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE TABLE "trips" ("id" serial primary key, "name" character varying, "kind" character varying, "summary" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "user_id" integer)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_trips_on_user_id" ON "trips" USING btree ("user_id")[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "first_name" character varying, "last_name" character varying, "age" integer, "gender" character varying, "nationality" character varying, "email" character varying, "photo" text, "upvotes" integer, "downvotes" integer, "summary" text, "password_digest" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (6.7ms)[0m  [1m[35mALTER TABLE "activities" ADD CONSTRAINT "fk_rails_143bf33b4a"
+FOREIGN KEY ("schedule_id")
+  REFERENCES "schedules" ("id")
+[0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE "participations" ADD CONSTRAINT "fk_rails_8011d4ad43"
+FOREIGN KEY ("schedule_id")
+  REFERENCES "schedules" ("id")
+[0m
+  [1m[35m (1.8ms)[0m  [1m[35mALTER TABLE "participations" ADD CONSTRAINT "fk_rails_e80f5ca3a2"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE "schedules" ADD CONSTRAINT "fk_rails_0a6d8a5110"
+FOREIGN KEY ("trip_id")
+  REFERENCES "trips" ("id")
+[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER TABLE "trips" ADD CONSTRAINT "fk_rails_6a33c9e4ea"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20170430020008)[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20170422164640),
+(20170422165953),
+(20170422173711),
+(20170422182955),
+(20170422183254),
+(20170422185751),
+(20170422190223),
+(20170422201418);
+
+[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-05-04 11:29:00 -0700], ["updated_at", 2017-05-04 11:29:00 -0700]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (9.9ms)[0m  [1m[35mCREATE TABLE "activities" ("id" serial primary key, "start_time" time, "end_time" time, "uuid" character varying, "name" character varying, "description" text, "place" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "schedule_id" integer)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX  "index_activities_on_schedule_id" ON "activities" USING btree ("schedule_id")[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "participations" ("id" serial primary key, "status" character varying, "schedule_id" integer, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_participations_on_schedule_id" ON "participations" USING btree ("schedule_id")[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_participations_on_user_id" ON "participations" USING btree ("user_id")[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE TABLE "schedules" ("id" serial primary key, "date" date, "destination" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "trip_id" integer, "destination_name" character varying)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_schedules_on_trip_id" ON "schedules" USING btree ("trip_id")[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE TABLE "trips" ("id" serial primary key, "name" character varying, "kind" character varying, "summary" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "user_id" integer)[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE  INDEX  "index_trips_on_user_id" ON "trips" USING btree ("user_id")[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "first_name" character varying, "last_name" character varying, "age" integer, "gender" character varying, "nationality" character varying, "email" character varying, "photo" text, "upvotes" integer, "downvotes" integer, "summary" text, "password_digest" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (4.0ms)[0m  [1m[35mALTER TABLE "activities" ADD CONSTRAINT "fk_rails_143bf33b4a"
+FOREIGN KEY ("schedule_id")
+  REFERENCES "schedules" ("id")
+[0m
+  [1m[35m (2.6ms)[0m  [1m[35mALTER TABLE "participations" ADD CONSTRAINT "fk_rails_8011d4ad43"
+FOREIGN KEY ("schedule_id")
+  REFERENCES "schedules" ("id")
+[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE "participations" ADD CONSTRAINT "fk_rails_e80f5ca3a2"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (2.0ms)[0m  [1m[35mALTER TABLE "schedules" ADD CONSTRAINT "fk_rails_0a6d8a5110"
+FOREIGN KEY ("trip_id")
+  REFERENCES "trips" ("id")
+[0m
+  [1m[35m (3.3ms)[0m  [1m[35mALTER TABLE "trips" ADD CONSTRAINT "fk_rails_6a33c9e4ea"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20170430020008)[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20170422164640),
+(20170422165953),
+(20170422173711),
+(20170422182955),
+(20170422183254),
+(20170422185751),
+(20170422190223),
+(20170422201418);
+
+[0m
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-05-04 11:29:00 -0700], ["updated_at", 2017-05-04 11:29:00 -0700]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "david@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (2.9ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "nationality", "email", "photo", "upvotes", "downvotes", "summary", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["first_name", "David"], ["last_name", "VanDusen"], ["age", 34], ["gender", "Male"], ["nationality", "Canadian"], ["email", "david@gmail.com"], ["photo", "https://lighthouselabs.ca/uploads/team_member/avatar/3/medium_davidvandusen_2x.jpg"], ["upvotes", 100], ["downvotes", 95], ["summary", "I'm David and I like to do something!"], ["password_digest", "$2a$10$yG4zj.J7R0UJCyqFXtHQiecCjMX2IOGrZ243.CxdyxaawKjRdkyQy"], ["created_at", 2017-05-04 11:29:01 -0700], ["updated_at", 2017-05-04 11:29:01 -0700]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joel@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "nationality", "email", "photo", "upvotes", "downvotes", "summary", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["first_name", "Joel"], ["last_name", "Shinness"], ["age", 31], ["gender", "Male"], ["nationality", "American"], ["email", "joel@gmail.com"], ["photo", "https://yt3.ggpht.com/-5e9T1JeRJX8/AAAAAAAAAAI/AAAAAAAAAAA/7ZcYeYo4KfI/s900-c-k-no-mo-rj-c0xffffff/photo.jpg"], ["upvotes", 100], ["downvotes", 85], ["summary", "Check out my blog at http://www.joelshinness.com/"], ["password_digest", "$2a$10$D4esjai3oItR/me8pX58iumFzd74foE4tnRuwbFpGm.xAO2AR9qj6"], ["created_at", 2017-05-04 11:29:01 -0700], ["updated_at", 2017-05-04 11:29:01 -0700]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "don@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "nationality", "email", "photo", "upvotes", "downvotes", "summary", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["first_name", "Don"], ["last_name", "Burks"], ["age", 18], ["gender", "Male"], ["nationality", "Canadian/American/?"], ["email", "don@gmail.com"], ["photo", "https://lighthouselabs.ca/uploads/team_member/avatar/2/medium_don.JPG"], ["upvotes", 99], ["downvotes", 1], ["summary", "Clap for me."], ["password_digest", "$2a$10$190jzWgI0fCA75xqbGJ52OhA5x/BkAVxyyMskwqTkuXddMbY.O/4e"], ["created_at", 2017-05-04 11:29:01 -0700], ["updated_at", 2017-05-04 11:29:01 -0700]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "larry@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "nationality", "email", "photo", "upvotes", "downvotes", "summary", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["first_name", "Larry"], ["last_name", "The Duck"], ["age", 18], ["gender", "Rather not say"], ["nationality", "?"], ["email", "larry@gmail.com"], ["photo", "https://lighthouselabs.ca/uploads/team_member/avatar/51/medium_larry_2x.jpg"], ["upvotes", 9999], ["downvotes", 0], ["summary", "Quack"], ["password_digest", "$2a$10$FFuBI6b97Yry2L8W6oCYBOMk1FluU7tR.1mdzWFVAwq7vktp7wn1m"], ["created_at", 2017-05-04 11:29:01 -0700], ["updated_at", 2017-05-04 11:29:01 -0700]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "karl@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "nationality", "email", "photo", "upvotes", "downvotes", "summary", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["first_name", "Karl"], ["last_name", "Jensen"], ["age", 18], ["gender", "Male"], ["nationality", "Canadian"], ["email", "karl@gmail.com"], ["photo", "https://avatars.githubusercontent.com/u/14803?v=3"], ["upvotes", 99], ["downvotes", 0], ["summary", "I'm Karl."], ["password_digest", "$2a$10$v3ECiT8pXhfL4LWAZI9rQuPmDfiMlSeWSxHsBc/oByjaAVl6yeMWC"], ["created_at", 2017-05-04 11:29:01 -0700], ["updated_at", 2017-05-04 11:29:01 -0700]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTrip Load (0.5ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.0ms)[0m  [1m[32mINSERT INTO "trips" ("name", "kind", "summary", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Hike at Whistler!"], ["kind", "Public"], ["summary", "Joel's trip to Whistler, Yo!"], ["created_at", 2017-05-04 11:29:01 -0700], ["updated_at", 2017-05-04 11:29:01 -0700], ["user_id", 2]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "trips" ("name", "kind", "summary", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Trip to Las Vegas"], ["kind", "Public"], ["summary", "Larry's bash at Vegas"], ["created_at", 2017-05-04 11:29:01 -0700], ["updated_at", 2017-05-04 11:29:01 -0700], ["user_id", 4]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "trips" ("name", "kind", "summary", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Visit to New York"], ["kind", "Public"], ["summary", "Don plans to visit New York"], ["created_at", 2017-05-04 11:29:01 -0700], ["updated_at", 2017-05-04 11:29:01 -0700], ["user_id", 3]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "trips" ("name", "kind", "summary", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Hike at Whistler second"], ["kind", "Public"], ["summary", "David's trip to Whistler, Yo!"], ["created_at", 2017-05-04 11:29:01 -0700], ["updated_at", 2017-05-04 11:29:01 -0700], ["user_id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "trips" ("name", "kind", "summary", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Visit to New York"], ["kind", "Public"], ["summary", "Karl plans to visit New York"], ["created_at", 2017-05-04 11:29:01 -0700], ["updated_at", 2017-05-04 11:29:01 -0700], ["user_id", 5]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSchedule Load (0.5ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schedules" ("date", "destination", "created_at", "updated_at", "trip_id", "destination_name") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", Sun, 15 Oct 2017], ["destination", "ChIJh3uVA7I8h1QR9s_1dehBt0o"], ["created_at", 2017-05-04 11:29:01 -0700], ["updated_at", 2017-05-04 11:29:01 -0700], ["trip_id", 1], ["destination_name", "Whistler"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schedules" ("date", "destination", "created_at", "updated_at", "trip_id", "destination_name") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", Thu, 24 Aug 2017], ["destination", "ChIJ0X31pIK3voARo3mz1ebVzDo"], ["created_at", 2017-05-04 11:29:01 -0700], ["updated_at", 2017-05-04 11:29:01 -0700], ["trip_id", 2], ["destination_name", "Las Vegas"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schedules" ("date", "destination", "created_at", "updated_at", "trip_id", "destination_name") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", Fri, 24 Nov 2017], ["destination", "ChIJOwg_06VPwokRYv534QaPC8g"], ["created_at", 2017-05-04 11:29:01 -0700], ["updated_at", 2017-05-04 11:29:01 -0700], ["trip_id", 3], ["destination_name", "New York"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "schedules" ("date", "destination", "created_at", "updated_at", "trip_id", "destination_name") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", Fri, 15 Dec 2017], ["destination", "ChIJh3uVA7I8h1QR9s_1dehBt0o"], ["created_at", 2017-05-04 11:29:01 -0700], ["updated_at", 2017-05-04 11:29:01 -0700], ["trip_id", 4], ["destination_name", "Whistler"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[35m (129.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "lhl_final_project_development"[0m
+  [1m[35m (122.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "lhl_final_project_test"[0m
+  [1m[35m (269.4ms)[0m  [1m[35mCREATE DATABASE "lhl_final_project_development" ENCODING = 'unicode'[0m
+  [1m[35m (281.3ms)[0m  [1m[35mCREATE DATABASE "lhl_final_project_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (6.2ms)[0m  [1m[35mCREATE TABLE "activities" ("id" serial primary key, "start_time" time, "end_time" time, "uuid" character varying, "name" character varying, "description" text, "place" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "schedule_id" integer)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX  "index_activities_on_schedule_id" ON "activities" USING btree ("schedule_id")[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "participations" ("id" serial primary key, "status" character varying, "schedule_id" integer, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_participations_on_schedule_id" ON "participations" USING btree ("schedule_id")[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE  INDEX  "index_participations_on_user_id" ON "participations" USING btree ("user_id")[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "schedules" ("id" serial primary key, "date" date, "destination" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "trip_id" integer, "destination_name" character varying)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_schedules_on_trip_id" ON "schedules" USING btree ("trip_id")[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE TABLE "trips" ("id" serial primary key, "name" character varying, "kind" character varying, "summary" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "user_id" integer)[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX  "index_trips_on_user_id" ON "trips" USING btree ("user_id")[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "first_name" character varying, "last_name" character varying, "age" integer, "gender" character varying, "nationality" character varying, "email" character varying, "photo" text, "upvotes" integer, "downvotes" integer, "summary" text, "password_digest" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE "activities" ADD CONSTRAINT "fk_rails_143bf33b4a"
+FOREIGN KEY ("schedule_id")
+  REFERENCES "schedules" ("id")
+[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "participations" ADD CONSTRAINT "fk_rails_8011d4ad43"
+FOREIGN KEY ("schedule_id")
+  REFERENCES "schedules" ("id")
+[0m
+  [1m[35m (1.7ms)[0m  [1m[35mALTER TABLE "participations" ADD CONSTRAINT "fk_rails_e80f5ca3a2"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (1.7ms)[0m  [1m[35mALTER TABLE "schedules" ADD CONSTRAINT "fk_rails_0a6d8a5110"
+FOREIGN KEY ("trip_id")
+  REFERENCES "trips" ("id")
+[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "trips" ADD CONSTRAINT "fk_rails_6a33c9e4ea"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20170430020008)[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20170422164640),
+(20170422165953),
+(20170422173711),
+(20170422182955),
+(20170422183254),
+(20170422185751),
+(20170422190223),
+(20170422201418);
+
+[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (8.0ms)[0m  [1m[35mCREATE TABLE "activities" ("id" serial primary key, "start_time" time, "end_time" time, "uuid" character varying, "name" character varying, "description" text, "place" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "schedule_id" integer)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX  "index_activities_on_schedule_id" ON "activities" USING btree ("schedule_id")[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE TABLE "participations" ("id" serial primary key, "status" character varying, "schedule_id" integer, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_participations_on_schedule_id" ON "participations" USING btree ("schedule_id")[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_participations_on_user_id" ON "participations" USING btree ("user_id")[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE TABLE "schedules" ("id" serial primary key, "date" date, "destination" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "trip_id" integer, "destination_name" character varying)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_schedules_on_trip_id" ON "schedules" USING btree ("trip_id")[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "trips" ("id" serial primary key, "name" character varying, "kind" character varying, "summary" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "user_id" integer)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_trips_on_user_id" ON "trips" USING btree ("user_id")[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "first_name" character varying, "last_name" character varying, "age" integer, "gender" character varying, "nationality" character varying, "email" character varying, "photo" text, "upvotes" integer, "downvotes" integer, "summary" text, "password_digest" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (2.6ms)[0m  [1m[35mALTER TABLE "activities" ADD CONSTRAINT "fk_rails_143bf33b4a"
+FOREIGN KEY ("schedule_id")
+  REFERENCES "schedules" ("id")
+[0m
+  [1m[35m (1.9ms)[0m  [1m[35mALTER TABLE "participations" ADD CONSTRAINT "fk_rails_8011d4ad43"
+FOREIGN KEY ("schedule_id")
+  REFERENCES "schedules" ("id")
+[0m
+  [1m[35m (1.5ms)[0m  [1m[35mALTER TABLE "participations" ADD CONSTRAINT "fk_rails_e80f5ca3a2"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (1.8ms)[0m  [1m[35mALTER TABLE "schedules" ADD CONSTRAINT "fk_rails_0a6d8a5110"
+FOREIGN KEY ("trip_id")
+  REFERENCES "trips" ("id")
+[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "trips" ADD CONSTRAINT "fk_rails_6a33c9e4ea"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (23.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20170430020008)[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20170422164640),
+(20170422165953),
+(20170422173711),
+(20170422182955),
+(20170422183254),
+(20170422185751),
+(20170422190223),
+(20170422201418);
+
+[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "david@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "nationality", "email", "photo", "upvotes", "downvotes", "summary", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["first_name", "David"], ["last_name", "VanDusen"], ["age", 34], ["gender", "Male"], ["nationality", "Canadian"], ["email", "david@gmail.com"], ["photo", "https://lighthouselabs.ca/uploads/team_member/avatar/3/medium_davidvandusen_2x.jpg"], ["upvotes", 100], ["downvotes", 95], ["summary", "I'm David and I like to do something!"], ["password_digest", "$2a$10$.WF.zEZkX/ayaivM3x6pNOjEE4aI60aaiJ2znLo8cmttft4gDVFvG"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joel@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "nationality", "email", "photo", "upvotes", "downvotes", "summary", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["first_name", "Joel"], ["last_name", "Shinness"], ["age", 31], ["gender", "Male"], ["nationality", "American"], ["email", "joel@gmail.com"], ["photo", "https://yt3.ggpht.com/-5e9T1JeRJX8/AAAAAAAAAAI/AAAAAAAAAAA/7ZcYeYo4KfI/s900-c-k-no-mo-rj-c0xffffff/photo.jpg"], ["upvotes", 100], ["downvotes", 85], ["summary", "Check out my blog at http://www.joelshinness.com/"], ["password_digest", "$2a$10$23su3ed0uNT6yeiSbgoaOOuGaOYESktqbVamxZtKaAoqBWvBUmDWK"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "don@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "nationality", "email", "photo", "upvotes", "downvotes", "summary", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["first_name", "Don"], ["last_name", "Burks"], ["age", 18], ["gender", "Male"], ["nationality", "Canadian/American/?"], ["email", "don@gmail.com"], ["photo", "https://lighthouselabs.ca/uploads/team_member/avatar/2/medium_don.JPG"], ["upvotes", 99], ["downvotes", 1], ["summary", "Clap for me."], ["password_digest", "$2a$10$wFTvnloGbguna9sb9tOdkOsLn6MS2/PZikHS7tEyJ2FBpsMim0iBu"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "larry@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "nationality", "email", "photo", "upvotes", "downvotes", "summary", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["first_name", "Larry"], ["last_name", "The Duck"], ["age", 18], ["gender", "Rather not say"], ["nationality", "?"], ["email", "larry@gmail.com"], ["photo", "https://lighthouselabs.ca/uploads/team_member/avatar/51/medium_larry_2x.jpg"], ["upvotes", 9999], ["downvotes", 0], ["summary", "Quack"], ["password_digest", "$2a$10$nR/CrL9OmZV2auoQ0inlqOLtgKJGtABCtJQJRcQvbAI0rupE1oq9m"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "karl@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "nationality", "email", "photo", "upvotes", "downvotes", "summary", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["first_name", "Karl"], ["last_name", "Jensen"], ["age", 18], ["gender", "Male"], ["nationality", "Canadian"], ["email", "karl@gmail.com"], ["photo", "https://avatars.githubusercontent.com/u/14803?v=3"], ["upvotes", 99], ["downvotes", 0], ["summary", "I'm Karl."], ["password_digest", "$2a$10$6V7RcxfmW.UBCiVRQpNJZ.ehgRizzyDla6XPJ7eJZIEJrwfv/S.ES"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTrip Load (0.5ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "trips" ("name", "kind", "summary", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Hike at Whistler!"], ["kind", "Public"], ["summary", "Joel's trip to Whistler, Yo!"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700], ["user_id", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "trips" ("name", "kind", "summary", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Trip to Las Vegas"], ["kind", "Public"], ["summary", "Larry's bash at Vegas"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700], ["user_id", 4]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "trips" ("name", "kind", "summary", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Visit to New York"], ["kind", "Public"], ["summary", "Don plans to visit New York"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700], ["user_id", 3]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "trips" ("name", "kind", "summary", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Hike at Whistler second"], ["kind", "Public"], ["summary", "David's trip to Whistler, Yo!"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700], ["user_id", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "trips" ("name", "kind", "summary", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Visit to New York"], ["kind", "Public"], ["summary", "Karl plans to visit New York"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700], ["user_id", 5]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSchedule Load (0.7ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "schedules" ("date", "destination", "created_at", "updated_at", "trip_id", "destination_name") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", Sun, 15 Oct 2017], ["destination", "ChIJh3uVA7I8h1QR9s_1dehBt0o"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700], ["trip_id", 1], ["destination_name", "Whistler"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schedules" ("date", "destination", "created_at", "updated_at", "trip_id", "destination_name") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", Thu, 24 Aug 2017], ["destination", "ChIJ0X31pIK3voARo3mz1ebVzDo"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700], ["trip_id", 2], ["destination_name", "Las Vegas"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schedules" ("date", "destination", "created_at", "updated_at", "trip_id", "destination_name") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", Fri, 24 Nov 2017], ["destination", "ChIJOwg_06VPwokRYv534QaPC8g"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700], ["trip_id", 3], ["destination_name", "New York"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schedules" ("date", "destination", "created_at", "updated_at", "trip_id", "destination_name") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", Fri, 15 Dec 2017], ["destination", "ChIJh3uVA7I8h1QR9s_1dehBt0o"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700], ["trip_id", 4], ["destination_name", "Whistler"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schedules" ("date", "destination", "created_at", "updated_at", "trip_id", "destination_name") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", Sun, 17 Dec 2017], ["destination", "ChIJOwg_06VPwokRYv534QaPC8g"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700], ["trip_id", 5], ["destination_name", "New York"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActivity Load (0.5ms)[0m  [1m[34mSELECT "activities".* FROM "activities"[0m
+DEPRECATION WARNING: Time columns will become time zone aware in Rails 5.1. This
+still causes `String`s to be parsed as if they were in `Time.zone`,
+and `Time`s to be converted to `Time.zone`.
+
+To keep the old behavior, you must add the following to your initializer:
+
+    config.active_record.time_zone_aware_types = [:datetime]
+
+To silence this deprecation warning, add the following:
+
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+ (called from <top (required)> at /Users/sharonhsu/lighthouse/projects/lhl-final-project/server/db/seeds.rb:171)
+DEPRECATION WARNING: Time columns will become time zone aware in Rails 5.1. This
+still causes `String`s to be parsed as if they were in `Time.zone`,
+and `Time`s to be converted to `Time.zone`.
+
+To keep the old behavior, you must add the following to your initializer:
+
+    config.active_record.time_zone_aware_types = [:datetime]
+
+To silence this deprecation warning, add the following:
+
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+ (called from <top (required)> at /Users/sharonhsu/lighthouse/projects/lhl-final-project/server/db/seeds.rb:171)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActivity Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "activities" WHERE "activities"."uuid" = $1 LIMIT $2[0m  [["uuid", "1"], ["LIMIT", 1]]
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "activities" ("start_time", "end_time", "uuid", "name", "description", "place", "created_at", "updated_at", "schedule_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_time", 2000-01-01 16:00:00 -0800], ["end_time", 2000-01-01 18:00:00 -0800], ["uuid", "1"], ["name", "Hiking"], ["description", "Hiking a lot!!"], ["place", "ChIJW5JDBk0jh1QRttPEPI0TSm8"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700], ["schedule_id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActivity Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "activities" WHERE "activities"."uuid" = $1 LIMIT $2[0m  [["uuid", "2"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "activities" ("start_time", "end_time", "uuid", "name", "description", "place", "created_at", "updated_at", "schedule_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_time", 2000-01-01 19:00:00 -0800], ["end_time", 2000-01-01 21:00:00 -0800], ["uuid", "2"], ["name", "Lunch"], ["description", "Italian for lunch!"], ["place", "ChIJ81o8DrM8h1QR9NeJlPZ0ZRA"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700], ["schedule_id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActivity Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "activities" WHERE "activities"."uuid" = $1 LIMIT $2[0m  [["uuid", "3"], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "activities" ("start_time", "end_time", "uuid", "name", "description", "place", "created_at", "updated_at", "schedule_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_time", 2000-01-01 23:00:00 -0800], ["end_time", 2000-01-01 03:00:00 -0800], ["uuid", "3"], ["name", "Bar"], ["description", "Hit the Dubh Linn bar!"], ["place", "ChIJTVGqokwjh1QRAN4E3Ad4v5E"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700], ["schedule_id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActivity Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "activities" WHERE "activities"."uuid" = $1 LIMIT $2[0m  [["uuid", "4"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "activities" ("start_time", "end_time", "uuid", "name", "description", "place", "created_at", "updated_at", "schedule_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_time", 2000-01-01 17:00:00 -0800], ["end_time", 2000-01-01 19:00:00 -0800], ["uuid", "4"], ["name", "Bellagio"], ["description", "Visit Bellagio for fun!"], ["place", "ChIJvUdRyzDEyIARhA3R2cXH8oI"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700], ["schedule_id", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActivity Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "activities" WHERE "activities"."uuid" = $1 LIMIT $2[0m  [["uuid", "5"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "activities" ("start_time", "end_time", "uuid", "name", "description", "place", "created_at", "updated_at", "schedule_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_time", 2000-01-01 20:00:00 -0800], ["end_time", 2000-01-01 22:00:00 -0800], ["uuid", "5"], ["name", "Strip"], ["description", "Time to hit the strip!"], ["place", "ChIJ69QoNDjEyIARTIMmDF0Z4kM"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700], ["schedule_id", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActivity Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "activities" WHERE "activities"."uuid" = $1 LIMIT $2[0m  [["uuid", "6"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "activities" ("start_time", "end_time", "uuid", "name", "description", "place", "created_at", "updated_at", "schedule_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_time", 2000-01-02 00:00:00 -0800], ["end_time", 2000-01-01 02:00:00 -0800], ["uuid", "6"], ["name", "Dinner"], ["description", "Dinner time at a fancy place!"], ["place", "ChIJvUdRyzDEyIARh86Fi1C2hqI"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700], ["schedule_id", 2]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActivity Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "activities" WHERE "activities"."uuid" = $1 LIMIT $2[0m  [["uuid", "7"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "activities" ("start_time", "end_time", "uuid", "name", "description", "place", "created_at", "updated_at", "schedule_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_time", 2000-01-01 16:00:00 -0800], ["end_time", 2000-01-01 18:00:00 -0800], ["uuid", "7"], ["name", "Empire State Building"], ["description", "What better than Empire State Building!"], ["place", "ChIJtcaxrqlZwokRfwmmibzPsTU"], ["created_at", 2017-05-04 11:29:28 -0700], ["updated_at", 2017-05-04 11:29:28 -0700], ["schedule_id", 3]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[35m (122.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "lhl_final_project_development"[0m
+  [1m[35m (130.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "lhl_final_project_test"[0m
+  [1m[35m (271.0ms)[0m  [1m[35mCREATE DATABASE "lhl_final_project_development" ENCODING = 'unicode'[0m
+  [1m[35m (279.8ms)[0m  [1m[35mCREATE DATABASE "lhl_final_project_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (7.2ms)[0m  [1m[35mCREATE TABLE "activities" ("id" serial primary key, "start_time" time, "end_time" time, "uuid" character varying, "name" character varying, "description" text, "place" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "schedule_id" integer)[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE  INDEX  "index_activities_on_schedule_id" ON "activities" USING btree ("schedule_id")[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "participations" ("id" serial primary key, "status" character varying, "schedule_id" integer, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_participations_on_schedule_id" ON "participations" USING btree ("schedule_id")[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_participations_on_user_id" ON "participations" USING btree ("user_id")[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE TABLE "schedules" ("id" serial primary key, "date" date, "destination" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "trip_id" integer, "destination_name" character varying)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_schedules_on_trip_id" ON "schedules" USING btree ("trip_id")[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "trips" ("id" serial primary key, "name" character varying, "kind" character varying, "summary" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "user_id" integer)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_trips_on_user_id" ON "trips" USING btree ("user_id")[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "first_name" character varying, "last_name" character varying, "age" integer, "gender" character varying, "nationality" character varying, "email" character varying, "photo" text, "upvotes" integer, "downvotes" integer, "summary" text, "password_digest" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (3.2ms)[0m  [1m[35mALTER TABLE "activities" ADD CONSTRAINT "fk_rails_143bf33b4a"
+FOREIGN KEY ("schedule_id")
+  REFERENCES "schedules" ("id")
+[0m
+  [1m[35m (1.5ms)[0m  [1m[35mALTER TABLE "participations" ADD CONSTRAINT "fk_rails_8011d4ad43"
+FOREIGN KEY ("schedule_id")
+  REFERENCES "schedules" ("id")
+[0m
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE "participations" ADD CONSTRAINT "fk_rails_e80f5ca3a2"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE "schedules" ADD CONSTRAINT "fk_rails_0a6d8a5110"
+FOREIGN KEY ("trip_id")
+  REFERENCES "trips" ("id")
+[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "trips" ADD CONSTRAINT "fk_rails_6a33c9e4ea"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20170430020008)[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20170422164640),
+(20170422165953),
+(20170422173711),
+(20170422182955),
+(20170422183254),
+(20170422185751),
+(20170422190223),
+(20170422201418);
+
+[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (5.9ms)[0m  [1m[35mCREATE TABLE "activities" ("id" serial primary key, "start_time" time, "end_time" time, "uuid" character varying, "name" character varying, "description" text, "place" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "schedule_id" integer)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX  "index_activities_on_schedule_id" ON "activities" USING btree ("schedule_id")[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE TABLE "participations" ("id" serial primary key, "status" character varying, "schedule_id" integer, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX  "index_participations_on_schedule_id" ON "participations" USING btree ("schedule_id")[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_participations_on_user_id" ON "participations" USING btree ("user_id")[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "schedules" ("id" serial primary key, "date" date, "destination" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "trip_id" integer, "destination_name" character varying)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_schedules_on_trip_id" ON "schedules" USING btree ("trip_id")[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE TABLE "trips" ("id" serial primary key, "name" character varying, "kind" character varying, "summary" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "user_id" integer)[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE  INDEX  "index_trips_on_user_id" ON "trips" USING btree ("user_id")[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "first_name" character varying, "last_name" character varying, "age" integer, "gender" character varying, "nationality" character varying, "email" character varying, "photo" text, "upvotes" integer, "downvotes" integer, "summary" text, "password_digest" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (2.4ms)[0m  [1m[35mALTER TABLE "activities" ADD CONSTRAINT "fk_rails_143bf33b4a"
+FOREIGN KEY ("schedule_id")
+  REFERENCES "schedules" ("id")
+[0m
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE "participations" ADD CONSTRAINT "fk_rails_8011d4ad43"
+FOREIGN KEY ("schedule_id")
+  REFERENCES "schedules" ("id")
+[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "participations" ADD CONSTRAINT "fk_rails_e80f5ca3a2"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE "schedules" ADD CONSTRAINT "fk_rails_0a6d8a5110"
+FOREIGN KEY ("trip_id")
+  REFERENCES "trips" ("id")
+[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER TABLE "trips" ADD CONSTRAINT "fk_rails_6a33c9e4ea"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20170430020008)[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20170422164640),
+(20170422165953),
+(20170422173711),
+(20170422182955),
+(20170422183254),
+(20170422185751),
+(20170422190223),
+(20170422201418);
+
+[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700]]
+  [1m[35m (3.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "david@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "nationality", "email", "photo", "upvotes", "downvotes", "summary", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["first_name", "David"], ["last_name", "VanDusen"], ["age", 34], ["gender", "Male"], ["nationality", "Canadian"], ["email", "david@gmail.com"], ["photo", "https://lighthouselabs.ca/uploads/team_member/avatar/3/medium_davidvandusen_2x.jpg"], ["upvotes", 100], ["downvotes", 95], ["summary", "I'm David and I like to do something!"], ["password_digest", "$2a$10$uzFqy4zOHcXawVUuWUEQKONsifNaAUhvUJgBGJtIudJGiF7U4Kdw6"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "joel@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "nationality", "email", "photo", "upvotes", "downvotes", "summary", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["first_name", "Joel"], ["last_name", "Shinness"], ["age", 31], ["gender", "Male"], ["nationality", "American"], ["email", "joel@gmail.com"], ["photo", "https://yt3.ggpht.com/-5e9T1JeRJX8/AAAAAAAAAAI/AAAAAAAAAAA/7ZcYeYo4KfI/s900-c-k-no-mo-rj-c0xffffff/photo.jpg"], ["upvotes", 100], ["downvotes", 85], ["summary", "Check out my blog at http://www.joelshinness.com/"], ["password_digest", "$2a$10$BDfuKTD93YZzwNJOMm/RkOkc1h9F2qPsl9mSlwt/XYPGH33VOQwjS"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "don@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "nationality", "email", "photo", "upvotes", "downvotes", "summary", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["first_name", "Don"], ["last_name", "Burks"], ["age", 18], ["gender", "Male"], ["nationality", "Canadian/American/?"], ["email", "don@gmail.com"], ["photo", "https://lighthouselabs.ca/uploads/team_member/avatar/2/medium_don.JPG"], ["upvotes", 99], ["downvotes", 1], ["summary", "Clap for me."], ["password_digest", "$2a$10$UhjliJ8z.RsMHsCrQ3XB8OIjViEM8mvEWE2P/xkLvwj2aCehnvrBi"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "larry@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "nationality", "email", "photo", "upvotes", "downvotes", "summary", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["first_name", "Larry"], ["last_name", "The Duck"], ["age", 18], ["gender", "Rather not say"], ["nationality", "?"], ["email", "larry@gmail.com"], ["photo", "https://lighthouselabs.ca/uploads/team_member/avatar/51/medium_larry_2x.jpg"], ["upvotes", 9999], ["downvotes", 0], ["summary", "Quack"], ["password_digest", "$2a$10$4MzDm/hsQ/7LnQMnQWuXF.xEQVxI0XnF5N6BCgsm/ce9EQHTE3Yp2"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "karl@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "age", "gender", "nationality", "email", "photo", "upvotes", "downvotes", "summary", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["first_name", "Karl"], ["last_name", "Jensen"], ["age", 18], ["gender", "Male"], ["nationality", "Canadian"], ["email", "karl@gmail.com"], ["photo", "https://avatars.githubusercontent.com/u/14803?v=3"], ["upvotes", 99], ["downvotes", 0], ["summary", "I'm Karl."], ["password_digest", "$2a$10$nI3j5d/h0xe.vVDKlsR9xeBNufwMI7z/sqYyB4uNTusvih629fIxG"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTrip Load (0.5ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "trips" ("name", "kind", "summary", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Hike at Whistler!"], ["kind", "Public"], ["summary", "Joel's trip to Whistler, Yo!"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["user_id", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "trips" ("name", "kind", "summary", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Trip to Las Vegas"], ["kind", "Public"], ["summary", "Larry's bash at Vegas"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["user_id", 4]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "trips" ("name", "kind", "summary", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Visit to New York"], ["kind", "Public"], ["summary", "Don plans to visit New York"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["user_id", 3]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "trips" ("name", "kind", "summary", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Hike at Whistler second"], ["kind", "Public"], ["summary", "David's trip to Whistler, Yo!"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["user_id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "trips" ("name", "kind", "summary", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Trip to Las Vegas"], ["kind", "Public"], ["summary", "Larry's bash at Vegas"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["user_id", 5]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "trips" ("name", "kind", "summary", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Visit to New York"], ["kind", "Public"], ["summary", "Karl plans to visit New York"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["user_id", 5]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSchedule Load (0.5ms)[0m  [1m[34mSELECT "schedules".* FROM "schedules"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schedules" ("date", "destination", "created_at", "updated_at", "trip_id", "destination_name") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", Sun, 15 Oct 2017], ["destination", "ChIJh3uVA7I8h1QR9s_1dehBt0o"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["trip_id", 1], ["destination_name", "Whistler"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schedules" ("date", "destination", "created_at", "updated_at", "trip_id", "destination_name") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", Thu, 24 Aug 2017], ["destination", "ChIJ0X31pIK3voARo3mz1ebVzDo"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["trip_id", 2], ["destination_name", "Las Vegas"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schedules" ("date", "destination", "created_at", "updated_at", "trip_id", "destination_name") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", Fri, 24 Nov 2017], ["destination", "ChIJOwg_06VPwokRYv534QaPC8g"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["trip_id", 3], ["destination_name", "New York"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "schedules" ("date", "destination", "created_at", "updated_at", "trip_id", "destination_name") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", Fri, 15 Dec 2017], ["destination", "ChIJh3uVA7I8h1QR9s_1dehBt0o"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["trip_id", 4], ["destination_name", "Whistler"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schedules" ("date", "destination", "created_at", "updated_at", "trip_id", "destination_name") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", Sat, 16 Dec 2017], ["destination", "ChIJ0X31pIK3voARo3mz1ebVzDo"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["trip_id", 5], ["destination_name", "Las Vegas"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schedules" ("date", "destination", "created_at", "updated_at", "trip_id", "destination_name") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", Sun, 17 Dec 2017], ["destination", "ChIJOwg_06VPwokRYv534QaPC8g"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["trip_id", 6], ["destination_name", "New York"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schedules" ("date", "destination", "created_at", "updated_at", "trip_id", "destination_name") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", Fri, 25 Aug 2017], ["destination", "ChIJ0X31pIK3voARo3mz1ebVzDo"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["trip_id", 2], ["destination_name", "Las Vegas"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActivity Load (0.6ms)[0m  [1m[34mSELECT "activities".* FROM "activities"[0m
+DEPRECATION WARNING: Time columns will become time zone aware in Rails 5.1. This
+still causes `String`s to be parsed as if they were in `Time.zone`,
+and `Time`s to be converted to `Time.zone`.
+
+To keep the old behavior, you must add the following to your initializer:
+
+    config.active_record.time_zone_aware_types = [:datetime]
+
+To silence this deprecation warning, add the following:
+
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+ (called from <top (required)> at /Users/sharonhsu/lighthouse/projects/lhl-final-project/server/db/seeds.rb:189)
+DEPRECATION WARNING: Time columns will become time zone aware in Rails 5.1. This
+still causes `String`s to be parsed as if they were in `Time.zone`,
+and `Time`s to be converted to `Time.zone`.
+
+To keep the old behavior, you must add the following to your initializer:
+
+    config.active_record.time_zone_aware_types = [:datetime]
+
+To silence this deprecation warning, add the following:
+
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+ (called from <top (required)> at /Users/sharonhsu/lighthouse/projects/lhl-final-project/server/db/seeds.rb:189)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActivity Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "activities" WHERE "activities"."uuid" = $1 LIMIT $2[0m  [["uuid", "1"], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "activities" ("start_time", "end_time", "uuid", "name", "description", "place", "created_at", "updated_at", "schedule_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_time", 2000-01-01 16:00:00 -0800], ["end_time", 2000-01-01 18:00:00 -0800], ["uuid", "1"], ["name", "Hiking"], ["description", "Hiking a lot!!"], ["place", "ChIJW5JDBk0jh1QRttPEPI0TSm8"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["schedule_id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActivity Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "activities" WHERE "activities"."uuid" = $1 LIMIT $2[0m  [["uuid", "2"], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "activities" ("start_time", "end_time", "uuid", "name", "description", "place", "created_at", "updated_at", "schedule_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_time", 2000-01-01 19:00:00 -0800], ["end_time", 2000-01-01 21:00:00 -0800], ["uuid", "2"], ["name", "Lunch"], ["description", "Italian for lunch!"], ["place", "ChIJ81o8DrM8h1QR9NeJlPZ0ZRA"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["schedule_id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActivity Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "activities" WHERE "activities"."uuid" = $1 LIMIT $2[0m  [["uuid", "3"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "activities" ("start_time", "end_time", "uuid", "name", "description", "place", "created_at", "updated_at", "schedule_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_time", 2000-01-01 23:00:00 -0800], ["end_time", 2000-01-01 03:00:00 -0800], ["uuid", "3"], ["name", "Bar"], ["description", "Hit the Dubh Linn bar!"], ["place", "ChIJTVGqokwjh1QRAN4E3Ad4v5E"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["schedule_id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActivity Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "activities" WHERE "activities"."uuid" = $1 LIMIT $2[0m  [["uuid", "4"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "activities" ("start_time", "end_time", "uuid", "name", "description", "place", "created_at", "updated_at", "schedule_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_time", 2000-01-01 17:00:00 -0800], ["end_time", 2000-01-01 19:00:00 -0800], ["uuid", "4"], ["name", "Bellagio"], ["description", "Visit Bellagio for fun!"], ["place", "ChIJvUdRyzDEyIARhA3R2cXH8oI"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["schedule_id", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActivity Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "activities" WHERE "activities"."uuid" = $1 LIMIT $2[0m  [["uuid", "5"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "activities" ("start_time", "end_time", "uuid", "name", "description", "place", "created_at", "updated_at", "schedule_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_time", 2000-01-01 20:00:00 -0800], ["end_time", 2000-01-01 22:00:00 -0800], ["uuid", "5"], ["name", "Strip"], ["description", "Time to hit the strip!"], ["place", "ChIJ69QoNDjEyIARTIMmDF0Z4kM"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["schedule_id", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActivity Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "activities" WHERE "activities"."uuid" = $1 LIMIT $2[0m  [["uuid", "6"], ["LIMIT", 1]]
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "activities" ("start_time", "end_time", "uuid", "name", "description", "place", "created_at", "updated_at", "schedule_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_time", 2000-01-02 00:00:00 -0800], ["end_time", 2000-01-01 02:00:00 -0800], ["uuid", "6"], ["name", "Dinner"], ["description", "Dinner time at a fancy place!"], ["place", "ChIJvUdRyzDEyIARh86Fi1C2hqI"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["schedule_id", 2]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActivity Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "activities" WHERE "activities"."uuid" = $1 LIMIT $2[0m  [["uuid", "7"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "activities" ("start_time", "end_time", "uuid", "name", "description", "place", "created_at", "updated_at", "schedule_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_time", 2000-01-01 16:00:00 -0800], ["end_time", 2000-01-01 18:00:00 -0800], ["uuid", "7"], ["name", "Empire State Building"], ["description", "What better than Empire State Building!"], ["place", "ChIJtcaxrqlZwokRfwmmibzPsTU"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["schedule_id", 3]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActivity Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "activities" WHERE "activities"."uuid" = $1 LIMIT $2[0m  [["uuid", "8"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "activities" ("start_time", "end_time", "uuid", "name", "description", "place", "created_at", "updated_at", "schedule_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_time", 2000-01-01 16:00:00 -0800], ["end_time", 2000-01-01 18:00:00 -0800], ["uuid", "8"], ["name", "Morning at the Venetian"], ["description", "Explore the property and shops at Venetian"], ["place", "ChIJiwV3rBXEyIARRdN3c345tKE"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["schedule_id", 7]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActivity Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "activities" WHERE "activities"."uuid" = $1 LIMIT $2[0m  [["uuid", "10"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "activities" ("start_time", "end_time", "uuid", "name", "description", "place", "created_at", "updated_at", "schedule_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_time", 2000-01-01 19:00:00 -0800], ["end_time", 2000-01-01 21:00:00 -0800], ["uuid", "10"], ["name", "Buffet Lunch at MGM"], ["description", "MGM Grant Buffet!"], ["place", "ChIJJQ6Ck8zFyIARhIWFRFW3RQ8"], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700], ["schedule_id", 7]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mParticipation Load (0.5ms)[0m  [1m[34mSELECT "participations".* FROM "participations"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "participations" ("schedule_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["schedule_id", 2], ["user_id", 1], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "participations" ("schedule_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["schedule_id", 2], ["user_id", 3], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "participations" ("schedule_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["schedule_id", 2], ["user_id", 5], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "participations" ("schedule_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["schedule_id", 1], ["user_id", 1], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "participations" ("schedule_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["schedule_id", 1], ["user_id", 3], ["created_at", 2017-05-04 11:30:18 -0700], ["updated_at", 2017-05-04 11:30:18 -0700]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m

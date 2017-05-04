@@ -126,6 +126,12 @@ trip4 = user1.trips.create!({
   summary: "David's trip to Whistler, Yo!"
 })
 
+trip5 = user5.trips.create!({
+  name: "Trip to Las Vegas",
+  kind: "Public",
+  summary: "Larry's bash at Vegas"
+})
+
 trip6 = user5.trips.create!({
   name: "Visit to New York",
   kind: "Public",
@@ -170,6 +176,12 @@ schedule6 = trip6.schedules.create!({
   date: Date.new(2017,12,17),
   destination: "ChIJOwg_06VPwokRYv534QaPC8g",
   destination_name: "New York"
+})
+
+schedule7 = trip2.schedules.create!({
+  date: Date.new(2017,8,25),
+  destination: "ChIJ0X31pIK3voARo3mz1ebVzDo",
+  destination_name: "Las Vegas"
 })
 
 puts "Creating activities ..."
