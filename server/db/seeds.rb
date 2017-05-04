@@ -225,8 +225,8 @@ activity4 = schedule2.activities.create!({
 })
 
 activity5 = schedule2.activities.create!({
-  start_time: '20:00',
-  end_time: '22:00',
+  start_time: '21:00',
+  end_time: '23:00',
   uuid: 5,
   name:"Strip",
   description:"Time to hit the strip!",
@@ -234,8 +234,8 @@ activity5 = schedule2.activities.create!({
 })
 
 activity6 = schedule2.activities.create!({
-  start_time: '24:00',
-  end_time: '02:00',
+  start_time: '19:00',
+  end_time: '21:00',
   uuid: 6,
   name:"Dinner",
   description:"Dinner time at a fancy place!",
