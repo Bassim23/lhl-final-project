@@ -50,8 +50,11 @@ function createTripsElement(trips, image) {
           There are no trips to this destination available
         <h4>
       </div>
+      <br>
+      <br>
+      <br>
     `
-  if (trips.trip) {
+  if (trips) {
     return $trip;
   } else {
     return $empty;

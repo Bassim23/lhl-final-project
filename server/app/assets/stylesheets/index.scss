@@ -1,15 +1,19 @@
 .app_name {
   position: absolute;
-  top: 1em;
-  font-size: 80%;
+  top: 0.2em;
+  font-size: 2em;
+  font-weight: bold;
 }
 
 .app_slogan {
+  background-color: #222222;
+  opacity: 0.8;
   position: absolute;
   top: 40%;
   font-size: 100%;
   color:#FFFFFF;
   font-style:italic;
+  text-align: center;
 }
 
 .hero {
