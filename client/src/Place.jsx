@@ -31,9 +31,6 @@ class Place extends Component {
           data-id={this.props.place.id}
           data-url={PLACE_URL + this.props.place.id}
           data-color={this.props.color}
-          style={{
-            backgroundColor: this.props.color
-             }}
           >
           <img src={this.props.place.icon} />
           <div className="info">

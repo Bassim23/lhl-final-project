@@ -43599,9 +43599,6 @@ var API_KEY = 'AIzaSyC3yCuJtptjR5ToKEdsPqHvPnlQXcLMTRk';
 // const API_KEY = 'AIzaSyDGzXs4DJ0MwXv8WYsAGNS-xBoOLNIo91U'; // Ben's second
 // const API_KEY = 'AIzaSyCSTQQCsTp3LuWHmPaZYWDk_LxgkHcjsX4'; // Ben's third
 
-var backgroundColor = ['#DFBA69', '#5A2E2E', '#2B4E72', '#94BA65'];
-var index = -1;
-
 var ActivityList = function (_Component) {
   _inherits(ActivityList, _Component);
 
@@ -43803,12 +43800,7 @@ var ActivityList = function (_Component) {
             'Places'
           ),
           this.state.places.map(function (e) {
-            if (index >= backgroundColor.length - 1) {
-              index = 0;
-            } else {
-              index++;
-            }
-            return _react2.default.createElement(_Place2.default, { key: e.id, place: e, color: backgroundColor[index] });
+            return _react2.default.createElement(_Place2.default, { key: e.id, place: e });
           })
         )
       );
@@ -44223,10 +44215,7 @@ var Place = function (_Component) {
           { className: 'fc-event',
             'data-id': this.props.place.id,
             'data-url': PLACE_URL + this.props.place.id,
-            'data-color': this.props.color,
-            style: {
-              backgroundColor: this.props.color
-            }
+            'data-color': this.props.color
           },
           _react2.default.createElement('img', { src: this.props.place.icon }),
           _react2.default.createElement(

@@ -1,3 +1,11 @@
+$colors: #DFBA69, #5A2E2E, #2B4E72, #94BA65;
+
+@for $i from 1 through length($colors) {
+    .fc-event:nth-child(#{length($colors)}n+#{$i}) {
+        background: (nth($colors, $i));
+    }
+}
+
 .event-list {
   list-style: none;
   font-family: 'Lato', sans-serif;

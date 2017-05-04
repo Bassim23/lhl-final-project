@@ -10,9 +10,6 @@ const API_KEY = 'AIzaSyC3yCuJtptjR5ToKEdsPqHvPnlQXcLMTRk';
 // const API_KEY = 'AIzaSyDGzXs4DJ0MwXv8WYsAGNS-xBoOLNIo91U'; // Ben's second
 // const API_KEY = 'AIzaSyCSTQQCsTp3LuWHmPaZYWDk_LxgkHcjsX4'; // Ben's third
 
-const backgroundColor = ['#DFBA69', '#5A2E2E', '#2B4E72', '#94BA65'];
-let index = -1;
-
 class ActivityList extends Component {
 
   constructor(props) {
@@ -136,12 +133,7 @@ class ActivityList extends Component {
         <ul id='external-events' className="event-list">
           <h1>Places</h1>
           {this.state.places.map((e) => {
-            if (index >= backgroundColor.length - 1){
-              index = 0;
-            } else {
-              index++;
-            }
-            return <Place key={e.id} place={e} color={ backgroundColor[index] }/> })
+            return <Place key={e.id} place={e} /> })
           }
         </ul>
       </div>
