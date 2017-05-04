@@ -23,89 +23,119 @@ puts "Creating users ..."
 User.destroy_all
 
 user1 = User.create!({
-  first_name: "Kobe",
-  last_name: "Bryant",
+  first_name: "David",
+  last_name: "VanDusen",
   age: 34,
   gender: "Male",
-  nationality: "American",
-  email: "kobe@gmail.com",
-  photo: "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/110.png&w=350&h=254",
-  upvotes: 15,
-  downvotes: 5,
-  summary: "I'm Kobe and I like to hike!",
-  password: "bryant",
-  password_confirmation: "bryant"
+  nationality: "Canadian",
+  email: "david@gmail.com",
+  photo: "https://lighthouselabs.ca/uploads/team_member/avatar/3/medium_davidvandusen_2x.jpg",
+  upvotes: 100,
+  downvotes: 95,
+  summary: "I'm David and I like to do something!",
+  password: "david",
+  password_confirmation: "david"
 })
 
 user2 = User.create!({
-  first_name: "Lebron",
-  last_name: "James",
+  first_name: "Joel",
+  last_name: "Shinness",
   age: 31,
   gender: "Male",
   nationality: "American",
-  email: "lebron@gmail.com",
-  photo: "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/1966.png&w=350&h=254",
-  upvotes: 5,
-  downvotes: 15,
-  summary: "I'm Lebron and that's all I have to say.",
-  password: "lebron",
-  password_confirmation: "lebron"
+  email: "joel@gmail.com",
+  photo: "https://yt3.ggpht.com/-5e9T1JeRJX8/AAAAAAAAAAI/AAAAAAAAAAA/7ZcYeYo4KfI/s900-c-k-no-mo-rj-c0xffffff/photo.jpg",
+  upvotes: 100,
+  downvotes: 85,
+  summary: "Check out my blog at http://www.joelshinness.com/",
+  password: "joel1",
+  password_confirmation: "joel1"
 
 })
 
 user3 = User.create!({
-  first_name: "Kevin",
-  last_name: "Love",
-  age: 28,
+  first_name: "Don",
+  last_name: "Burks",
+  age: 18,
   gender: "Male",
-  nationality: "American",
-  email: "love@gmail.com",
-  photo: "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3449.png&w=350&h=254",
-  upvotes: 25,
+  nationality: "Canadian/American/?",
+  email: "don@gmail.com",
+  photo: "https://lighthouselabs.ca/uploads/team_member/avatar/2/medium_don.JPG",
+  upvotes: 99,
   downvotes: 1,
-  summary: "I'm Kevin Love and I love to travel",
-  password: "kevin",
-  password_confirmation: "kevin"
+  summary: "Clap for me.",
+  password: "burks",
+  password_confirmation: "burks"
+})
+
+user4 = User.create!({
+  first_name: "Larry",
+  last_name: "The Duck",
+  age: 18,
+  gender: "Rather not say",
+  nationality: "?",
+  email: "larry@gmail.com",
+  photo: "https://lighthouselabs.ca/uploads/team_member/avatar/51/medium_larry_2x.jpg",
+  upvotes: 9999,
+  downvotes: 0,
+  summary: "Quack",
+  password: "larry",
+  password_confirmation: "larry"
+})
+
+user5 = User.create!({
+  first_name: "Karl",
+  last_name: "Jensen",
+  age: 18,
+  gender: "Male",
+  nationality: "Canadian",
+  email: "karl@gmail.com",
+  photo: "https://avatars.githubusercontent.com/u/14803?v=3",
+  upvotes: 99,
+  downvotes: 0,
+  summary: "I'm Karl.",
+  password: "karl1",
+  password_confirmation: "karl1"
 })
 
 puts "Creating trips ..."
 
 Trip.destroy_all
 
-trip1 = user1.trips.create!({
+trip1 = user2.trips.create!({
   name: "Hike at Whistler!",
   kind: "Public",
-  summary: "Kobe's trip to Whistler, Yo!"
+  summary: "Joel's trip to Whistler, Yo!"
 })
 
-trip2 = user2.trips.create!({
+trip2 = user4.trips.create!({
   name: "Trip to Las Vegas",
   kind: "Public",
-  summary: "Lebron's bash at Vegas"
+  summary: "Larry's bash at Vegas"
 })
 
 trip3 = user3.trips.create!({
   name: "Visit to New York",
   kind: "Public",
-  summary: "Kevin plans to visit New York"
+  summary: "Don plans to visit New York"
 })
 
 trip4 = user1.trips.create!({
-  name: "Private Hike at Whistler!",
-  kind: "Private",
-  summary: "Kobe's private trip to Whistler, Yo!"
+  name: "Hike at Whistler second",
+  kind: "Public",
+  summary: "David's trip to Whistler, Yo!"
 })
 
-trip5 = user2.trips.create!({
-  name: "Private Trip to Las Vegas",
-  kind: "Private",
-  summary: "Lebron's private ash at Vegas"
+trip5 = user4.trips.create!({
+  name: "Trip to Las Vegas",
+  kind: "Public",
+  summary: "Larry's bash at Vegas"
 })
 
-trip6 = user3.trips.create!({
-  name: "Private Visit to New York",
-  kind: "Private",
-  summary: "Kevin private plans to visit New York"
+trip6 = user5.trips.create!({
+  name: "Visit to New York",
+  kind: "Public",
+  summary: "Karl plans to visit New York"
 })
 
 puts "Creating schedules ..."
@@ -244,32 +274,28 @@ puts "Creating participations ..."
 
 Participation.destroy_all
 
-participation1 = schedule1.participations.create!({
-  user_id: user2.id,
-  status: ''
+participation1 = schedule2.participations.create!({
+  user_id: user1.id
 })
 
-participation2 = schedule1.participations.create!({
-  user_id: user3.id,
-  status: "Accepted"
+participation2 = schedule2.participations.create!({
+  user_id: user2.id
 })
 
-participation3 = schedule1.participations.create!({
-  user_id: user2.id,
-  status: "Declined"
+participation3 = schedule2.participations.create!({
+  user_id: user3.id
 })
 
 participation4 = schedule2.participations.create!({
-  user_id: user3.id,
-  status: "Accepted"
+  user_id: user5.id
 })
 
-participation4 = schedule3.participations.create!({
-  user_id: user1.id,
-  status: "Accepted"
+participation5 = schedule1.participations.create!({
+  user_id: user1.id
 })
 
-participation5 = schedule3.participations.create!({
-  user_id: user2.id,
-  status: "Declined"
+participation6 = schedule1.participations.create!({
+  user_id: user3.id
 })
+
+
